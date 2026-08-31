@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muzconecct</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <form action="/register" method="POST">
+
+
+        <input type="text" name="name" placeholder="Imię">
+        <input type="text" name="surname" placeholder="Nazwisko">
+        <input type="text" name="city" placeholder="Miasto">
+        <label for="instrument">Wybierz instrument:</label>
+       <select id="instrument" name="instrument">
+
+     
+        <option value="bass">Bas</option>
+        <option value="guitar">Gitara</option>
+        <option value="drums">Perkusja</option>
+       
+    </select>
+        <label for="level">Wybierz poziom zaawansowania:</label>
+        <select id="level" name="level"> 
+            <option value="początkujący">Początkujący</option>
+            <option value="sredniozaawansowany">Średnio zaawansowany</option>
+            <option value="zaawansowany">Zaawansowany</option>
+        
+
+        </select>
+        <button type="submit">Zarejestruj</button>
+
+    </form>
+</body>
+</html>

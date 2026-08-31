@@ -64,6 +64,26 @@ app.post("/register-account", async (req, res) => {
     res.send("konto odebrane");
 })
 
+app.post("/login", async (req, res ) => {
+    await client.connect();
+
+    const db = client.db("baza_muzykow");
+    const users = db.collection("users");
+
+    const user = await users.findOne({
+
+        email: req.body.email
+    });
+    const passwordMatch = await bcrypt.compare(
+        req.body.password,
+        user.password
+    );
+
+    console.log(user);
+
+ 
+})
+
 //processDB();
 app.use(express.static("."));
 

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musicians</title>
+</head>
+<body>
+    
+    <h1>Musicians</h1>
+    <div id="filters">
+
+        <select id="instrument">
+
+            <option value="">Wszystkie Instrumenty</option>
+            <option value="bass">Bas</option>
+            <option value="guitar">Gitara</option>
+            <option value="drums">Perkusja</option>
+
+        </select>
+
+        <select id="level">
+
+            <option value="">Wszystkie Poziomy</option>
+            <option value="początkujący">Początkujący</option>
+            <option value="sredniozaawansowany">Średnio zaawansowany</option>
+            <option value="zaawansowany">Zaawansowany</option>
+
+        </select>
+
+        <input type="text" id="city" placeholder="Miasto">
+
+        <button id="search">Szukaj</button>
+
+    </div>
+    <div id="musicians"></div>
+
+
+
+
+
+<script>
+    function loadMusicians() {
+
+        const instrument = document.getElementById("instrument").value;
+        const level = document.getElementById("level").value;
+        const city = document.getElementById("city").value;
+
+        const params = new URLSearchParams();
+
+        if (instrument) {
+            params.append("instrument", instrument);
+        }
+        if (level) {
+            params.append("level", level);
+
+        }
+        if (city) {
+            params.append("city", city);
+            
+        }
+        
+
+        fetch("/musicians?" + params.toString())
+        .then(response => response.json())
+        .then(musicians => {
+
+            const container = document.getElementById("musicians");
+
+            container.innerHTML = "";
+
+            musicians.forEach(musician => {
+
+                const card = document.createElement("div");
+
+                card.innerHTML = `
+                <h2>${musician.name} ${musician.surname}</h2>
+                <p>Miasto: ${musician.city}</p>
+                <p>Instrument: ${musician.instrument}</p>
+                <p>Poziom: ${musician.level}</p>
+                `;
+                container.appendChild(card);
+            });
+        });
+    }
+        document.getElementById("search").addEventListener("click", loadMusicians);
+
+        loadMusicians();
+    
+</script>
+</body>
+</html>

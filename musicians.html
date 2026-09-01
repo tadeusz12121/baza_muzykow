@@ -8,49 +8,62 @@
 <body>
     
     <h1>Musicians</h1>
+    <script>
+
+        fetch("/me") 
+            .then(response => response.json())
+            .then(user => {
+                document.getElementById("loggedUser").textContent =
+                `Zalogowano jako: ${user.name} ${user.surname}`;
+            })
+        
+        
+        
+        
+
+    </script>
     <button type="button" onclick="location.href='/logout'">
         Wyloguj się
     </button>
     <div id="filters">
 
         <select id="instrument">
-
-            <option value="">Wszystkie Instrumenty</option>
-            <option value="bass">Altówka</option>
-            <option value="guitar">Akordeon</option>
-            <option value="drums">Banjo</option>
-            <option value="keys">Fortepian</option> 
-            <option value="keys">Flet poprzeczny</option> 
-            <option value="keys">Flet prosty</option>  
-            <option value="keys">Gitara akustyczna</option>  
-            <option value="keys">Gitara elektryczna</option>  
-            <option value="keys">Gitara klasyczna</option>  
-            <option value="keys">Gitara basowa</option>  
-            <option value="keys">Gitara basowa(akustyczna)</option>  
-            <option value="keys">Harmonijka ustna</option>  
-            <option value="keys">Harfa</option>  
-            <option value="keys">Klarnet</option>  
-            <option value="keys">Kontrabas</option>  
-            <option value="keys">Mandolina</option>  
-            <option value="keys">Obój</option>  
-            <option value="keys">Organy</option>  
-            <option value="keys">Perkusja</option>  
-            <option value="keys">Saksofon altowy</option>  
-            <option value="keys">Saksofon barytonowy</option>  
-            <option value="keys">Saksofon sopranowy</option>  
-            <option value="keys">Syntezator</option>  
-            <option value="keys">Tamburyn</option>  
-            <option value="keys">Trąbka</option>  
-            <option value="keys">Ukulele</option>  
-            <option value="keys">Wibrafon</option>  
-            <option value="keys">Wokal Żeński</option>  
-            <option value="keys">Wokal Męski</option>  
-            <option value="keys">Wiolonczela</option>  
-            <option value="keys">Skrzypce</option>  
-            <option value="keys">Puzon</option>  
-            <option value="keys">Róg</option>  
-            <option value="keys">Rhodes/pianino elektryczne</option>  
-            <option value="keys">Cajon</option>  
+             <option value="">Wszystkie Instrumenty</option>
+           <option value="Altówka">Altówka</option>
+            <option value="Akordeon">Akordeon</option>
+            <option value="Banjo">Banjo</option>
+            <option value="Fortepian">Fortepian</option> 
+            <option value="Flet poprzeczny">Flet poprzeczny</option> 
+            <option value="Flet prosty">Flet prosty</option>  
+            <option value="Gitara akustyczna">Gitara akustyczna</option>  
+            <option value="Gitara elektryczna">Gitara elektryczna</option>  
+            <option value="Gitara klasyczna">Gitara klasyczna</option>  
+            <option value="Gitara basowa">Gitara basowa</option>  
+            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
+            <option value="Harmonijka ustna">Harmonijka ustna</option>  
+            <option value="Harfa">Harfa</option>  
+            <option value="Klarnet">Klarnet</option>  
+            <option value="Kontrabas">Kontrabas</option>  
+            <option value="Mandolina">Mandolina</option>  
+            <option value="Obój">Obój</option>  
+            <option value="Organy">Organy</option>  
+            <option value="Perkusja">Perkusja</option>  
+            <option value="Saksofon altowy">Saksofon altowy</option>  
+            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
+            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
+            <option value="Syntezator">Syntezator</option>  
+            <option value="Tamburyn">Tamburyn</option>  
+            <option value="Trąbka">Trąbka</option>  
+            <option value="Ukulele">Ukulele</option>  
+            <option value="Wibrafon">Wibrafon</option>  
+            <option value="Wokal Żeński">Wokal Żeński</option>  
+            <option value="Wokal Męski">Wokal Męski</option>  
+            <option value="Wiolonczela">Wiolonczela</option>  
+            <option value="Skrzypce">Skrzypce</option>  
+            <option value="Puzon">Puzon</option>  
+            <option value="Róg">Róg</option>  
+            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
+            <option value="Cajon">Cajon</option>  
             
         </select>
 

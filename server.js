@@ -40,14 +40,20 @@ async function processDB() {
 app.post("/register", async (req, res) => {
     await client.connect();
     const db = client.db("baza_muzykow");
-    const musicians = db.collection("musicians");
+    const users = db.collection("users");
 
     
     console.log(req.body);
 
-    await musicians.insertOne(req.body);
-    res.send("zarejestrowano");
 
+    console.log("USER ID:", req.session.userId);
+    console.log("PREFERENCJE:", req.body);
+    await users.updateOne(
+        { _id: new mongo.ObjectId(req.session.userId) },
+        { $set: req.body }
+    );
+    res.redirect("/musicians.html");
+    
 })
 
 app.post("/register-account", async (req, res) => {
@@ -59,14 +65,15 @@ app.post("/register-account", async (req, res) => {
     const hash = await bcrypt.hash(req.body.password, 10);
 
     const user = {
-        username: req.body.username,
+        name: req.body.name,
+        surname: req.body.surname,
         email: req.body.email,
         password: hash
     };
 
     const result = await users.insertOne(user);
     req.session.userId = result.insertedId;
-    res.redirect("/rejestracja.html);")
+    res.redirect("/rejestracja.html");
 })
 
 app.post("/login", async (req, res ) => {
@@ -93,6 +100,8 @@ app.post("/login", async (req, res ) => {
     }   
 
     req.session.userId = user._id;
+    res.redirect("/musicians.html");
+
 
     res.send("zalogowano");
    
@@ -113,7 +122,7 @@ app.get("/musicians", async (req, res) => {
     await client.connect();
 
     const db = client.db("baza_muzykow");
-    const musicians = db.collection("musicians");
+    const musicians = db.collection("users");
     const filter = {};
     if (req.query.instrument) {
         filter.instrument = req.query.instrument;
@@ -130,9 +139,18 @@ app.get("/musicians", async (req, res) => {
     }
 
     const wynik = await musicians.find(filter).toArray();
-
+    
     res.json(wynik);
 });
+
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/register.html");
+    });
+});
+
+
 //processDB();
 app.use(express.static("."));
 

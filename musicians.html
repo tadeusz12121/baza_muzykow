@@ -126,6 +126,8 @@
                 <p>Miasto: ${musician.city}</p>
                 <p>Instrument: ${musician.instrument}</p>
                 <p>Poziom: ${musician.level}</p>
+                <p>Umiejętności: ${musician.skills ? musician.skills.join(", ") : "Brak"}</p>
+                
                 `;
                 container.appendChild(card);
             });

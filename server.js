@@ -63,9 +63,10 @@ app.post("/register-account", async (req, res) => {
         email: req.body.email,
         password: hash
     };
-    await users.insertOne(user);
 
-    res.send("konto odebrane");
+    const result = await users.insertOne(user);
+    req.session.userId = result.insertedId;
+    res.redirect("/rejestracja.html);")
 })
 
 app.post("/login", async (req, res ) => {
@@ -99,6 +100,9 @@ app.post("/login", async (req, res ) => {
 
  
 })
+
+
+
 app.get("/me", async (req, res) => {
     if (!req.session.userId) {
         return res.send("nie jestes zalogowany ");
@@ -110,8 +114,22 @@ app.get("/musicians", async (req, res) => {
 
     const db = client.db("baza_muzykow");
     const musicians = db.collection("musicians");
+    const filter = {};
+    if (req.query.instrument) {
+        filter.instrument = req.query.instrument;
+    }
+    if (req.query.level) {
+        filter.level = req.query.level;
+}
+    if (req.query.city) {
+        filter.city = {
+            $regex: req.query.city,
+            $options: "i"
+        
+        };
+    }
 
-    const wynik = await musicians.find({}).toArray();
+    const wynik = await musicians.find(filter).toArray();
 
     res.json(wynik);
 });

@@ -30,7 +30,7 @@
 
         <input type="text" id="city" placeholder="Miasto">
 
-        <button id="search">Szukaj</button>
+        <button type="button" id="search">Szukaj</button>
 
     </div>
     <div id="musicians"></div>
@@ -59,7 +59,7 @@
             params.append("city", city);
             
         }
-        
+        console.log(params.toString());
 
         fetch("/musicians?" + params.toString())
         .then(response => response.json())
@@ -84,7 +84,7 @@
         });
     }
         document.getElementById("search").addEventListener("click", loadMusicians);
-
+        console.log("skrypt działa");
         loadMusicians();
     
 </script>

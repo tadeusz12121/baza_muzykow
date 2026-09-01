@@ -136,10 +136,36 @@ app.post("/login", async (req, res ) => {
 
 app.get("/me", async (req, res) => {
     if (!req.session.userId) {
-        return res.send("nie jestes zalogowany ");
+        return res.status(401).json({
+            error: "Nie jesteś zalogowany"
+        });
     }
-    res.send("jestes zalogowany");
+
+    await client.connect();
+
+    const db = client.db("baza_muzykow");
+    const users = db.collection("users");
+
+    const user = await users.findOne({
+        _id: new mongo.ObjectId(req.session.userId)
+    });
+
+    if (!user) {
+        return res.status(404).json({
+            error: "Nie znaleziono uzytkownika"
+
+        });
+    }
+
+    res.json({
+        name: user.name,
+        surname: user.surname
+    })
+
 })
+
+
+
 app.get("/musicians", async (req, res) => {
     await client.connect();
 

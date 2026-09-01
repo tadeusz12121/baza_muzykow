@@ -8,6 +8,7 @@
 <body>
     
     <h1>Musicians</h1>
+    <h1><p id="loggedUser"></p></h1>
     <script>
 
         fetch("/me") 
@@ -88,14 +89,26 @@
 
 
 <script>
+    
+        fetch("/me")
+            .then(response => response.json())
+            .then(user => {
+                document.getElementById("loggedUser").textContent =
+                  `Zalogowano jako: ${user.name} ${user.surname} `;
+            });
     function loadMusicians() {
 
         const instrument = document.getElementById("instrument").value;
         const level = document.getElementById("level").value;
         const city = document.getElementById("city").value;
 
+
+
+
         const params = new URLSearchParams();
 
+
+        
         if (instrument) {
             params.append("instrument", instrument);
         }
@@ -126,8 +139,12 @@
                 <p>Miasto: ${musician.city}</p>
                 <p>Instrument: ${musician.instrument}</p>
                 <p>Poziom: ${musician.level}</p>
+                <p>O mnie: ${musician.bio || "Brak opisu"}</p>
                 <p>Umiejętności: ${musician.skills ? musician.skills.join(", ") : "Brak"}</p>
                 <p>Gatunki: ${musician.genres ? musician.genres.join(", ") : "Brak"}</p>
+                <p>Kontakt: ${musician.facebook ? `<a href="${musician.facebook}" target="_blank">Facebook</a>` : ""}
+                    ${musician.instagram ? `<a href="${musician.instagram}" target="_blank">Instagram</a>` : ""}
+              
                 
                 `;
                 container.appendChild(card);

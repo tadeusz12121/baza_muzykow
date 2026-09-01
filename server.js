@@ -42,15 +42,37 @@ app.post("/register", async (req, res) => {
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
 
-    
     console.log(req.body);
+
+     const data = {
+        ...req.body,
+
+        skills: req.body.skills
+            ? Array.isArray(req.body.skills)
+                ? req.body.skills
+                : [req.body.skills]
+            :[],
+        genres: req.body.genres
+            ? Array.isArray(req.body.genres)
+                ? req.body.genres
+                : [req.body.genres]
+
+            :[]
+
+
+
+
+     };
+
+
+
 
 
     console.log("USER ID:", req.session.userId);
     console.log("PREFERENCJE:", req.body);
     await users.updateOne(
         { _id: new mongo.ObjectId(req.session.userId) },
-        { $set: req.body }
+        { $set: data }
     );
     res.redirect("/musicians.html");
     
@@ -103,7 +125,7 @@ app.post("/login", async (req, res ) => {
     res.redirect("/musicians.html");
 
 
-    res.send("zalogowano");
+    
    
     console.log(user);
 
@@ -139,7 +161,7 @@ app.get("/musicians", async (req, res) => {
     }
 
     const wynik = await musicians.find(filter).toArray();
-    
+    console.log("WYNIK:", wynik);
     res.json(wynik);
 });
 

@@ -2,13 +2,9 @@ const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
-const multer = require("multer")
-
-
-
-
-
-
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs")
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +20,28 @@ const MongoClient = mongo.MongoClient;
 
 const url = "mongodb://127.0.0.1:27017";
 const client = new MongoClient(url);
+
+const uploadDir = path.join(__dirname, "uploads/profile");
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+
+}
+const storage = multer.diskStorage({
+    destination: uploadDir,
+    filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+        cb(null, Date.now() + ext); 
+    }
+})
+const upload =multer({ storage });
+
+
+
 
 async function processDB() {
     
@@ -87,7 +105,7 @@ app.post("/register", async (req, res) => {
     
 })
 
-app.post("/register-account", async (req, res) => {
+app.post("/register-account", upload.single("profilePicture"), async (req, res) => {
     console.log(req.body);
     await client.connect();
     const db = client.db("baza_muzykow");
@@ -99,7 +117,10 @@ app.post("/register-account", async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         email: req.body.email,
-        password: hash
+        password: hash,
+        profilePicture: req.file
+            ? `/uploads/profile/${req.file.filename}`
+            : null
     };
 
     const result = await users.insertOne(user);
@@ -207,7 +228,7 @@ app.get("/logout", (req, res) => {
     });
 });
 
-
+app.use("/uploads", express.static("uploads"));
 //processDB();
 app.use(express.static("."));
 

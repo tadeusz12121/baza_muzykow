@@ -139,6 +139,11 @@
 
                 card.innerHTML = `
     <div class="musician-header">
+        <img 
+        class="musician-avatar"
+        src="${musician.profilePicture || '/default-avatar.png'}"
+        alt="Zdjęcie profilowe"
+    >
         <div>
             <h2>${musician.name} ${musician.surname}</h2>
             <p class="city">📍 ${musician.city}</p>

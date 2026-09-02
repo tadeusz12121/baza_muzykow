@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+
+}
+
+body {
+
+    background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
+    background:repeat;
+    background-color: #030303;
+  
+    min-height: 100vh;
+
+}
+p {
+    color:white;
+}
+
+
+#musicians {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 45px;
+    justify-content: center;
+}
+
+.musician-card {
+    margin-top: 20px;
+    
+    background: hsl(0, 0%, 6%);
+    border: 1px solid #2a2a33;
+    border-radius: 10px;
+    padding: 22px;
+    width: 350px;
+    height: auto;
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    transition: 0.2s ease;
+}
+.musician-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size:30px;
+    margin: 5px;
+   font-family: Arial, Helvetica, sans-serif;
+   
+}
+.section {
+     margin-top: 20px;
+}

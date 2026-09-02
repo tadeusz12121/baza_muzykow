@@ -25,7 +25,7 @@
 
     </script>
     <button type="button" onclick="location.href='/logout'">
-        Wyloguj się
+        Wyloguj sie
     </button>
     <div class="form-card">
     <div id="filters">
@@ -135,20 +135,69 @@
             musicians.forEach(musician => {
 
                 const card = document.createElement("div");
+                card.className = "musician-card";
 
                 card.innerHTML = `
-                <h2>${musician.name} ${musician.surname}</h2>
-                <p>Miasto: ${musician.city}</p>
-                <p>Instrument: ${musician.instrument}</p>
-                <p>Poziom: ${musician.level}</p>
-                <p>O mnie: ${musician.bio || "Brak opisu"}</p>
-                <p>Umiejętności: ${musician.skills ? musician.skills.join(", ") : "Brak"}</p>
-                <p>Gatunki: ${musician.genres ? musician.genres.join(", ") : "Brak"}</p>
-                <p>Kontakt: ${musician.facebook ? `<a href="${musician.facebook}" target="_blank">Facebook</a>` : ""}
-                    ${musician.instagram ? `<a href="${musician.instagram}" target="_blank">Instagram</a>` : ""}
-              
-                
-                `;
+    <div class="musician-header">
+        <div>
+            <h2>${musician.name} ${musician.surname}</h2>
+            <p class="city">📍 ${musician.city}</p>
+        </div>
+    </div>
+
+    <div class="musician-main">
+        <div class="info:">
+            <span class="label">Instrument: </span>
+            <span>${musician.instrument}</span>
+        </div>
+    </div>
+        <div class="info">
+            <span class="label">Poziom:</span>
+            <span>${musician.level}</span>
+        </div>
+   
+
+    <div class="section">
+        <h3>O mnie:</h3>
+        <p>${musician.bio || "Brak opisu"}</p>
+    </div>
+
+    <div class="section">
+        <h3>Umiejętności:</h3>
+        <div class="tags">
+            ${
+                musician.skills
+                ? musician.skills.map(skill => `<span>${skill}</span>`).join(", ")
+                : "<span>Brak</span>"
+            }
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Gatunki:</h3>
+        <div class="tags">
+            ${
+                musician.genres
+                ? musician.genres.map(genre => `<span>${genre}</span>`).join(", ")
+                : "<span>Brak</span>"
+            }
+        </div>
+    </div>
+
+    <div class="contact">
+        ${
+            musician.facebook
+            ? `<a href="${musician.facebook}" target="_blank">Facebook</a>`
+            : ""
+        }
+
+        ${
+            musician.instagram
+            ? `<a href="${musician.instagram}" target="_blank">Instagram</a>`
+            : ""
+        }
+    </div>
+`;
                 container.appendChild(card);
             });
         });

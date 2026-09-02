@@ -16,17 +16,24 @@ button {
 }
 
 .navbar {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    padding: 20px;
+    background-color:#15151b;
+    color: #f5d054;
+    min-height: 70px;
+    padding: 10px;
+    
 }
 
 
 .nav-links{
-    gap:30px;
+    gap:70px;
+    margin: 10px;
     padding: 20px;
+    display: flex;
+    
    
 }
 .navbar a {
@@ -36,11 +43,58 @@ button {
     
 }
 
+.hamburger {
+    display: none;
+    background: none;
+    border:none;
+    color: rgb(207, 145, 88);
+    font-size: 28px;
+    cursor:pointer;
+    padding: 0;
+    margin: 0;
+
+    line-height: 1;
+
+}
+@media (max-width: 768px) {
+    .navbar {
+        justify-content: space-between;
+        padding: 0 20px;
+        
+    }
+
+
+
+    .hamburger {
+        display: block;
+       
+    }
+    .nav-links {
+        display:none;
+        flex-direction: column;
+        position:absolute;
+        top:70px;
+        left: 0;
+        width: 100%;
+        background-color: #15151b;
+        padding: 20px;
+        gap: 15px;
+        z-index: 10;
+    }
+
+    .nav-links.open {
+        display:flex;
+    }
+}
+
+.hamburger:hover {
+    background-color: transparent;
+    color: rgb(218, 217, 214);
+}
+
+
 body {
-    background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.25'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-color: #242423;
+    background-color: #111117;
   
     min-height: 100vh;
 }

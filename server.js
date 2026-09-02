@@ -2,6 +2,15 @@ const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
 const session = require("express-session");
+const multer = require("multer")
+
+
+
+
+
+
+
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({

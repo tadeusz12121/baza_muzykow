@@ -10,7 +10,11 @@
  <header>
     <nav class="navbar">
 
-        <div class="logo">ERROR404</div>
+        <div class="logo">RIFFLY:</div>
+
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+             ☰
+        </button>
 
         <div class="nav-links">
             <a href="/">Main page</a>
@@ -28,7 +32,7 @@
     <h2>Stwórz swoje konto i znajdź ludzi do wspolnego grania</h2>
    
 <div class="form-card">
-    <form action="/register-account" method="POST">
+    <form action="/register-account" method="POST" enctype="multipart/form-data">
 
         <label for="name">Nazwa użytkownika:</label>
         <input type="text" name="name" placeholder="Imię">
@@ -37,6 +41,13 @@
         <input type="email" name="email" placeholder="Email">
         <label for="password">Hasło:</label>
         <input type="password" name="password" placeholder="Hasło">
+        <label for="profilePicture">Zdjęcie profilowe</label>
+        <input 
+            type="file"
+            id="profilePicture"
+            name="profilePicture"
+            accept="image/*"
+        >
         <button type="submit">Zarejestruj się</button>
     </form>
      <h3>pomagamy muzykom w szukaniu muzyków</h3>

@@ -22,12 +22,12 @@ p {
 #musicians {
     
      color:#f0e6d8;
-    
+
    
 }
 
 .musician-card {
-     
+     display:inline-block;
      padding: 20px;
      background-color: #111117;
      margin: 20px;
@@ -35,17 +35,53 @@ p {
     
 }
 .musician-main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     
    
    
 }
+
+
+.info {
+    font-size: 20px;
+ 
+    
+   
+ 
+    
+}
 .section {
      
 }
+
 
 img {
     width: 75px;
     height: 75px;
     border-radius: 50%;
     object-fit: cover;
+}
+.name {
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.level-dots {
+    display: flex;
+    gap: 5px;
+    margin: 6px 0;
+}
+
+.level-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #2a2a33;
+}
+
+.level-dots span.active {
+    background: #efeff1;
+    box-shadow: 0 0 6px #151515;
 }

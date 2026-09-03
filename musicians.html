@@ -27,6 +27,10 @@
     <button type="button" onclick="location.href='/logout'">
         Wyloguj sie
     </button>
+    <button type="button" onclick="location.href='/edit-profile.html'">
+        Edytuj profil
+    </button>
+    
     <div class="form-card">
     <div id="filters">
 
@@ -144,7 +148,7 @@
         src="${musician.profilePicture || '/default-avatar.png'}"
         alt="Zdjęcie profilowe"
     >
-        <div>
+        <div class="name">
             <h2>${musician.name} ${musician.surname}</h2>
             <p class="city">📍 ${musician.city}</p>
         </div>
@@ -158,9 +162,14 @@
     </div>
         <div class="info">
             <span class="label">Poziom:</span>
-            <span>${musician.level}</span>
+          <div class="level-dots">
+            <span class="${musician.level ==='początkujący' || musician.level === 'sredniozaawansowany' || musician.level ==='zaawansowany' ? 'active' : '' }"></span>
+            <span class="${musician.level === 'sredniozaawansowany' || musician.level === 'zaawansowany' ? 'active' : ''}"></span>
+            <span class="${musician.level === 'zaawansowany' ? 'active' : ''}"></span>
+          
         </div>
-   
+        <span>${musician.level}</span>
+    </div>
 
     <div class="section">
         <h3>O mnie:</h3>

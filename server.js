@@ -163,6 +163,38 @@ app.post("/login", async (req, res ) => {
 })
 
 
+app.post("/edit-profile", async (req, res) => {
+    if (!req.session.user.Id) {
+        return res.status(401).send("Nie jesteś zalogowany");
+    }
+    await client.connect();
+
+    const db = client.db("baza_muzykow");
+    const users = db.collection("users");
+
+    await users.updateOne(
+        { _id: new mongo.ObjectId(req.session.userId)},
+        { 
+        
+            $set: {
+                name: req.body.name,
+                surname: req.body.surname,
+                city: req.body.city,
+                instrument: req.body.instrument,
+                level: req.body.level,
+                lookingfor: req.body.lookingFor
+            }
+        }
+
+    );
+
+    res.redirect("/musicians.html")
+
+
+});
+
+
+
 
 app.get("/me", async (req, res) => {
     if (!req.session.userId) {

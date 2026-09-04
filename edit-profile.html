@@ -10,7 +10,7 @@
         
         <input type="text" id="name" name="name" placeholder="Imię">
 
-        <input type="text" id="surnme" name="surname" placeholder="Nazwisko">
+        <input type="text" id="surname" name="surname" placeholder="Nazwisko">
 
         <input type="text" id="city" name="city" placeholder="Miasto">
 
@@ -25,8 +25,27 @@
 
         <button type="submit">Zapisz zmiany</button>
         
-
+        <select id="level" name="level">
+    <option value="początkujący">Początkujący</option>
+    <option value="sredniozaawansowany">Średnio zaawansowany</option>
+    <option value="zaawansowany">Zaawansowany</option>
+</select>
     </form>
-    
+<script>
+    fetch("/me")
+    .then(response => response.json())
+    .then(user => {
+
+        console.log("DANE Z /ME:", user);
+
+        document.getElementById("name").value = user.name || "";
+        document.getElementById("surname").value = user.surname || "";
+        document.getElementById("city").value = user.city || "";
+        document.getElementById("instrument").value = user.instrument || "";
+        document.getElementById("level").value = user.level || "";
+        document.getElementById("lookingFor").value = user.lookingFor || "";
+
+    });
+</script>
 </body>
 </html>

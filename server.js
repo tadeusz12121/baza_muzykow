@@ -164,10 +164,12 @@ app.post("/login", async (req, res ) => {
 
 
 app.post("/edit-profile", async (req, res) => {
-    if (!req.session.user.Id) {
+    if (!req.session.userId) {
         return res.status(401).send("Nie jesteś zalogowany");
     }
     await client.connect();
+
+   
 
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
@@ -182,7 +184,7 @@ app.post("/edit-profile", async (req, res) => {
                 city: req.body.city,
                 instrument: req.body.instrument,
                 level: req.body.level,
-                lookingfor: req.body.lookingFor
+                lookingFor: req.body.lookingFor
             }
         }
 
@@ -221,7 +223,11 @@ app.get("/me", async (req, res) => {
 
     res.json({
         name: user.name,
-        surname: user.surname
+        surname: user.surname,
+        city: user.city,
+        instrument: user.instrument,
+        level: user.level,
+        lookingFor: user.lookingFor
     })
 
 })

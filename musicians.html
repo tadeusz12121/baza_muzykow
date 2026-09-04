@@ -142,6 +142,7 @@
                 card.className = "musician-card";
 
                 card.innerHTML = `
+    <div class="whole-card">
     <div class="musician-header">
         <img 
         class="musician-avatar"
@@ -161,16 +162,19 @@
         </div>
     </div>
         <div class="info">
+            <div class="lev">
             <span class="label">Poziom:</span>
           <div class="level-dots">
             <span class="${musician.level ==='początkujący' || musician.level === 'sredniozaawansowany' || musician.level ==='zaawansowany' ? 'active' : '' }"></span>
             <span class="${musician.level === 'sredniozaawansowany' || musician.level === 'zaawansowany' ? 'active' : ''}"></span>
             <span class="${musician.level === 'zaawansowany' ? 'active' : ''}"></span>
-          
+        </div> 
         </div>
-        <span>${musician.level}</span>
+        <div class="sectio_v2">
+        
+    <span>${musician.lookingFor || "Nic nie podano"}</span>
     </div>
-
+       
     <div class="section">
         <h3>O mnie:</h3>
         <p>${musician.bio || "Brak opisu"}</p>
@@ -210,6 +214,7 @@
             ? `<a href="${musician.instagram}" target="_blank">Instagram</a>`
             : ""
         }
+    </div>
     </div>
 `;
                 container.appendChild(card);

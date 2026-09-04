@@ -36,6 +36,8 @@
     .then(response => response.json())
     .then(user => {
 
+
+
         console.log("DANE Z /ME:", user);
 
         document.getElementById("name").value = user.name || "";

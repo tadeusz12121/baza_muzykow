@@ -4,7 +4,8 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-h1, h2, h3 {
+h2, h3 {
+    
     font-family: 'Space Grotesk', sans-serif;
 }
 
@@ -15,6 +16,11 @@ h1, h2, h3 {
     
 
 }
+h1 {
+    color: white;
+    margin: 10px;
+    text-align: center;
+}
 
 body {
     background-color:#15151b;
@@ -22,12 +28,107 @@ body {
 
 }
 p {
+    color: white;
+    
+}
+
+.form-card {
+    margin-top: 30px;
+   justify-content: center;
+    display: flex;
+    align-items: flex-start;
+    
+
+    
+
+}
+#filters {
+    width: fit-content;
+    margin: 10px;
+    color: wheat;
+    
+    padding: 10px;
+    border: 2px solid wheat;
+    display: flex;
+    align-items: center;
+   flex-direction: column;
+   
+    
+    
+    
+}
+input::placeholder{ 
+    color:#6b6b76;
+}
+
+.przyciski {
+    margin: 10px;
+   
+    padding: 10px;
+    width: fit-content;
+    
+    border: 2px solid wheat;
+
+
+}
+
+button {
+    border-radius: 12px;
+    background-color:#2a2a33;;
+    display: flex;
+    font-size: 12px;
+    border: 1px solid #2a2a33;
+     color: antiquewhite;
+    padding: 10px;
+    width: 150px;
+    margin: 10px;
+}
+
+button:hover {
+     border: 1px solid wheat;
     
 }
 
 
-#musicians {
+
+input, select {
+
+    border-radius: 12px;
+    background-color:#2a2a33;
+    border: 1px solid #2a2a33;
+    margin: 10px;
     
+    color: antiquewhite;
+    width: 150px;
+    padding: 10px;
+    
+
+   
+}
+
+select {
+    height: 35px;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #c8c4d0;
+
+
+}
+select {
+    
+
+    
+    
+}
+
+label {
+    color: white;
+
+}
+#musicians {
+    text-align: center;
      color:#f0e6d8;
     transition: 0.3s;
    
@@ -35,10 +136,15 @@ p {
 
 .musician-card {
      display:inline-block;
+     vertical-align: top;
      padding: 20px;
+
      background-color: #111117;
      margin: 20px;
      transition: 0.3s;
+     width: 350px;
+    
+
      
 
     
@@ -55,8 +161,8 @@ p {
 
 
 .info {
-    
-    font-size: 16px;
+
+    font-size: 14px;
     margin-top: 8px;
 
     
@@ -77,7 +183,8 @@ p {
      border-radius: 10px;
      margin-top: 10px;
      padding: 5px;
-     font-size: 12px;
+     font-size: 13px;
+     text-align: left;
      font-family: Arial, Helvetica, sans-serif;
      transition: 0.3s;
    
@@ -86,7 +193,7 @@ p {
 .sectio_v2{
     background-color: rgba(245, 245, 220, 0.349);
     border-radius: 12px;
-    
+    text-align: left;
      margin-top: 10px;
      padding: 5px;
      font-size: 12px;
@@ -98,6 +205,7 @@ p {
 .label {
     margin: 0;
     margin-right: 5px;
+    
 }
 
 img {
@@ -107,6 +215,7 @@ img {
     object-fit: cover;
 }
 .name {
+
     font-family: Arial, Helvetica, sans-serif;
     
 }
@@ -154,3 +263,14 @@ img {
     color: rgb(248, 247, 242);
     transform: scale(1.03)
 }
+
+
+
+#citySuggestions div {
+    margin: 10px;
+    padding: 10px;
+    font-size: 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    color:wheat;
+background-color: #2a2a33;}

@@ -228,7 +228,9 @@ app.get("/me", async (req, res) => {
         city: user.city,
         instrument: user.instrument,
         level: user.level,
-        lookingFor: user.lookingFor
+        lookingFor: user.lookingFor,
+        secinstrument: user.secinstrument
+
     })
 
 })
@@ -241,9 +243,13 @@ app.get("/musicians", async (req, res) => {
     const db = client.db("baza_muzykow");
     const musicians = db.collection("users");
     const filter = {};
+    
     if (req.query.instrument) {
-        filter.instrument = req.query.instrument;
-    }
+    filter.$or = [
+        { instrument: req.query.instrument },
+        { secinstrument: req.query.instrument }
+    ];
+}
     if (req.query.level) {
         filter.level = req.query.level;
 }
@@ -254,8 +260,12 @@ app.get("/musicians", async (req, res) => {
         
         };
     }
+    console.log("QUERY:", req.query);
+    console.log("FILTER:", filter);
 
     const wynik = await musicians.find(filter).toArray();
+
+
     console.log("WYNIK:", wynik);
     res.json(wynik);
 });

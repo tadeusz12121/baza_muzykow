@@ -24,15 +24,20 @@
         
 
     </script>
+    
+    <div class="form-card">
+    <div class="przyciski">
     <button type="button" onclick="location.href='/logout'">
         Wyloguj sie
     </button>
     <button type="button" onclick="location.href='/edit-profile.html'">
         Edytuj profil
     </button>
+    </div>
     
-    <div class="form-card">
+    
     <div id="filters">
+        <h2>Filtry</h2>
 
         <select id="instrument">
              <option value="">Wszystkie Instrumenty</option>
@@ -84,13 +89,54 @@
         </select>
 
         <input type="text" id="city" placeholder="Miasto">
-
+        <div id="citySuggestions"></div>
         <button type="button" id="search">Szukaj</button>
 
+    </div>
     </div>
     <div id="musicians"></div>
 
 </div>
+
+  <script>
+        const cityInput = document.getElementById("city");
+        const citySuggestions = document.getElementById("citySuggestions");
+
+        let cities = [];
+
+        fetch("/cities.json")
+            .then(response => response.json())
+            .then(data => {
+                cities = data;
+            });
+        cityInput.addEventListener("input", () => {
+            const value = cityInput.value.toLowerCase().trim();
+
+            citySuggestions.innerHTML = "";
+
+            if (value.length < 2) return;
+
+            const results = cities
+                .filter(city => city.toLowerCase().startsWith(value))
+                .slice(0, 8);
+
+            results.forEach(city => {
+                const option = document.createElement("div");
+
+                option.textContent = city;
+
+                option.addEventListener("click", () => {
+                    cityInput.value = city;
+                    citySuggestions.innerHTML = "";
+
+                });
+
+                citySuggestions.appendChild(option);
+
+            });
+        });
+
+    </script>
 
 
 
@@ -132,6 +178,8 @@
         .then(response => response.json())
         .then(musicians => {
 
+            console.log("MUSICIANS FRONTEND:", musicians);
+
             const container = document.getElementById("musicians");
 
             container.innerHTML = "";
@@ -151,7 +199,7 @@
     >
         <div class="name">
             <h2>${musician.name} ${musician.surname}</h2>
-            <p class="city">Miasto ${musician.city}</p>
+            <p class="city">Miasto: ${musician.city}</p>
         </div>
     </div>
 
@@ -159,6 +207,11 @@
         <div class="info">
             <span class="label">Instrument: </span>
             <span>${musician.instrument}</span>
+             ${musician.secinstrument ? `
+            
+            <span class="label">,</span>
+            <span>${musician.secinstrument}</span>
+        ` : ""}
         </div>
     </div>
         <div class="info">

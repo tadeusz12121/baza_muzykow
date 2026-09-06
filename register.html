@@ -35,17 +35,18 @@
     <form action="/register-account" method="POST" enctype="multipart/form-data">
 
         <label for="name">Nazwa użytkownika:</label>
-        <input type="text" name="name" placeholder="Imię">
-         <input type="text" name="surname" placeholder="Nazwisko">
+        <input type="text" name="name" required placeholder="Imię">
+         <input type="text" name="surname" required placeholder="Nazwisko">
         <label for="email">Email:</label>
-        <input type="email" name="email" placeholder="Email">
-        <label for="password">Hasło:</label>
-        <input type="password" name="password" placeholder="Hasło">
+        <input type="email" name="email" required placeholder="Email">
+        <label for="password">Hasło: </label>
+        <input type="password" name="password" required placeholder="Hasło">
         <label for="profilePicture">Zdjęcie profilowe</label>
         <input 
             type="file"
             id="profilePicture"
             name="profilePicture"
+            required
             accept="image/*"
         >
         <button type="submit">Zarejestruj się</button>

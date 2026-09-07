@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Hairline&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    <header>
+    <nav class="navbar">
+
+        <div class="logo">RIFFLY:</div>
+
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+             ☰
+        </button>
+
+        <div class="nav-links">
+            <a href="/index.html">Main page</a>
+            <a href="/musicians.html">Musicians</a>
+            <a href="/">Contact</a>
+            <a href="/logowanie.html">Sign in</a>
+            
+        
+</div>
+
+    </nav>
+ </header>
+    <h1>Chat Riffly</h1>
+    <div class="wysylanie">
+    
+    <textarea id="message" type="text" placeholder="Napisz wiadomość"></textarea>
+    <button id="send">Wyślij</button>
+    </div>
+    <div id="messages"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+
+        const socket = io();
+
+        const input = document.querySelector("#message");
+        const button = document.querySelector("#send");
+        const messages = document.querySelector("#messages");
+
+        const params = new URLSearchParams(window.location.search);
+        const receiverId = params.get("userId");
+        
+        let receiverName = "On";
+        fetch("/musicians")
+            .then(response => response.json())
+            .then(users => {
+                const user = users.find(user => user._id === receiverId);
+
+                if (user) {
+                    receiverName = user.name + " ";
+                }
+            })
+
+
+        console.log("rozmawiam z:", receiverId);
+        
+
+
+
+        fetch(`/messages/${receiverId}`)
+            .then(response => response.json())
+            .then(history => {
+
+
+
+                history.forEach(message => {
+                    
+
+                    const p = document.createElement("p");
+
+                    if (message.senderId === receiverId) {
+
+                        p.classList.add("recived");
+                        p.textContent = receiverName + ": " + message.message;
+                    } else {
+                        p.classList.add("sent");
+                        p.textContent = "Ty: " + message.message;
+                    }
+
+    messages.appendChild(p);
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+});
+            });
+
+
+
+
+
+        button.addEventListener("click", () => {
+            const message = input.value;
+
+            if (message === "") {
+                return;
+            }
+            socket.emit("private message", {
+                receiverId: receiverId,
+                message: message
+            });
+            
+            
+
+            input.value = "";
+
+        });
+
+        socket.on("private message", (data) => {
+    console.log("SOCKET:", data);
+
+    const p = document.createElement("p");
+
+    if (data.senderId === receiverId) {
+        p.classList.add("recived");
+        p.textContent = receiverName + ": " + data.message;
+    } else {
+        p.classList.add("sent");
+    
+        p.textContent = "Ty: " + data.message;
+    }
+
+    messages.appendChild(p);
+
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+
+
+
+});
+
+    </script>
+</body>
+</html>

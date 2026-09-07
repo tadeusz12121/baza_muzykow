@@ -9,12 +9,19 @@ const fs = require("fs")
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(session({
+const sessionMiddleware = session({
     secret: "secret-key",
     resave: false,
     saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 30
+    }
 
-}))
+
+});
+
+app.use(sessionMiddleware);
+
 
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
@@ -277,8 +284,109 @@ app.get("/logout", (req, res) => {
     });
 });
 
+app.get("/messages/:userId", async (req, res) =>{
+
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Nie jesteś zalogowany"
+        });
+    }
+    await client.connect();
+    const db = client.db("baza_muzykow");
+    const messages = db.collection("messages");
+
+    const myId = new mongo.ObjectId(req.session.userId);
+    const otherId = new mongo.ObjectId(req.params.userId);
+
+    const history = await messages.find({
+        $or: [
+            {
+                senderId: myId,
+                receiverId: otherId
+
+            },
+            {
+                senderId: otherId,
+                receiverId: myId
+            }
+        ]
+    }).sort({ createdAt: 1 }).toArray();
+
+
+    res.json(history.map(message => ({
+        ...message,
+        senderId: message.senderId.toString(),
+        receiverId: message.receiverId.toString()
+    })))
+
+
+    
+});
+
 app.use("/uploads", express.static("uploads"));
 //processDB();
 app.use(express.static("."));
 
-app.listen(3000);
+const http = require("http");
+const server = http.createServer(app);
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+io.engine.use(sessionMiddleware);
+
+
+io.on("connection", (socket) => {
+    const userId = socket.request.session.userId;
+
+    console.log("uzytkownik połączony:", userId);
+
+
+    if (!userId) {
+        socket.disconnect();
+        return;
+    }
+
+    socket.on("private message", async ({ receiverId, message}) => {
+
+        await client.connect();
+
+        const db = client.db("baza_muzykow");
+        const messages = db.collection("messages");
+
+        await messages.insertOne({
+
+
+            senderId: new mongo.ObjectId(userId),
+            receiverId: new mongo.ObjectId(receiverId),
+            message: message,
+            createdAt: new Date()
+        });
+
+
+
+        io.to(`user:${receiverId}`).emit("private message", {
+            senderId: userId.toString(),
+            message: message
+    });
+
+        io.to(`user:${userId}`).emit("private message", {
+            senderId: userId.toString(),
+            message: message
+    });
+
+
+      
+    });
+
+
+    socket.join(`user:${userId}`);
+
+
+    socket.on("disconnect", () => {
+        console.log("uzytkownik rozlaczony:", userId);
+
+    });
+
+});
+
+server.listen(3000);

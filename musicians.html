@@ -19,13 +19,14 @@
         <div class="nav-links">
             <a href="/index.html">Main page</a>
             <a href="/musicians.html">Musicians</a>
-            <a href="/">Contact</a>
+            <a href="/contact.html">Contact</a>
             <a href="/logowanie.html">Sign in</a>
             
         
 </div>
 
     </nav>
+
  </header>
    
      
@@ -34,11 +35,20 @@
     <script>
 
         fetch("/me") 
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    window.location.href = "/logowanie.html"
+                    return;
+                }
+            return response.json();
+            
+            })
             .then(user => {
+                if (!user) return;
+
                 document.getElementById("loggedUser").textContent =
                 `Zalogowano jako: ${user.name} ${user.surname}`;
-            })
+            });
         
         
         
@@ -49,14 +59,23 @@
     <div class="form-card">
     <div class="przyciski">
     <h2>Konto</h2>
+
+   
+
      <h1><p id="loggedUser"></p></h1>
     <button type="button" onclick="location.href='/logout'">
         Wyloguj sie
     </button>
-   
+    
     <button type="button" onclick="location.href='/edit-profile.html'">
         Edytuj profil
     </button>
+     <div class="notifications">
+        <button id="notificationButton" type="button" onclick="location.href='/notifications.html'">
+    🔔 Sprawdź swoje wiadomości <span id="notificationCount">0</span>
+</button>
+     
+    </div>
     </div>
     
     
@@ -276,9 +295,21 @@
                 ? musician.genres.map(genre => `<span>${genre}</span>`).join(", ")
                 : "<span>Brak</span>"
             }
+
+
+
+        
         </div>
+
+
+          
     </div>
-    
+
+    <button class="napisz" onclick="window.location.href='/chat.html?userId=${musician._id}'">
+        Napisz
+        </button>
+  
+
   <div class="contact">
     ${
         musician.facebook
@@ -292,9 +323,7 @@
         : ""
     }
 
-    <button onclick="window.location.href='/chat.html?userId=${musician._id}'">
-        Napisz
-    </button>
+    
 </div>
 </div>
 `;
@@ -305,7 +334,17 @@
         document.getElementById("search").addEventListener("click", loadMusicians);
         console.log("skrypt działa");
         loadMusicians();
+
+         
     
+</script>
+<script>
+    fetch("/notifications")
+        .then(response => response.json())
+        .then(notifications => {
+            document.getElementById("notificationCount").textContent =
+                notifications.length;
+        });
 </script>
 </body>
 </html>

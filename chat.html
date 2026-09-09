@@ -22,9 +22,17 @@
         <div class="nav-links">
             <a href="/index.html">Main page</a>
             <a href="/musicians.html">Musicians</a>
-            <a href="/">Contact</a>
+            <a href="/contact.html">Contact</a>
             <a href="/logowanie.html">Sign in</a>
             
+        <script>
+            fetch("/notifications")
+                .then(response => response.json())
+                .then(notifications => {
+                    document.getElementById("notificationCount").textContent = 
+                        notifications.length;
+                });
+        </script>
         
 </div>
 
@@ -61,6 +69,7 @@
                     receiverName = user.name + " ";
                 }
             })
+
 
 
         console.log("rozmawiam z:", receiverId);

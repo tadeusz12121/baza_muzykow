@@ -242,7 +242,25 @@ app.get("/me", async (req, res) => {
 
 })
 
+app.get("/notifications", async(req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Nie jesteś zalogowany"
+        });
+    }
 
+    await client.connect();
+
+    const db = client.db("baza_muzykow");
+    const notifications = db.collection("notifications");
+
+    const wynik = await notifications.find({
+        userId: new mongo.ObjectId(req.session.userId),
+        read: false
+    }).toArray();
+    res.json(wynik);
+    
+});
 
 app.get("/musicians", async (req, res) => {
     await client.connect();
@@ -323,6 +341,29 @@ app.get("/messages/:userId", async (req, res) =>{
     
 });
 
+
+function reqiureLogin(req, res, next) {
+    if (!req.session.userId) {
+        return res.redirect("/logowanie.html");
+    }
+
+    next();
+}
+
+app.use((req, res, next) => {
+    if (req.path === "/musicians.html" && !req.session.userId) {
+        return res.redirect("/logowanie.html");
+
+    }
+
+    next();
+});
+
+app.use(express.static("."));
+
+
+
+
 app.use("/uploads", express.static("uploads"));
 //processDB();
 app.use(express.static("."));
@@ -360,6 +401,18 @@ io.on("connection", (socket) => {
             receiverId: new mongo.ObjectId(receiverId),
             message: message,
             createdAt: new Date()
+
+        });
+
+        const notifications = db.collection("notifications");
+
+        await notifications.insertOne ({
+            userId: new mongo.ObjectId(receiverId),
+            senderId: new mongo.ObjectId(userId),
+            type: "message",
+            read: false,
+            createdAt: new Date()
+
         });
 
 

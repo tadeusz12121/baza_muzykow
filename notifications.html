@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powiadomienia</title>
+    <link rel="stylesheet" href="style2.css">
+
+</head>
+<body>
+
+
+
+       <header>
+    <nav class="navbar">
+
+        <div class="logo">RIFFLY:</div>
+
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+             ☰
+        </button>
+
+        <div class="nav-links">
+            <a href="/index.html">Main page</a>
+            <a href="/musicians.html">Musicians</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/logowanie.html">Sign in</a>
+            
+        
+</div>
+
+    </nav>
+
+ </header>
+   
+
+
+
+
+
+
+
+    <h1 class="powiadomienia">Powiadomienia 🔔</h1>
+
+    <div id="notifications"></div>
+
+    <script>
+        fetch("/notifications")
+            .then(response => response.json())
+            .then(notifications => {
+
+                fetch("/musicians")
+                    .then(response => response.json())
+                    .then(users => {
+
+                            const container = document.getElementById("notifications");
+                            notifications.forEach(notification => {
+
+
+                            const user = users.find(user => user._id === notification.senderId);
+
+                             const p = document.createElement("p");
+                             p.classList.add("notification");
+
+                            p.innerHTML = `
+                                <strong>${user.name} ${user.surname}</strong>
+                                 <span>💬 Nowa wiadomość</span>
+                            `;
+                            p.addEventListener("click", () => {
+                                window.location.href = `/chat.html?userId=${notification.senderId}`;
+
+                            });
+
+
+                            container.appendChild(p);
+                });
+                        
+                    })
+
+
+
+
+
+            
+
+                
+              
+                
+            });
+    </script>
+    
+</body>
+</html>

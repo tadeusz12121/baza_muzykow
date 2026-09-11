@@ -30,8 +30,8 @@ h1 {
 .wysylanie {
     position: sticky;
     bottom: 10px;
-    left: 0;
-    width: 100%;
+    order: 1;
+   
     padding: 0 10px;
     
     align-items: center;

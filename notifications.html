@@ -26,6 +26,7 @@
             <a href="/contact.html">Contact</a>
             <a href="/logowanie.html">Sign in</a>
             
+    
         
 </div>
 
@@ -41,9 +42,9 @@
 
 
     <h1 class="powiadomienia">Powiadomienia 🔔</h1>
-
+    
     <div id="notifications"></div>
-
+ 
     <script>
         fetch("/notifications")
             .then(response => response.json())
@@ -67,7 +68,20 @@
                                  <span>💬 Nowa wiadomość</span>
                             `;
                             p.addEventListener("click", () => {
-                                window.location.href = `/chat.html?userId=${notification.senderId}`;
+
+                                fetch("/notifications/read", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/x-www-form-urlencoded"
+                                },
+                                body: `notificationId=${notification._id}`
+
+                            })
+                            .then(() => {
+                                 window.location.href = `/chat.html?userId=${notification.senderId}`;
+                            });
+                            
+                               
 
                             });
 

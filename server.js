@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -8,9 +10,10 @@ const fs = require("fs")
 
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const sessionMiddleware = session({
-    secret: "secret-key",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -26,7 +29,7 @@ app.use(sessionMiddleware);
 const mongo = require("mongodb");
 const MongoClient = mongo.MongoClient;
 
-const url = "mongodb://127.0.0.1:27017";
+const url = process.env.MONGO_URL;
 const client = new MongoClient(url);
 
 const uploadDir = path.join(__dirname, "uploads/profile");
@@ -261,6 +264,27 @@ app.get("/notifications", async(req, res) => {
     res.json(wynik);
     
 });
+app.post("/notifications/read", async (req, res) => {
+    if(!req.session.userId) {
+        return res.status(401).json({
+            error: "nie jestes zalogowany"
+        });
+    }
+
+    await client.connect();
+
+    const db = client.db("baza_muzykow");
+    const notifications = db.collection("notifications");
+
+    await notifications.deleteOne({
+        _id: new mongo.ObjectId(req.body. notificationId),
+        userId: new mongo.ObjectId(req.session.userId)
+
+    });
+
+    res.json({ success: true });
+})
+
 
 app.get("/musicians", async (req, res) => {
     await client.connect();
@@ -359,6 +383,37 @@ app.use((req, res, next) => {
     next();
 });
 
+app.post("/contact", async (req,res) => {
+    try {
+        await client.connect();
+
+        const db = client.db("baza_muzykow");
+        const contact = db.collection("contact");
+
+        await contact.insertOne({
+            name: req.body.name,
+            email: req.body.email,
+            message: req.body.message,
+            createdAt: new Date()
+
+        });
+        res.json({
+            message:"wiadomosc zostala wyslana!"
+
+        });
+
+    
+    } catch (err) {
+        console.log(err);
+
+        res.status(500).json({
+            message:"nie udało się wysłać wiadomośći."
+        });
+        
+    }
+});
+
+
 app.use(express.static("."));
 
 
@@ -372,6 +427,7 @@ const http = require("http");
 const server = http.createServer(app);
 
 const { Server } = require("socket.io");
+const { log } = require("console");
 const io = new Server(server);
 io.engine.use(sessionMiddleware);
 
@@ -442,4 +498,4 @@ io.on("connection", (socket) => {
 
 });
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);

@@ -30,11 +30,90 @@
         
 </div>
 
+  
     </nav>
  </header>
 
+   <p class="cont">masz pytanie lub potrzebujesz pomocy</p>
+     <h6>Napisz do nas</h6>
+  
+    <div class="all_contact">
+    <div class="contact-container">
 
-    <h1>Skontaktuj się z nami</h1>
+
+        
+     
+        <span>→</span>
+
+    </div>
+
+    <div class="contact-card">
+        <h6>Znalazłeś błąd?</h6>
+        <p>Daj nam o tym znać</p>
+        <span>→</span>
     
+    </div>
+
+    <div class="contact-card">
+        <h6>Masz pomysł na nowe funkcje?</h6>
+        <p>Podziel się nim</p>
+        <span>→</span>
+    </div>
+
+    <div class="contact-card">
+        <h6>Współpraca</h6>
+        <p>Chcesz zrobić coś razem z RIFFLY?</p>
+        <span>→</span>
+    </div>
+    
+    <form id="contact-form" class="contact-form">
+
+        <h6 id="form-title">Napisz do nas</h6>
+
+        <input id="name" class="inp" type="text" placeholder="Imię">
+
+        <input id="email" class="inp" type="email" placeholder="E-mail">
+
+        <textarea id="message" class="inp" placeholder="Wiadomość"></textarea>
+    
+        <button  class="inp" type="submit">Wyślij</button>
+
+
+
+
+    </form>
+    </div>
+<script>
+
+    const form = document.getElementById("contact-form");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        const response = await fetch("/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: message
+            })
+        });
+
+        const result = await response.json();
+
+        alert(result.message);
+
+        form.reset();
+    });
+
+</script>
+
 </body>
 </html>

@@ -236,7 +236,8 @@ label {
     border-radius: 12px;
     text-align: left;
      margin-top: 10px;
-     padding: 5px;
+     margin-left: 0;
+     padding: 10px;
      font-size: 12px;
      font-family: Arial, Helvetica, sans-serif;
     
@@ -561,3 +562,123 @@ h4 {
 footer {
     text-align: center;
 }
+
+
+
+h5 {
+    margin: 30px;
+    text-align: center;
+    color: #f7f7f7;
+    font-size: large;
+    
+}
+
+h6 {
+    margin: 20px;
+    font-size: medium;
+    color: rgb(241, 234, 221);
+    text-align: center;
+     margin-top: 15px;
+
+
+
+}
+
+.contact-card {
+    color: #b4d6ec;
+    padding: 15px;
+    margin: 20px;
+     background-color: #111117;
+     border: 1px solid #3a3a45;
+    text-align: center;
+    width: 400px; 
+    margin: 20px auto;
+
+    
+}
+
+
+.contact-form {
+
+    width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+    border: 1px solid #3a3a45;
+    border-radius: 15px;
+    background-color: #111117;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.contact-form h6 {
+    margin: 5px 0 20px;
+}
+
+.contact-form .inp {
+    width: 100%;
+    margin: 8px 0;
+    border-radius: 12px;
+    border: 1px solid #3a3a45;
+    background-color: #2a2a33;
+    padding: 12px;
+    box-sizing: border-box;
+
+}
+
+.contact-form textarea {
+
+    width: 100%;
+    min-height: 130px;
+    margin: 8px 0;
+    resize: vertical;
+    
+}
+
+.contact-form button {
+    width: 100%;
+    margin: 8px 0 0; 
+    justify-content: center;
+    cursor: pointer;
+}
+.contact-form .inp:focus {
+    outline: none;
+    border-color: #f5d054;
+}
+
+.contact-container {
+
+
+    
+    
+    
+    
+
+
+
+}
+
+
+.all_contact {
+   
+
+    
+
+}
+
+
+.cont {
+    width: fit-content;
+    margin: 50px auto 15px;
+    padding: 10px 20px;
+    font-size: medium;
+  
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f0e6d8; 
+    text-align: center;
+
+}
+
+

@@ -70,9 +70,13 @@
     <button type="button" onclick="location.href='/edit-profile.html'">
         Edytuj profil
     </button>
+
      <div class="notifications">
         <button id="notificationButton" type="button" onclick="location.href='/notifications.html'">
-    🔔 Sprawdź swoje wiadomości <span id="notificationCount">0</span>
+        <span id="notificationCount">Brak nowych powiadomień</span>
+</button>
+
+      
 </button>
      
     </div>
@@ -268,14 +272,15 @@
         </div>
         <div class="sectio_v2">
         
-    <span>${musician.lookingFor || "Nic nie podano"}</span>
+    <span class="looking" >${musician.lookingFor || "Nic nie podano"}</span>
     </div>
        
+    
     <div class="section">
         <h3>O mnie:</h3>
-        <p>${musician.bio || "Brak opisu"}</p>
+        <span>${musician.bio || "Brak opisu"}</span>
     </div>
-
+   
     <div class="section">
         <h3>Umiejętności:</h3>
         <div class="tags">
@@ -339,12 +344,32 @@
     
 </script>
 <script>
+
+    function getNotificationText(count) {
+        if (count === 0) {
+            return "🔔 Brak nowych powiadomień";
+        }
+
+        if (count === 1) {
+            return "🔔 Masz 1 nowe powiadomienie";
+
+        }
+
+        if (count % 10 >= 2 && count % 10 <= 4 &&
+            (count % 100 < 12 || count % 100 > 14)) {
+                return `🔔 Masz ${count} nowe powiadomienia`;
+            }
+
+        return `🔔 Masz ${count} nowych powiadomień`;
+    }
+
+
     fetch("/notifications")
         .then(response => response.json())
         .then(notifications => {
             document.getElementById("notificationCount").textContent =
-                notifications.length;
-        });
+                getNotificationText(notifications.length);
+        }); 
 </script>
 </body>
 </html>

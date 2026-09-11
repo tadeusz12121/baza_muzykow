@@ -80,7 +80,7 @@ app.post("/register", async (req, res) => {
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
 
-    console.log(req.body);
+   
 
      const data = {
         ...req.body,
@@ -107,7 +107,7 @@ app.post("/register", async (req, res) => {
 
 
     console.log("USER ID:", req.session.userId);
-    console.log("PREFERENCJE:", req.body);
+
     await users.updateOne(
         { _id: new mongo.ObjectId(req.session.userId) },
         { $set: data }
@@ -117,7 +117,7 @@ app.post("/register", async (req, res) => {
 })
 
 app.post("/register-account", upload.single("profilePicture"), async (req, res) => {
-    console.log(req.body);
+    
     await client.connect();
     const db = client.db("baza_muzykow");
     const users = db.collection("users");

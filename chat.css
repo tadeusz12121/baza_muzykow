@@ -44,7 +44,7 @@ textarea {
     width: 100%;
     max-width: 600px;
     min-width: 0;
-
+    color: rgb(222, 222, 215);
     background-color: #1e1e25;
    
     border: 2px solid rgb(179, 209, 245);

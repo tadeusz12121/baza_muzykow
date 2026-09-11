@@ -682,3 +682,38 @@ h6 {
 }
 
 
+
+@media (max-width: 768) {
+
+    .poznaj {
+        font-size: 30px;
+        margin-top: 25px;
+    }
+    .subtitl {
+        font-size: 16px;
+        margin: 10px 20px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .hero-buttons button {
+        width: 200px;
+    }
+    .titleimg {
+        width: calc(100% - 30px);
+        max-width: 100%;
+
+    }
+    .tutorial {
+        width: calc(100% - 30px);
+    }
+    .tutorial h4 {
+        font-size: 18px;
+    }
+    .playing {
+        font-size: 14px;
+    }
+}

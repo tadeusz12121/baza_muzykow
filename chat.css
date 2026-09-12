@@ -238,7 +238,8 @@ button {
 
 .message .text {
     color:white;
-    font-size: 14px;
+    font-size: 16px;
+    margin-top: 5px;
     word-wrap: break-word;
 }
 .message .date {
@@ -248,8 +249,8 @@ button {
     text-align: right;
 }
 .message .author {
-    color:white;
-    font-size: 10px;
+    color:rgb(105, 103, 103);
+    font-size: 12px;
     word-wrap: break-word;
 }
 

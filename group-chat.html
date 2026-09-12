@@ -85,14 +85,16 @@
         const date = new Date(message.createdAt);
 
         div.innerHTML = `
-            <div class="author">
-                ${message.name} ${message.surname}
-            </div>
+            
 
             <div class="text">
                 ${message.message}
             </div>
 
+            <div class="author">
+                ${message.name} ${message.surname}
+            </div>
+            
             <div class="date">
                 ${date.toLocaleTimeString("pl-PL", {
                     hour: "2-digit",

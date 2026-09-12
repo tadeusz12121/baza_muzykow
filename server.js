@@ -7,7 +7,7 @@ const session = require("express-session");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs")
-
+const MongoStore = require("connect-mongo").default;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -16,6 +16,11 @@ const sessionMiddleware = session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URL
+    }),
+
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 30
     }

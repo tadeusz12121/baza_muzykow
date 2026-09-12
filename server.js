@@ -8,6 +8,8 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs")
 const MongoStore = require("connect-mongo").default;
+const rateLimit = require("express-rate-limit");
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -73,6 +75,19 @@ const upload = multer({
         }
     }
 })
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: "Zbyt wiele prób logowania. Spróbuj ponownie za 15 minut.",
+    standardHeaders: true,
+    legacyHeaders: false
+     
+});
+const registerLimiter = rateLimit({
+    windowMs: 60 * 60 * 1000,
+    max: 10,
+    message: "Zbyt wiele rejestracji z tego adresu. Spróbuj później."
+});
 
 
 
@@ -139,7 +154,7 @@ app.post("/register", async (req, res) => {
     
 })
 
-app.post("/register-account", upload.single("profilePicture"), async (req, res) => {
+app.post("/register-account", registerLimiter, upload.single("profilePicture"), async (req, res) => {
     
     await client.connect();
     const db = client.db("baza_muzykow");
@@ -162,7 +177,7 @@ app.post("/register-account", upload.single("profilePicture"), async (req, res) 
     res.redirect("/rejestracja.html");
 })
 
-app.post("/login", async (req, res ) => {
+app.post("/login", loginLimiter, async (req, res ) => {
     await client.connect();
 
     const db = client.db("baza_muzykow");

@@ -237,7 +237,17 @@ button {
 
 .message .text {
     color:white;
-    font-family: 14px;
+    font-size: 14px;
+    word-wrap: break-word;
+}
+.message .date {
+    font-size: 10px;
+    margin-top: 4px;
+    text-align: right;
+}
+.message .author {
+    color:white;
+    font-family: 12px;
     word-wrap: break-word;
 }
 .send {

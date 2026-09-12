@@ -190,6 +190,15 @@ app.post("/edit-profile", async (req, res) => {
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
 
+    const skills = req.body.skills
+        ? Array.isArray(req.body.skills) ? req.body.skills : [req.body.skills]
+        : [];
+
+    const genres = req.body.genres
+        ? Array.isArray(req.body.genres) ? req.body.genres : [req.body.genres]
+        : [];
+
+
     await users.updateOne(
         { _id: new mongo.ObjectId(req.session.userId)},
         { 
@@ -199,9 +208,12 @@ app.post("/edit-profile", async (req, res) => {
                 surname: req.body.surname,
                 city: req.body.city,
                 instrument: req.body.instrument,
-                secinstrument: req.body,secinstrument,
+                secinstrument: req.body.secinstrument,
                 level: req.body.level,
-                lookingFor: req.body.lookingFor
+                lookingFor: req.body.lookingFor,
+                skills: skills,
+                genres: genres
+
             }
         }
 
@@ -245,7 +257,9 @@ app.get("/me", async (req, res) => {
         instrument: user.instrument,
         level: user.level,
         lookingFor: user.lookingFor,
-        secinstrument: user.secinstrument
+        secinstrument: user.secinstrument,
+        skills: user.skills,
+        genres: user.genres
 
     })
 

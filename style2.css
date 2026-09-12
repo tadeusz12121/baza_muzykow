@@ -733,6 +733,8 @@ h6 {
 }
 
 .save {
+    font-size: 16px;
+    margin-bottom: 60px;
     background-color: #111117;
 
 }
@@ -759,4 +761,34 @@ h6 {
 }
 .edit input, .edit select, .edit textarea, .edit button {
     vertical-align: middle;
+}
+
+
+.checkbox-group {
+    
+    width: 350px;
+    margin: 15px ;
+    padding: 15px;
+    border: 2px solid rgb(77, 77, 77);
+    border-radius: 12px;
+    color: wheat;
+    text-align: left;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 6px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+input.checkbox-label {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    accent-color: #f5d054;
+    cursor: pointer;
 }

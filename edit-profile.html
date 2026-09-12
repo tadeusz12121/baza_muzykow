@@ -43,7 +43,7 @@
         >
     </textarea>
 
-        <select id="instrument">
+        <select id="instrument" name="instrument">
              <option value="">Wszystkie Instrumenty</option>
            <option value="Altówka">Altówka</option>
             <option value="Akordeon">Akordeon</option>
@@ -122,18 +122,102 @@
             <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
             <option value="Cajon">Cajon</option>  
        
-    </select> 
-
-        
-
-        
-    
-        <select id="level" name="level">
+    </select>
+       <select id="level" name="level">
     <option value="początkujący">Początkujący</option>
     <option value="sredniozaawansowany">Średnio zaawansowany</option>
     <option value="zaawansowany">Zaawansowany</option>
    
 </select>
+ 
+<div class="checkbox-group">
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="gra ze słuchu"> 
+        Gra ze słuchu
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="słuch absolutny"> 
+        Słuch absolutny
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="czytanie nut"> 
+        Czytanie nut
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="Improwizacja"> 
+        Improwizacja
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="Umiejetnosc grania w sekcji"> 
+        Gra w sekcji
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="Znajomość teorii muzyki"> 
+        Teoria muzyki
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="skills" value="tworzenie aranacji"> 
+        Tworzenie aranacji
+    </label>
+</div>
+
+
+<div class="checkbox-group">
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="rock"> Rock
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="blues">Blues
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="jazz"> Jazz
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="fusion"> Fusion
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="funk"> Funk
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Pop"> Pop
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Metal"> Metal
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Punk"> Punk
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Indie"> Indie
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Alternative"> Alternative
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="soul"> Soul
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="R&B"> R&B
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Reggae"> Reggae
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Country"> Country
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Folk"> Folk
+    </label>
+    <label class="checkbox-label">
+        <input class="checkbox-label" type="checkbox" name="genres" value="Muzyka klasyczna"> Muzyka klasyczna
+    </label>
+</div>
+
+        
+
+        
+    
+     
      <button class="save" type="submit">Zapisz zmiany</button>
     </form>
     </div>
@@ -145,7 +229,7 @@
 
 
         console.log("DANE Z /ME:", user);
-
+        
         document.getElementById("name").value = user.name || "";
         document.getElementById("surname").value = user.surname || "";
         document.getElementById("city").value = user.city || "";
@@ -153,6 +237,16 @@
         document.getElementById("secinstrument").value = user.secinstrument || "";
         document.getElementById("level").value = user.level || "";
         document.getElementById("lookingFor").value = user.lookingFor || "";
+
+        const userSkills = user.skills || [];
+
+        document.querySelectorAll('input[name="skills"]').forEach(cb => {
+         cb.checked = userSkills.includes(cb.value);
+    });
+        const userGenres = user.genres || [];
+        document.querySelectorAll('input[name="genres"]').forEach(cb => {
+            cb.checked = userGenres.includes(cb.value);
+        });
        
 
     });

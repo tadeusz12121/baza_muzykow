@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
 
+
 * {
     margin: 0px;
     padding: 0px;
@@ -312,3 +313,9 @@ form {
     font-family: 'Inter', sans-serif;
 
 }
+.test:hover {
+    background-color: #212128;
+    
+
+}
+

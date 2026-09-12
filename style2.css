@@ -95,25 +95,25 @@ input::placeholder{
     padding: 10px;
     width: fit-content;
     
-    border: 2px solid wheat;
+    border: 2px solid wheat;  
 
 
 }
 
 button {
     border-radius: 12px;
-    background-color:#2a2a33;;
+    background-color:#2a2a33;
     display: flex;
     font-size: 12px;
     border: 1px solid #2a2a33;
-     color: antiquewhite;
+    color: antiquewhite;
     padding: 10px;
     width: 150px;
     margin: 10px;
 }
 
 button:hover {
-     border: 1px solid wheat;
+     border: 1px solid #f5deb3;
     
 }
 
@@ -217,8 +217,6 @@ label {
     transform: scale(1.04)
  }
 
-
-
 .section {
      background-color: #2a2a33; 
      border-radius: 10px;
@@ -253,7 +251,7 @@ label {
 img {
     width: 75px;
     height: 75px;
-    border-radius: 50%;
+    border-radius: 50% ;
     object-fit: cover;
 }
 .name {
@@ -551,6 +549,7 @@ h4 {
         display:flex;
     }
 }
+
 
 .hamburger:hover {
     background-color: transparent;

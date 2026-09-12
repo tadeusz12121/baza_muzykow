@@ -54,7 +54,25 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + ext); 
     }
 })
-const upload =multer({ storage });
+const upload = multer({
+    storage,
+    limits: { fileSize: 10 * 1024 * 1024},
+    fileFilter: (req, file, cb) => {
+        const allowedExtensions =  /jpeg|jpg|png|webp|gif|bmp|heic|heif|avif|tiff|tif/;
+        const allowedMimeTypes = /^image\/(jpeg|png|webp|gif|bmp|heic|heif|avif|tiff)$/;
+        
+        const extValid = allowedExtensions.test(path.extname(file.originalname).toLowerCase());
+        const mimeValid = allowedMimeTypes.test(file.mimetype);
+
+        if (extValid && mimeValid) {
+            cb(null, true);
+
+        
+        } else {
+            cb(new Error("Dozwolone formaty: JPG, PNG, WEBP, GIF, BMP, HEIC, HEIF, AVIF, TIFF"))
+        }
+    }
+})
 
 
 
@@ -185,7 +203,8 @@ app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
     }
     await client.connect();
 
-   
+
+
 
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
@@ -207,13 +226,28 @@ app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
         secinstrument: req.body.secinstrument,
         level: req.body.level,
         lookingFor: req.body.lookingFor,
+        bio: req.body.bio,
+        instagram: req.body.instagram,
+        facebook: req.body.facebook,
         skills: skills,
         genres: genres,
    
     };
 
     if (req.file) {
-        updateData.profilePicture = `/uploads/profile/${req.file.filename}`;
+        const oldUser = await users.findOne({ _id: new mongo.ObjectId(req.session.userId)});
+
+        if (oldUser && oldUser.profilePicture) {
+            const oldPath = path.join(__dirname, oldUser.profilePicture);
+            fs.unlink(oldPath, err => {
+                if (err) console.log("Nie udało się usunac starego zdjecia:", err);
+
+            });
+
+        }
+        
+        updateData.profilePicture =`/uploads/profile/${req.file.filename}`;
+
     }
 
   
@@ -264,7 +298,10 @@ app.get("/me", async (req, res) => {
         secinstrument: user.secinstrument,
         skills: user.skills,
         genres: user.genres,
-        profilePicture: user.profilePicture
+        profilePicture: user.profilePicture,
+        bio: user.bio,
+        instagram: user.instagram,
+        facebook: user.facebook
 
     })
 
@@ -521,6 +558,17 @@ io.on("connection", (socket) => {
 
     });
 
+});
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        if (err.code === "LIMIT_FILE_SIZE") {
+            return res.status(400).send("Plik jest za duży. Maksymalny rozmiar to 10MB.");
+        }
+        return res.status(400).send("Błąd przesyłania pliku: " + err.message);
+    } else if (err) {
+        return res.status(400).send(err.message);
+    }
+    next();
 });
 
 server.listen(process.env.PORT || 3000);

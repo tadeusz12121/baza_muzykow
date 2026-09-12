@@ -188,6 +188,12 @@
 
 
 <script>
+    function escapeHtml(text) {
+        if (!text) return "";
+        const div = document.createElement("div");
+        div.textContent = text;
+        return div.innerHTML;
+    }
     
         fetch("/me")
             .then(response => response.json())
@@ -241,23 +247,23 @@
     <div class="musician-header">
         <img 
         class="musician-avatar"
-        src="${musician.profilePicture || '/default-avatar.png'}"
+        src="${escapeHtml(musician.profilePicture) || '/default-avatar.png'}"
         alt="Zdjęcie profilowe"
     >
         <div class="name">
-            <h2>${musician.name} ${musician.surname}</h2>
-            <p class="city">Miasto: ${musician.city}</p>
+            <h2>${escapeHtml(musician.name)} ${escapeHtml(musician.surname)}</h2>
+            <p class="city">Miasto: ${escapeHtml(musician.city)}</p>
         </div>
     </div>
 
     <div class="musician-main">
         <div class="info">
             <span class="label">Instrument: </span>
-            <span>${musician.instrument}</span>
+            <span>${escapeHtml(musician.instrument)}</span>
              ${musician.secinstrument ? `
             
             <span class="label">,</span>
-            <span>${musician.secinstrument}</span>
+            <span>${escapeHtml(musician.secinstrument)}</span>
         ` : ""}
         </div>
     </div>
@@ -272,13 +278,13 @@
         </div>
         <div class="sectio_v2">
         
-    <span class="looking" >${musician.lookingFor || "Nic nie podano"}</span>
+    <span class="looking" >${escapeHtml(musician.lookingFor) || "Nic nie podano"}</span>
     </div>
        
     
     <div class="section">
         <h3>O mnie:</h3>
-        <span>${musician.bio || "Brak opisu"}</span>
+        <span>${escapeHtml(musician.bio) || "Brak opisu"}</span>
     </div>
    
     <div class="section">
@@ -286,7 +292,7 @@
         <div class="tags">
             ${
                 musician.skills
-                ? musician.skills.map(skill => `<span>${skill}</span>`).join(", ")
+                ? musician.skills.map(skill => `<span>${escapeHtml(skill)}</span>`).join(", ")
                 : "<span>Brak</span>"
             }
         </div>
@@ -297,7 +303,7 @@
         <div class="tags">
             ${
                 musician.genres
-                ? musician.genres.map(genre => `<span>${genre}</span>`).join(", ")
+                ? musician.genres.map(genre => `<span>${escapeHtml(genre)}</span>`).join(", ")
                 : "<span>Brak</span>"
             }
 
@@ -305,8 +311,6 @@
 
         
         </div>
-
-
           
     </div>
 
@@ -318,13 +322,13 @@
   <div class="contact">
     ${
         musician.facebook
-        ? `<a href="${musician.facebook}" target="_blank">Facebook</a>`
+        ? `<a href="${escapeHtml(musician.facebook)}" target="_blank">Facebook</a>`
         : ""
     }
 
     ${
         musician.instagram
-        ? `<a href="${musician.instagram}" target="_blank">Instagram</a>`
+        ? `<a href="${escapeHtml(musician.instagram)}" target="_blank">Instagram</a>`
         : ""
     }
 

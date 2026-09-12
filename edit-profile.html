@@ -49,6 +49,16 @@
             id="lookingFor"
             placeholder="Czego aktualnie szukasz"
         >
+        
+
+        <textarea class="l"
+            name="bio",
+            id="bio",
+            placeholder="Napisz coś o sobie"
+        ></textarea>
+
+    <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/...">
+    <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com...">
 
     </textarea>
 
@@ -246,6 +256,9 @@
         document.getElementById("secinstrument").value = user.secinstrument || "";
         document.getElementById("level").value = user.level || "";
         document.getElementById("lookingFor").value = user.lookingFor || "";
+        document.getElementById("bio").value = user.bio || "";
+        document.getElementById("instagram").value = user.instagram || "";
+        document.getElementById("facebook").value = user.facebook || "";
         document.getElementById("currentAvatar").src = user.profilePicture || "/default-avatar.png";
         document.getElementById("profilePicture").addEventListener("change", (e) => {
             const file = e.target.files[0];

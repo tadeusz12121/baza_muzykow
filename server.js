@@ -179,7 +179,7 @@ app.post("/login", async (req, res ) => {
 })
 
 
-app.post("/edit-profile", async (req, res) => {
+app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
     if (!req.session.userId) {
         return res.status(401).send("Nie jesteś zalogowany");
     }
@@ -199,25 +199,29 @@ app.post("/edit-profile", async (req, res) => {
         : [];
 
 
+    const updateData = {
+        name: req.body.name,
+        surname: req.body.surname,
+        city: req.body.city,
+        instrument: req.body.instrument,
+        secinstrument: req.body.secinstrument,
+        level: req.body.level,
+        lookingFor: req.body.lookingFor,
+        skills: skills,
+        genres: genres,
+   
+    };
+
+    if (req.file) {
+        updateData.profilePicture = `/uploads/profile/${req.file.filename}`;
+    }
+
+  
     await users.updateOne(
         { _id: new mongo.ObjectId(req.session.userId)},
-        { 
-        
-            $set: {
-                name: req.body.name,
-                surname: req.body.surname,
-                city: req.body.city,
-                instrument: req.body.instrument,
-                secinstrument: req.body.secinstrument,
-                level: req.body.level,
-                lookingFor: req.body.lookingFor,
-                skills: skills,
-                genres: genres
-
-            }
-        }
-
+        { $set: updateData}
     );
+
 
     res.redirect("/musicians.html")
 
@@ -259,7 +263,8 @@ app.get("/me", async (req, res) => {
         lookingFor: user.lookingFor,
         secinstrument: user.secinstrument,
         skills: user.skills,
-        genres: user.genres
+        genres: user.genres,
+        profilePicture: user.profilePicture
 
     })
 

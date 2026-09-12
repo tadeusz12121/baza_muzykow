@@ -28,7 +28,15 @@
     </nav>
  </header>
  <div class="edit">
-    <form action="/edit-profile" method="POST">
+    <form action="/edit-profile" method="POST" enctype="multipart/form-data">
+
+        <div class="avatar-edit">
+            <img id="currentAvatar" src="/default-avatar.png" alt="Zdjęcie profilowe" class="preview-avatar">
+            <label for="profilePicture" class="upload-label">Zmień zdjęcie profilowe</label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*">
+        </div>
+
+
         
         <input type="text" id="name" name="name" placeholder="Imię">
 
@@ -228,7 +236,7 @@
     .then(user => {
 
 
-
+ 
         console.log("DANE Z /ME:", user);
         
         document.getElementById("name").value = user.name || "";
@@ -238,6 +246,14 @@
         document.getElementById("secinstrument").value = user.secinstrument || "";
         document.getElementById("level").value = user.level || "";
         document.getElementById("lookingFor").value = user.lookingFor || "";
+        document.getElementById("currentAvatar").src = user.profilePicture || "/default-avatar.png";
+        document.getElementById("profilePicture").addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById("currentAvatar").src = URL.createObjectURL(file);
+                
+            }
+        });
 
         const userSkills = user.skills || [];
 

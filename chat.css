@@ -204,3 +204,47 @@ button {
 
 
 
+
+
+
+.chat {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid rgb(17, 16, 16);
+    height: 80vh;           
+
+
+}
+
+
+.chat head {
+     flex-shrink: 0;        
+}
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 5px;
+
+
+    
+  
+}
+.send {
+    flex-shrink: 0;  
+}
+.send input {
+    border-radius: 12px;
+    border: 2px solid #2a2a31;
+    background-color: #1e1e25;
+    padding: 10px;
+    color: pink;
+    font-size: 16px;
+}
+.send button {
+    font-size: 16px;
+     border: 2px solid #2a2a31; 
+
+}

@@ -235,6 +235,11 @@ button {
     padding-right: 5px;
 }
 
+.message .text {
+    color:white;
+    font-family: 14px;
+    word-wrap: break-word;
+}
 .send {
     display: flex;
     gap: 10px;

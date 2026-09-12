@@ -249,7 +249,7 @@ button {
 }
 .message .author {
     color:white;
-    font-family: 10px;
+    font-size: 10px;
     word-wrap: break-word;
 }
 

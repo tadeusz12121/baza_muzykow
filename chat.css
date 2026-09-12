@@ -227,6 +227,7 @@ button {
 }
 
 .messages {
+    margin-top: 10px;
     flex: 1;
     overflow-y: auto;
     display: flex;
@@ -243,13 +244,15 @@ button {
 .message .date {
     font-size: 10px;
     margin-top: 4px;
+    color: rgb(120, 138, 123);
     text-align: right;
 }
 .message .author {
     color:white;
-    font-family: 12px;
+    font-family: 10px;
     word-wrap: break-word;
 }
+
 .send {
     display: flex;
     gap: 10px;

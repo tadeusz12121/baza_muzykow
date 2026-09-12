@@ -797,3 +797,24 @@ input.checkbox-label {
     cursor: pointer;
 }
 
+.avatar-edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     margin-bottom: 10px;
+    border: 2px solid rgb(38, 39, 38);
+    color: white;
+}
+.avatar-edit input {
+    width: fit-content;
+    color:wheat;
+    
+   
+
+}
+
+.avatar-edit img {
+    padding: 10px;
+    margin: 0;
+}
+

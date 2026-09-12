@@ -208,18 +208,24 @@ button {
 
 
 .chat {
-    margin: 10px;
+    margin: 0;
     padding: 10px;
     border: 2px solid rgb(17, 16, 16);
-    height: 80vh;           
-
-
+    
+    width: 500px;
+    max-width: 90vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
-
-.chat head {
-     flex-shrink: 0;        
+.chat-header {
+    color: rgb(240, 239, 239);
+    flex-shrink: 0;
+    text-align: center;
 }
+
 .messages {
     flex: 1;
     overflow-y: auto;
@@ -227,14 +233,15 @@ button {
     flex-direction: column;
     gap: 8px;
     padding-right: 5px;
-
-
-    
-  
 }
+
 .send {
-    flex-shrink: 0;  
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-top: 10px;
 }
+
 .send input {
     border-radius: 12px;
     border: 2px solid #2a2a31;
@@ -242,9 +249,16 @@ button {
     padding: 10px;
     color: pink;
     font-size: 16px;
+    flex: 1;
+    box-sizing: border-box;
 }
+
 .send button {
     font-size: 16px;
-     border: 2px solid #2a2a31; 
-
+    border: 2px solid #2a2a31;
+    border-radius: 12px;
+    padding: 10px 20px;
+    background-color: #1e1e25;
+    color: antiquewhite;
+    cursor: pointer;
 }

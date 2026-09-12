@@ -281,3 +281,10 @@ button {
     color: antiquewhite;
     cursor: pointer;
 }
+.chat-image {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    margin-top: 6px;
+    display: block;
+}

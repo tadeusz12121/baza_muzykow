@@ -719,8 +719,7 @@ h6 {
 
 
 .l {
-    margin-left: 10px;
-    margin-top: 10px;
+ 
     border-radius: 6px;
     border: none;
     background-color: #2a2a33;
@@ -731,4 +730,33 @@ h6 {
     text-align:left;
     font-family: 'Inter', sans-serif;
 
+}
+
+.save {
+    background-color: #111117;
+
+}
+
+.edit input {
+  
+    color: rgb(239, 181, 181);
+}
+.edit textarea {
+    width: 200px;
+    margin-left: 10px;
+    color: rgb(239, 181, 181);
+    
+
+}
+.edit form {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+.edit select {
+    width: 350px;
+    display: flex;
+}
+.edit input, .edit select, .edit textarea, .edit button {
+    vertical-align: middle;
 }

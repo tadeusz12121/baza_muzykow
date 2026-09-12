@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="style2.css">
 </head>
 <body>
+    <header>
+    <nav class="navbar">
+
+        <div class="logo">JAMLY</div>
+
+        <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+             ☰
+        </button>
+
+        <div class="nav-links">
+            <a href="/index.html">Main page</a>
+            <a href="/musicians.html">Musicians</a>
+            <a href="/contact.html">Contact</a>
+            <a href="/logowanie.html">Sign in</a>
+            
+        
+</div>
+
+    </nav>
+ </header>
+ <div class="edit">
     <form action="/edit-profile" method="POST">
         
         <input type="text" id="name" name="name" placeholder="Imię">
@@ -15,24 +36,107 @@
 
         <input type="text" id="city" name="city" placeholder="Miasto">
 
-        <input type="text" id="instrument" name="instrument" placeholder="Instrument">
-
-
-        <textarea class="l" 
+         <textarea class="l" 
             name="lookingFor"
             id="lookingFor"
             placeholder="Czego aktualnie szukasz"
         >
     </textarea>
 
-        <button type="submit">Zapisz zmiany</button>
+        <select id="instrument">
+             <option value="">Wszystkie Instrumenty</option>
+           <option value="Altówka">Altówka</option>
+            <option value="Akordeon">Akordeon</option>
+            <option value="Banjo">Banjo</option>
+            <option value="Fortepian">Fortepian</option> 
+            <option value="Flet poprzeczny">Flet poprzeczny</option> 
+            <option value="Flet prosty">Flet prosty</option>  
+            <option value="Gitara akustyczna">Gitara akustyczna</option>  
+            <option value="Gitara elektryczna">Gitara elektryczna</option>  
+            <option value="Gitara klasyczna">Gitara klasyczna</option>  
+            <option value="Gitara basowa">Gitara basowa</option>  
+            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
+            <option value="Harmonijka ustna">Harmonijka ustna</option>  
+            <option value="Harfa">Harfa</option>  
+            <option value="Klarnet">Klarnet</option>  
+            <option value="Kontrabas">Kontrabas</option>  
+            <option value="Mandolina">Mandolina</option>  
+            <option value="Obój">Obój</option>  
+            <option value="Organy">Organy</option>  
+            <option value="Perkusja">Perkusja</option>  
+            <option value="Saksofon altowy">Saksofon altowy</option>  
+            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
+            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
+            <option value="Syntezator">Syntezator</option>  
+            <option value="Tamburyn">Tamburyn</option>  
+            <option value="Trąbka">Trąbka</option>  
+            <option value="Ukulele">Ukulele</option>  
+            <option value="Wibrafon">Wibrafon</option>  
+            <option value="Wokal Żeński">Wokal Żeński</option>  
+            <option value="Wokal Męski">Wokal Męski</option>  
+            <option value="Wiolonczela">Wiolonczela</option>  
+            <option value="Skrzypce">Skrzypce</option>  
+            <option value="Puzon">Puzon</option>  
+            <option value="Róg">Róg</option>  
+            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
+            <option value="Cajon">Cajon</option>  
+            
+        </select>
+
+         <select id="secinstrument" name="secinstrument">
+      
+        <option value="">Wybierz 2 instrument</option>
+            <option value="Altówka">Altówka</option>
+            <option value="Akordeon">Akordeon</option>
+            <option value="Banjo">Banjo</option>
+            <option value="Fortepian">Fortepian</option> 
+            <option value="Flet poprzeczny">Flet poprzeczny</option> 
+            <option value="Flet prosty">Flet prosty</option>  
+            <option value="Gitara akustyczna">Gitara akustyczna</option>  
+            <option value="Gitara elektryczna">Gitara elektryczna</option>  
+            <option value="Gitara klasyczna">Gitara klasyczna</option>  
+            <option value="Gitara basowa">Gitara basowa</option>  
+            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
+            <option value="Harmonijka ustna">Harmonijka ustna</option>  
+            <option value="Harfa">Harfa</option>  
+            <option value="Klarnet">Klarnet</option>  
+            <option value="Kontrabas">Kontrabas</option>  
+            <option value="Mandolina">Mandolina</option>  
+            <option value="Obój">Obój</option>  
+            <option value="Organy">Organy</option>  
+            <option value="Perkusja">Perkusja</option>  
+            <option value="Saksofon altowy">Saksofon altowy</option>  
+            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
+            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
+            <option value="Syntezator">Syntezator</option>  
+            <option value="Tamburyn">Tamburyn</option>  
+            <option value="Trąbka">Trąbka</option>  
+            <option value="Ukulele">Ukulele</option>  
+            <option value="Wibrafon">Wibrafon</option>  
+            <option value="Wokal Żeński">Wokal Żeński</option>  
+            <option value="Wokal Męski">Wokal Męski</option>  
+            <option value="Wiolonczela">Wiolonczela</option>  
+            <option value="Skrzypce">Skrzypce</option>  
+            <option value="Puzon">Puzon</option>  
+            <option value="Róg">Róg</option>  
+            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
+            <option value="Cajon">Cajon</option>  
+       
+    </select> 
+
         
+
+        
+    
         <select id="level" name="level">
     <option value="początkujący">Początkujący</option>
     <option value="sredniozaawansowany">Średnio zaawansowany</option>
     <option value="zaawansowany">Zaawansowany</option>
+   
 </select>
+     <button class="save" type="submit">Zapisz zmiany</button>
     </form>
+    </div>
 <script>
     fetch("/me")
     .then(response => response.json())
@@ -46,8 +150,10 @@
         document.getElementById("surname").value = user.surname || "";
         document.getElementById("city").value = user.city || "";
         document.getElementById("instrument").value = user.instrument || "";
+        document.getElementById("secinstrument").value = user.secinstrument || "";
         document.getElementById("level").value = user.level || "";
         document.getElementById("lookingFor").value = user.lookingFor || "";
+       
 
     });
 </script>

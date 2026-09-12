@@ -199,6 +199,7 @@ app.post("/edit-profile", async (req, res) => {
                 surname: req.body.surname,
                 city: req.body.city,
                 instrument: req.body.instrument,
+                secinstrument: req.body,secinstrument,
                 level: req.body.level,
                 lookingFor: req.body.lookingFor
             }

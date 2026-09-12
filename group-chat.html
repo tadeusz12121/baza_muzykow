@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="chat">
+
+        <div class="chat-header">
+            <h2>CHAT GRUPOWY</h2>
+        </div>
+
+        <div class="messages" id="messages">
+
+        </div>
+
+        <form class="send" id="sendForm">
+            <input 
+                type="text"
+                id="messageInput"
+                placeholder="Napisz wiadomość..."
+                autocomplete="off"
+                >
+            <button type="submit">
+                Wyślij
+            </button>
+
+        </form>
+    </div>
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+
+    const socket = io();
+
+    const messages = document.getElementById("messages");
+    const form = document.getElementById("sendForm");
+    const input = document.getElementById("messageInput");
+
+    async function loadMessages() {
+
+        const response = await fetch("/group-messages");
+
+        const data = await response.json();
+
+        data.forEach(message => {
+            showMessage(message);
+        });
+
+        messages.scrollTop = messages.scrollHeight;
+
+
+    }
+
+    function showMessage(message) {
+        const div = document.createElement("div");
+
+        div.className = "message";
+
+        const date = new Date(message.createdAt);
+
+        div.innerHTML = `
+            <div class="author">
+                ${message.name} ${message.surname}
+            </div>
+
+            <div class="text">
+                ${message.message}
+            </div>
+
+            <div class="date">
+                ${date.toLocaleTimeString("pl-PL", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                })}
+            </div>
+        `;
+
+        messages.appendChild(div);
+
+
+    }
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const message = input.value.trim();
+
+        if (!message) {
+            return;
+        }
+
+        socket.emit("group message", {
+            message: message
+
+        });
+
+
+
+        input.value = "";
+
+        
+    });
+    socket.on("group message", function(message) {
+    showMessage(message);
+    messages.scrollTop = messages.scrollHeight;
+});
+
+loadMessages();
+
+
+</script>
+  
+</body>
+</html>

@@ -39,6 +39,8 @@ const MongoClient = mongo.MongoClient;
 const url = process.env.MONGO_URL;
 const client = new MongoClient(url);
 
+
+
 const uploadDir = path.join(__dirname, "uploads/profile");
 
 if (!fs.existsSync(uploadDir)) {
@@ -48,7 +50,13 @@ if (!fs.existsSync(uploadDir)) {
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 
+
 }
+
+
+
+
+
 const storage = multer.diskStorage({
     destination: uploadDir,
     filename: (req, file, cb) => {
@@ -70,11 +78,35 @@ const upload = multer({
             cb(null, true);
 
         
+
         } else {
             cb(new Error("Dozwolone formaty: JPG, PNG, WEBP, GIF, BMP, HEIC, HEIF, AVIF, TIFF"))
         }
+
+    
     }
 })
+
+
+const chatUploadDir = path.join(__dirname, "uploads/chat");
+
+if (!fs.existsSync(chatUploadDir)) {
+    fs.mkdirSync(chatUploadDir, { recursive: true });
+
+}
+const chatStorage = multer.diskStorage({
+    destination: chatUploadDir,
+    filename: (req, file, cb) => {
+        const ext = path.extname(file.originalname);
+        cb(null, Date.now() + ext);
+    }
+});
+
+const chatUpload = multer({
+    storage: chatStorage,
+    limits: { fileSize: 10 * 1024 * 1024 }
+});
+
 const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
@@ -460,6 +492,79 @@ app.use((req, res, next) => {
     next();
 });
 
+app.post("/group-chat-upload", chatUpload.single("image"), (req,res) => {
+
+    if(!req.session.userId) {
+        return res.status(401).json({
+            error: "nie jesteś zalogowany"
+        });
+
+    }
+
+    if (!req.file) {
+        return res.status(400).json({
+            error: "nie wybrano zdjęcia"
+        });
+
+    }
+
+    res.json({
+        image: `/uploads/chat/${req.file.filename}`
+    });
+
+});
+
+app.get("/group-messages", async (req, res) => {
+
+    if (!req.session.userId) {
+        return res.status(401).json({
+            error: "Nie jesteś zalogowany"
+        });
+
+    }
+    await client.connect();
+     
+    const db = client.db("baza_muzykow");
+    const messages = db.collection("groupMessages");
+    const users = db.collection("users");
+
+    const history = await messages 
+        .find({})
+        .sort({ createdAt: 1 })
+        .limit(200)
+        .toArray();
+
+
+    const userIds = history.map(message => message.senderId);
+
+    const userList = await users.find({
+        _id: { $in: userIds }
+        
+    }).toArray();
+
+    const result = history.map(message => {
+
+        const user = userList.find(
+            user => user._id.toString() === message.senderId.toString()
+
+        );
+
+        return {
+            message: message.message,
+            image: message.image,
+            createdAt: message.createdAt,
+            senderId: message.senderId.toString(),
+
+            name: user ? user.name : "Nieznany",
+            surname: user ? user.surname : "",
+            city: user ? user.city : ""
+        };
+    });
+
+    res.json(result);
+});
+
+
 app.post("/contact", async (req,res) => {
     try {
         await client.connect();
@@ -504,7 +609,7 @@ const http = require("http");
 const server = http.createServer(app);
 
 const { Server } = require("socket.io");
-const { log } = require("console");
+const { log, error } = require("console");
 const io = new Server(server);
 io.engine.use(sessionMiddleware);
 
@@ -562,6 +667,38 @@ io.on("connection", (socket) => {
 
 
       
+    });
+
+    socket.on("group message", async ({ message, image}) => {
+        await client.connect();
+        
+
+        const db = client.db("baza_muzykow");
+        const messages = db.collection("groupMessages");
+        const users = db.collection("users");
+
+        const user = await users.findOne({
+            _id: new mongo.ObjectId(userId)
+        });
+
+        const newMessage = {
+            senderId: new mongo.ObjectId(userId),
+            message: message || "",
+            image: image || null,
+            createdAt: new Date()
+        };
+
+        await messages.insertOne(newMessage);
+
+        io.emit("group message", {
+            senderId: userId.toString(),
+            name: user.name,
+            surname: user.surname,
+            city: user.city,
+            message: message || "",
+            image: image || null,
+            createdAt: newMessage.createdAt
+        });
     });
 
 

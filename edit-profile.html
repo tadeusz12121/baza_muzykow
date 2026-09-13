@@ -271,7 +271,7 @@
     }
 
     document.getElementById("city").addEventListener("blur", async () => {
-        const cityName = document.getElementsByName("city").value.trim();
+        const cityName = document.getElementById("city").value.trim();
         const coords = await geocodeCity(cityName);
 
     

@@ -261,6 +261,31 @@
 
             });
         });
+        async function geocodeCity(city) {
+    const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`
+    );
+
+    const data = await response.json();
+
+    if (data.length > 0) {
+        document.getElementById("lat").value = data[0].lat;
+        document.getElementById("lng").value = data[0].lon;
+
+        console.log("Współrzędne:", data[0].lat, data[0].lon);
+    }
+}
+const form = document.querySelector("form");
+
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const city = cityInput.value;
+
+    await geocodeCity(city);
+
+    form.submit();
+});
 
     </script>
 

@@ -9,6 +9,7 @@ const path = require("path");
 const fs = require("fs")
 const MongoStore = require("connect-mongo").default;
 const rateLimit = require("express-rate-limit");
+const sharp = require("sharp");
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -94,19 +95,11 @@ if (!fs.existsSync(chatUploadDir)) {
     fs.mkdirSync(chatUploadDir, { recursive: true });
 
 }
-const chatStorage = multer.diskStorage({
-    destination: chatUploadDir,
-    filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        cb(null, Date.now() + ext);
-    }
-});
-
 const chatUpload = multer({
-    storage: chatStorage,
+    storage: multer.memoryStorage(),
     limits: { fileSize: 10 * 1024 * 1024 }
 });
-
+ 
 const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
@@ -492,7 +485,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post("/group-chat-upload", chatUpload.single("image"), (req,res) => {
+app.post("/group-chat-upload", chatUpload.single("image"), async (req,res) => {
 
     if(!req.session.userId) {
         return res.status(401).json({
@@ -507,10 +500,23 @@ app.post("/group-chat-upload", chatUpload.single("image"), (req,res) => {
         });
 
     }
+    try {
+        const filename = `{Datee,now()}/webp`;
+        const outputPath = path.join(chatUploadDir, filename);
 
-    res.json({
-        image: `/uploads/chat/${req.file.filename}`
-    });
+        await sharp(req.file.buffer)
+            .resize({ width: 1280, widthoutEnlargment: true})
+            .webp({ quality: 75})
+            .toFile(outputPath);
+
+        res.json({
+            image: `/uploads/chat/${filename}`
+        });
+    } catch (err) {
+        console.error("Błąd kompresji obrazu", err);
+        res.status(500).json({ error: "Nie udało się przetworzyc zdjecia"});
+
+    }
 
 });
 

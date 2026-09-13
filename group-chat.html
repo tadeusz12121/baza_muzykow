@@ -129,6 +129,18 @@
 
     }
     const imageInput = document.getElementById("imageInput");
+
+    imageInput.addEventListener("change", () => {
+        const label = document.querySelector(".attach-label");
+        if (imageInput.files[0]) {
+            label.textContent = `📎 ${imageInput.files[0].name}`;
+
+        } else {
+            label.textContent = "📎";
+        }
+    });
+
+
     form.addEventListener("submit", async function(event) {
 
         event.preventDefault();
@@ -160,6 +172,7 @@
 
     input.value = "";
     imageInput.value = "";
+    document.querySelector(".attach-label").textContent = "📎";
 });
 
 socket.on("group message", function(message) {

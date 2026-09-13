@@ -333,7 +333,7 @@
                 const lat = position.coords.latitude;
                 const lng = position.coords.longitude;
 
-                const response = await fetch(`/musicians/nearby?lat=${lat}&lng=${lng}&radius=150`);
+                const response = await fetch(`/musicians/nearby?lat=${lat}&lng=${lng}&radius=100`);
                 const musicians = await response.json();
 
                 renderMusicians(musicians, true);

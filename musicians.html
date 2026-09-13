@@ -139,7 +139,7 @@
         <input type="text" id="city" placeholder="Miasto">
         <div id="citySuggestions"></div>
         <button type="button" id="search">Szukaj</button>
-
+        <button type="button" id="nearMe">📍 Muzycy blisko mnie</button>
     </div>
     </div>
     <div id="musicians"></div>
@@ -195,55 +195,28 @@
         div.textContent = text;
         return div.innerHTML;
     }
-    
-        fetch("/me")
-            .then(response => response.json())
-            .then(user => {
-                document.getElementById("loggedUser").textContent =
-                  `Zalogowano jako: ${user.name} ${user.surname} `;
-            });
-    function loadMusicians() {
 
-        const instrument = document.getElementById("instrument").value;
-        const level = document.getElementById("level").value;
-        const city = document.getElementById("city").value;
-
-
-
-
-        const params = new URLSearchParams();
-
-
-        
-        if (instrument) {
-            params.append("instrument", instrument);
-        }
-        if (level) {
-            params.append("level", level);
-
-        }
-        if (city) {
-            params.append("city", city);
-            
-        }
-        console.log(params.toString());
-
-        fetch("/musicians?" + params.toString())
+    fetch("/me")
         .then(response => response.json())
-        .then(musicians => {
+        .then(user => {
+            document.getElementById("loggedUser").textContent =
+              `Zalogowano jako: ${user.name} ${user.surname} `;
+        });
 
-            console.log("MUSICIANS FRONTEND:", musicians);
+    function renderMusicians(musicians, showDistance = false) {
+        const container = document.getElementById("musicians");
+        container.innerHTML = "";
 
-            const container = document.getElementById("musicians");
+        musicians.forEach(musician => {
 
-            container.innerHTML = "";
+            const card = document.createElement("div");
+            card.className = "musician-card";
 
-            musicians.forEach(musician => {
+            const distanceHtml = (showDistance && musician.distanceMeters != null)
+                ? `<p class="distance">📍 ${(musician.distanceMeters / 1000).toFixed(1)} km od Ciebie</p>`
+                : "";
 
-                const card = document.createElement("div");
-                card.className = "musician-card";
-
-                card.innerHTML = `
+            card.innerHTML = `
     <div class="whole-card">
     <div class="musician-header">
         <img 
@@ -254,6 +227,7 @@
         <div class="name">
             <h2>${escapeHtml(musician.name)} ${escapeHtml(musician.surname)}</h2>
             <p class="city">Miasto: ${escapeHtml(musician.city)}</p>
+            ${distanceHtml}
         </div>
     </div>
 
@@ -262,7 +236,6 @@
             <span class="label">Instrument: </span>
             <span>${escapeHtml(musician.instrument)}</span>
              ${musician.secinstrument ? `
-            
             <span class="label">,</span>
             <span>${escapeHtml(musician.secinstrument)}</span>
         ` : ""}
@@ -278,16 +251,12 @@
         </div> 
         </div>
         <div class="sectio_v2">
-        
     <span class="looking" >${escapeHtml(musician.lookingFor) || "Nic nie podano"}</span>
     </div>
-       
-    
     <div class="section">
         <h3>O mnie:</h3>
         <span>${escapeHtml(musician.bio) || "Brak opisu"}</span>
     </div>
-   
     <div class="section">
         <h3>Umiejętności:</h3>
         <div class="tags">
@@ -298,7 +267,6 @@
             }
         </div>
     </div>
-
     <div class="section">
         <h3>Gatunki:</h3>
         <div class="tags">
@@ -307,46 +275,78 @@
                 ? musician.genres.map(genre => `<span>${escapeHtml(genre)}</span>`).join(", ")
                 : "<span>Brak</span>"
             }
-
-
-
-        
         </div>
-          
     </div>
-
     <button class="napisz" onclick="window.location.href='/chat.html?userId=${musician._id}'">
         Napisz
         </button>
-  
-
   <div class="contact">
     ${
         musician.facebook
         ? `<a href="${escapeHtml(musician.facebook)}" target="_blank">Facebook</a>`
         : ""
     }
-
     ${
         musician.instagram
         ? `<a href="${escapeHtml(musician.instagram)}" target="_blank">Instagram</a>`
         : ""
     }
-
-    
 </div>
 </div>
 `;
-                container.appendChild(card);
-            });
+            container.appendChild(card);
         });
     }
-        document.getElementById("search").addEventListener("click", loadMusicians);
-        console.log("skrypt działa");
-        loadMusicians();
 
-         
-    
+    function loadMusicians() {
+
+        const instrument = document.getElementById("instrument").value;
+        const level = document.getElementById("level").value;
+        const city = document.getElementById("city").value;
+
+        const params = new URLSearchParams();
+
+        if (instrument) params.append("instrument", instrument);
+        if (level) params.append("level", level);
+        if (city) params.append("city", city);
+
+        console.log(params.toString());
+
+        fetch("/musicians?" + params.toString())
+            .then(response => response.json())
+            .then(musicians => {
+                console.log("MUSICIANS FRONTEND:", musicians);
+                renderMusicians(musicians, false);
+            });
+    }
+
+    document.getElementById("search").addEventListener("click", loadMusicians);
+
+    document.getElementById("nearMe").addEventListener("click", () => {
+        if (!navigator.geolocation) {
+            alert("Twoja przeglądarka nie obsługuje geolokalizacji.");
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async (position) => {
+                const lat = position.coords.latitude;
+                const lng = position.coords.longitude;
+
+                const response = await fetch(`/musicians/nearby?lat=${lat}&lng=${lng}&radius=50`);
+                const musicians = await response.json();
+
+                renderMusicians(musicians, true);
+            },
+            () => {
+                alert("Nie udało się pobrać Twojej lokalizacji. Sprawdź uprawnienia przeglądarki.");
+            }
+        );
+    });
+
+    console.log("skrypt działa");
+    loadMusicians();
+
 </script>
 <script>
 

@@ -44,7 +44,8 @@
         <input type="text" id="surname" name="surname" placeholder="Nazwisko">
 
         <input type="text" id="city" name="city" placeholder="Miasto">
-
+        <input type="hidden" id="lat" name="lat">
+        <input type="hidden" id="lng" name="lng"> 
          <textarea class="l" 
             name="lookingFor"
             id="lookingFor"
@@ -60,7 +61,7 @@
 
     <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/...">
     <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com...">
-
+    
     </textarea>
 
         <select id="instrument" name="instrument">
@@ -242,6 +243,50 @@
     </form>
     </div>
 <script>
+
+    async function geocodeCity(cityName) {
+        if (!cityName) return null;
+
+        const url = `https://nominatim.openstreetmap.org/search?city=${encodeURIComponent(cityName)}&country=Poland&format=json&limit=1`;
+        
+        try {
+            const response = await fetch(url, {
+                headers: { "Accept-Language": "pl" }
+ 
+            });
+            const data = await response.json();
+
+            if (data.length === 0) return null;
+
+            return {
+                lat: parseFloat(data[0].lat),
+                lng: parseFloat(data[0].lon)
+            };
+
+            
+        } catch (err) {
+            console.error("Bład geokodowania:", err);
+            return null;
+        }
+    }
+
+    document.getElementById("city").addEventListener("blur", async () => {
+        const cityName = document.getElementsByName("city").value.trim();
+        const coords = await geocodeCity(cityName);
+
+    
+    if (coords) {
+
+         document.getElementById("lat").value = coords.lat;
+         document.getElementById("lng").value = coords.lng;
+
+
+        }
+    });
+
+   
+    
+
     fetch("/me")
     .then(response => response.json())
     .then(user => {

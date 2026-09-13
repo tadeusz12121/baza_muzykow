@@ -41,7 +41,20 @@ const url = process.env.MONGO_URL;
 const client = new MongoClient(url);
 
 
+async function ensureIndexes() {
+    try {
+        await client.connect();
+        const db = client.db("baza_muzykow");
+        await db.collection("users").createIndex({ location: "2dsphere"});
+        console.log("indeks geograficzny gotowy");
 
+    } catch (err) {
+        console.error("blad tworzenia indeksu:", err);
+
+    }
+    
+}
+ensureIndexes();
 const uploadDir = path.join(__dirname, "uploads/profile");
 
 if (!fs.existsSync(uploadDir)) {
@@ -164,14 +177,14 @@ app.post("/register", async (req, res) => {
 
             :[]
 
-
-
-
      };
 
-
-
-
+     if (req.body.lat && req.body.lng) {
+        data.location = {
+            type: "Point",
+            coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
+        };
+    }
 
     console.log("USER ID:", req.session.userId);
 
@@ -182,6 +195,7 @@ app.post("/register", async (req, res) => {
     res.redirect("/musicians.html");
     
 })
+
 
 app.post("/register-account", registerLimiter, upload.single("profilePicture"), async (req, res) => {
     
@@ -277,6 +291,13 @@ app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
         genres: genres,
    
     };
+
+    if (req.body.lat && req.body.lng) {
+        updateData.location = {
+            type: "Point",
+            coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
+        };
+    }
 
     if (req.file) {
         const oldUser = await users.findOne({ _id: new mongo.ObjectId(req.session.userId)});
@@ -425,6 +446,39 @@ app.get("/musicians", async (req, res) => {
     res.json(wynik);
 });
 
+app.get("/musicians/nearby", async (req,res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ error: "nie jestes zalogowany" });
+
+    }
+
+    const lat = parseFloat(req.query.lat);
+    const lng = parseFloat(req.query.lng);
+    const maxDistanceKm = parseFloat(req.query.radius) || 50;
+
+    if (isNaN(lat) || isNaN(lng)) {
+        return res.status(400).json({ error: "brak wspolrzednych lokalizacji "});
+
+    }
+    await client.connect();
+    const db = client.db("baza_muzykow");
+    const users = db.collection("users");
+
+    const results = await users.aggregate([
+        {
+            $geoNear: {
+                near: { type: "Point", coordinates: [lng, lat] },
+                distanceField: "distanceMeters",
+                maxDistance: maxDistanceKm * 1000,
+                spherical: true,
+                query: { _id: { $ne: new mongo.ObjectId(req.session.userId) } }
+            }
+        },
+        { $limit: 50 }
+    ]).toArray();
+
+    res.json(results);
+});
 
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
@@ -485,7 +539,7 @@ app.use((req, res, next) => {
 
     if (protectedPages.includes(req.path) && !req.session.userId) {
         return res.redirect("/logowanie.html?reason=notLoggedIn");
-        
+
     }
 
     next();

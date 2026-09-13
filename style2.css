@@ -825,9 +825,3 @@ input.checkbox-label {
     margin: 0;
 }
 
-.image-preview {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 8px;
-}

@@ -139,6 +139,10 @@ async function processDB() {
 }
 
 app.post("/register", async (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).send("Nie jestes zalogowany");
+
+    }
     await client.connect();
     const db = client.db("baza_muzykow");
     const users = db.collection("users");
@@ -477,9 +481,11 @@ function reqiureLogin(req, res, next) {
 }
 
 app.use((req, res, next) => {
-    if (req.path === "/musicians.html" && !req.session.userId) {
-        return res.redirect("/logowanie.html");
+    const protectedPages = ["/musicians.html", "/group-chat.html", "/chat.html", "/edit-profile.html", "/notifications.html"];
 
+    if (protectedPages.includes(req.path) && !req.session.userId) {
+        return res.redirect("/logowanie.html?reason=notLoggedIn");
+        
     }
 
     next();

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
         <div class="nav-links">
             <a href="/index.html">Main page</a>
             <a href="/musicians.html">Musicians</a>
+            <a href="/group-chat.html">Czat społeczności</a>
             <a href="/contact.html">Contact</a>
             <a href="/logowanie.html">Sign in</a>
             
@@ -38,5 +39,15 @@
     <button class="test" type="submit">Zaloguj się</button>
     </form>
     </div>
+
+
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("reason") === "notLoggedIn") {
+            alert("Nie jesteś zalogowany, Zaloguj się, aby kontynuować.");
+
+        }
+    </script>
 </body>
 </html>

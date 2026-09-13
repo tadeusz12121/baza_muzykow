@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,7 @@
         <div class="nav-links">
             <a href="/index.html">Main page</a>
             <a href="/musicians.html">Musicians</a>
+            <a href="/group-chat.html">Czat społeczności</a>
             <a href="/contact.html">Contact</a>
             <a href="/logowanie.html">Sign in</a>
             
@@ -46,6 +47,15 @@
     <div id="notifications"></div>
  
     <script>
+        function escapeHtml(text) {
+            if (!text) return "";
+            const div = document.createElement("div");
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+
+
         fetch("/notifications")
             .then(response => response.json())
             .then(notifications => {
@@ -64,7 +74,7 @@
                              p.classList.add("notification");
 
                             p.innerHTML = `
-                                <strong>${user.name} ${user.surname}</strong>
+                                <strong>${escapeHtml(user.name)} ${escapeHtml(user.surname)}</strong>
                                  <span>💬 Nowa wiadomość</span>
                             `;
                             p.addEventListener("click", () => {

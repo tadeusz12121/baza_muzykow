@@ -42,6 +42,8 @@
         <form class="send" id="sendForm">
             <label for="imageInput" class="attach-label">📎</label>
             <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            <img id="imagePreview" class="image-preview" style="display: none;">
+
 
             <input 
                 type="text"
@@ -130,16 +132,23 @@
     }
     const imageInput = document.getElementById("imageInput");
 
+    const imagePreview = document.getElementById("imagePreview");
+
     imageInput.addEventListener("change", () => {
-        const label = document.querySelector(".attach-label");
-        if (imageInput.files[0]) {
-            label.textContent = `📎 ${imageInput.files[0].name}`;
+        const file = imageInput.files[0];
 
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = "block";
+            };
+            reader.readAsDataURL(file);
         } else {
-            label.textContent = "📎";
+            imagePreview.style.display = "none";
+            imagePreview.src = "";
         }
-    });
-
+});
 
     form.addEventListener("submit", async function(event) {
 
@@ -172,7 +181,8 @@
 
     input.value = "";
     imageInput.value = "";
-    document.querySelector(".attach-label").textContent = "📎";
+    imagePreview.style.display = "none";
+    imagePreview.src = "";
 });
 
 socket.on("group message", function(message) {

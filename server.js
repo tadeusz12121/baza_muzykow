@@ -501,7 +501,7 @@ app.post("/group-chat-upload", chatUpload.single("image"), async (req,res) => {
 
     }
     try {
-        const filename = `{Datee,now()}/webp`;
+        const filename = `${Date.now()}.webp`;
         const outputPath = path.join(chatUploadDir, filename);
 
         await sharp(req.file.buffer)

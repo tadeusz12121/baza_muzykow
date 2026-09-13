@@ -210,8 +210,8 @@ button {
 .chat {
     margin: 0;
     padding: 10px;
-    border: 2px solid rgb(17, 16, 16);
-    
+    border: 2px solid rgb(29, 27, 27);
+    font-family: Arial, Helvetica, sans-serif;
     width: 500px;
     max-width: 90vw;
     height: 80vh;
@@ -287,4 +287,35 @@ button {
     border-radius: 10px;
     margin-top: 6px;
     display: block;
+}
+.chat-page {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1;
+    
+}
+
+.ad-panel {
+    display: none;
+    width: 250px;
+    height: 80vh;
+    background-color: #1e1e25;
+    border: 2px solid rgb(17,16,16);
+    border-radius: 10px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+@media (min-width: 1000px) {
+    .ad-panel {
+        display: flex;
+    }
 }

@@ -110,7 +110,15 @@ if (!fs.existsSync(chatUploadDir)) {
 }
 const chatUpload = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 10 * 1024 * 1024 }
+    limits: { fileSize: 10 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        const allowedMimeTypes = /^image\/(jpeg|png|webp|gif|bmp|heic|heif|avif|tiff)$/;
+        if (allowedMimeTypes.test(file.mimetype)) {
+            cb(null, true);
+        } else {
+            cb(new Error("Dozwolone są tylko pliki obrazów"));
+        }
+    }
 });
  
 const loginLimiter = rateLimit({
@@ -482,7 +490,7 @@ app.get("/musicians/nearby", async (req,res) => {
 
 app.get("/logout", (req, res) => {
     req.session.destroy(() => {
-        res.redirect("/register.html");
+        res.redirect("/logowanie.html");
     });
 });
 
@@ -565,7 +573,7 @@ app.post("/group-chat-upload", chatUpload.single("image"), async (req,res) => {
         const outputPath = path.join(chatUploadDir, filename);
 
         await sharp(req.file.buffer)
-            .resize({ width: 1280, widthoutEnlargment: true})
+            .resize({ width: 1280, withoutEnlargment: true})
             .webp({ quality: 75})
             .toFile(outputPath);
 
@@ -777,6 +785,12 @@ io.on("connection", (socket) => {
     });
 
 });
+
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, "404.html"));
+
+});
+
 app.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {
         if (err.code === "LIMIT_FILE_SIZE") {

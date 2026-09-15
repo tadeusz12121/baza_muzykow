@@ -827,6 +827,9 @@ input.checkbox-label {
 
 .come-back {
     text-align: center;
-    color: pink;
+
     margin: 20px auto;
+}
+.tut {
+    text-decoration: none;
 }

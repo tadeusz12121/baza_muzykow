@@ -6,6 +6,7 @@
     "express": "^5.2.1",
     "express-rate-limit": "^8.7.0",
     "express-session": "^1.19.0",
+    "heic-convert": "^2.1.0",
     "mongodb": "^7.6.0",
     "multer": "^2.3.0",
     "sharp": "^0.35.4",

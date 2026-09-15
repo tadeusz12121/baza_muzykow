@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+const heicConvert = require("heic-convert");
 const express = require("express");
 const app = express();
 const bcrypt = require("bcrypt");
@@ -572,10 +572,25 @@ app.post("/group-chat-upload", chatUpload.single("image"), async (req,res) => {
         const filename = `${Date.now()}.webp`;
         const outputPath = path.join(chatUploadDir, filename);
 
-        await sharp(req.file.buffer)
-            .resize({ width: 1280, withoutEnlargment: true})
-            .webp({ quality: 75})
+        let imageBuffer = req.file.buffer;
+
+        if (req.file.mimetype === "image/heic" || req.file.mimetype === "image/heif") {
+            imageBuffer = await heicConvert({
+                buffer: req.file.buffer,
+                format: "JPEG",
+                quality: 0.8
+            });
+        }
+
+        await sharp(imageBuffer)
+            .resize({
+                width: 1280,
+                withoutEnlargement: true
+            })
+            .webp({ quality: 75 })
             .toFile(outputPath);
+        
+
 
         res.json({
             image: `/uploads/chat/${filename}`

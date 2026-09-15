@@ -27,5 +27,21 @@ The project is built with:
 Goals:
 The goal of Jamly is to make it easier for musicians to find people to play with.
 
+## AI Usage
+
+AI was used as a development assistant during the creation of Jamly.
+
+I mainly used AI for:
+
+* debugging and finding errors in my code,
+* explaining JavaScript, Node.js, Express.js and MongoDB concepts,
+* suggesting solutions when I was stuck,
+* helping improve and review parts of the code,
+* brainstorming features and UI ideas,
+* writing and improving some documentation.
+
+The main development, implementation, testing, and decisions about how Jamly works were done by me.
+
+
 Project Status: In active development
 <img width="844" height="774" alt="Zrzut ekranu 2026-09-12 o 20 20 51" src="https://github.com/user-attachments/assets/8909ba10-754d-47bf-b469-26944d89722b" />

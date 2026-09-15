@@ -825,3 +825,8 @@ input.checkbox-label {
     margin: 0;
 }
 
+.come-back {
+    text-align: center;
+    color: pink;
+    margin: 20px auto;
+}

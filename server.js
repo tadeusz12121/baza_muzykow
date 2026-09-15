@@ -581,7 +581,9 @@ app.post("/group-chat-upload", chatUpload.single("image"), async (req,res) => {
             image: `/uploads/chat/${filename}`
         });
     } catch (err) {
-        console.error("Błąd kompresji obrazu", err);
+        console.error("Błąd kompresji obrazu:", err);
+        console.error("MIME:", req.file?.mimetype);
+        console.error("Nazwa:", req.file?.originalname);
         res.status(500).json({ error: "Nie udało się przetworzyc zdjecia"});
 
     }

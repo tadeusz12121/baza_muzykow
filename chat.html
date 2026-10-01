@@ -131,24 +131,31 @@
 
         socket.on("private message", (data) => {
     console.log("SOCKET:", data);
+    
 
     const p = document.createElement("p");
-
+    
     if (data.senderId === receiverId) {
         p.classList.add("recived");
         p.textContent = receiverName + ": " + data.message;
     } else {
+
         p.classList.add("sent");
     
+
         p.textContent = "Ty: " + data.message;
     }
+
+
 
     messages.appendChild(p);
 
 
     window.scrollTo({
+        
         top: document.body.scrollHeight,
         behavior: "smooth"
+        
     });
 
 

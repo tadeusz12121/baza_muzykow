@@ -833,3 +833,7 @@ input.checkbox-label {
 .tut {
     text-decoration: none;
 }
+.infoback {
+    padding: 10px;
+    margin: 10px;
+}

@@ -62,89 +62,16 @@
 
     <input type="url" id="instagram" name="instagram" placeholder="https://instagram.com/...">
     <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com...">
-    
+    <input type="url" id="spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
+   <input type="url" id="soundcloud" name="soundcloud" placeholder="https://soundcloud.com/...">
     </textarea>
 
-        <select id="instrument" name="instrument">
-             <option value="">Wszystkie Instrumenty</option>
-           <option value="Altówka">Altówka</option>
-            <option value="Akordeon">Akordeon</option>
-            <option value="Banjo">Banjo</option>
-            <option value="Fortepian">Fortepian</option> 
-            <option value="Flet poprzeczny">Flet poprzeczny</option> 
-            <option value="Flet prosty">Flet prosty</option>  
-            <option value="Gitara akustyczna">Gitara akustyczna</option>  
-            <option value="Gitara elektryczna">Gitara elektryczna</option>  
-            <option value="Gitara klasyczna">Gitara klasyczna</option>  
-            <option value="Gitara basowa">Gitara basowa</option>  
-            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
-            <option value="Harmonijka ustna">Harmonijka ustna</option>  
-            <option value="Harfa">Harfa</option>  
-            <option value="Klarnet">Klarnet</option>  
-            <option value="Kontrabas">Kontrabas</option>  
-            <option value="Mandolina">Mandolina</option>  
-            <option value="Obój">Obój</option>  
-            <option value="Organy">Organy</option>  
-            <option value="Perkusja">Perkusja</option>  
-            <option value="Saksofon altowy">Saksofon altowy</option>  
-            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
-            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
-            <option value="Syntezator">Syntezator</option>  
-            <option value="Tamburyn">Tamburyn</option>  
-            <option value="Trąbka">Trąbka</option>  
-            <option value="Ukulele">Ukulele</option>  
-            <option value="Wibrafon">Wibrafon</option>  
-            <option value="Wokal Żeński">Wokal Żeński</option>  
-            <option value="Wokal Męski">Wokal Męski</option>  
-            <option value="Wiolonczela">Wiolonczela</option>  
-            <option value="Skrzypce">Skrzypce</option>  
-            <option value="Puzon">Puzon</option>  
-            <option value="Róg">Róg</option>  
-            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
-            <option value="Cajon">Cajon</option>  
-            
-        </select>
+        <label class="l">Instrumenty:</label>
+<div id="instrumentList"></div>
+<button type="button" onclick="addInstrumentSelect()">+ Dodaj instrument</button>
 
-         <select id="secinstrument" name="secinstrument">
-      
-        <option value="">Wybierz 2 instrument</option>
-            <option value="Altówka">Altówka</option>
-            <option value="Akordeon">Akordeon</option>
-            <option value="Banjo">Banjo</option>
-            <option value="Fortepian">Fortepian</option> 
-            <option value="Flet poprzeczny">Flet poprzeczny</option> 
-            <option value="Flet prosty">Flet prosty</option>  
-            <option value="Gitara akustyczna">Gitara akustyczna</option>  
-            <option value="Gitara elektryczna">Gitara elektryczna</option>  
-            <option value="Gitara klasyczna">Gitara klasyczna</option>  
-            <option value="Gitara basowa">Gitara basowa</option>  
-            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
-            <option value="Harmonijka ustna">Harmonijka ustna</option>  
-            <option value="Harfa">Harfa</option>  
-            <option value="Klarnet">Klarnet</option>  
-            <option value="Kontrabas">Kontrabas</option>  
-            <option value="Mandolina">Mandolina</option>  
-            <option value="Obój">Obój</option>  
-            <option value="Organy">Organy</option>  
-            <option value="Perkusja">Perkusja</option>  
-            <option value="Saksofon altowy">Saksofon altowy</option>  
-            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
-            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
-            <option value="Syntezator">Syntezator</option>  
-            <option value="Tamburyn">Tamburyn</option>  
-            <option value="Trąbka">Trąbka</option>  
-            <option value="Ukulele">Ukulele</option>  
-            <option value="Wibrafon">Wibrafon</option>  
-            <option value="Wokal Żeński">Wokal Żeński</option>  
-            <option value="Wokal Męski">Wokal Męski</option>  
-            <option value="Wiolonczela">Wiolonczela</option>  
-            <option value="Skrzypce">Skrzypce</option>  
-            <option value="Puzon">Puzon</option>  
-            <option value="Róg">Róg</option>  
-            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
-            <option value="Cajon">Cajon</option>  
-       
-    </select>
+<script src="/instruments.js"></script>
+
        <select id="level" name="level">
     <option value="początkujący">Początkujący</option>
     <option value="sredniozaawansowany">Średnio zaawansowany</option>
@@ -183,7 +110,7 @@
     </label>
 </div>
 
-<p class="l">Umiejętnośći:</p>
+<p class="l">Gatunki muzyczne:</p>
 <div class="checkbox-group">
     <label class="checkbox-label">
         <input class="checkbox-label" type="checkbox" name="genres" value="rock"> Rock
@@ -284,48 +211,43 @@
 
         }
     });
-
-   
-    
-
     fetch("/me")
     .then(response => response.json())
     .then(user => {
-
-
- 
         console.log("DANE Z /ME:", user);
-        
+
+        const list = user.instruments?.length
+            ? user.instruments
+            : [user.instrument, user.secinstrument].filter(Boolean); // starzy użytkownicy
+        (list.length ? list : [""]).forEach(i => addInstrumentSelect(i));
+
         document.getElementById("name").value = user.name || "";
         document.getElementById("surname").value = user.surname || "";
         document.getElementById("city").value = user.city || "";
-        document.getElementById("instrument").value = user.instrument || "";
-        document.getElementById("secinstrument").value = user.secinstrument || "";
         document.getElementById("level").value = user.level || "";
         document.getElementById("lookingFor").value = user.lookingFor || "";
         document.getElementById("bio").value = user.bio || "";
         document.getElementById("instagram").value = user.instagram || "";
         document.getElementById("facebook").value = user.facebook || "";
+        document.getElementById("spotify").value = user.spotify || "";
+        document.getElementById("soundcloud").value = user.soundcloud || "";
         document.getElementById("currentAvatar").src = user.profilePicture || "/default-avatar.png";
+
         document.getElementById("profilePicture").addEventListener("change", (e) => {
             const file = e.target.files[0];
             if (file) {
                 document.getElementById("currentAvatar").src = URL.createObjectURL(file);
-                
             }
         });
 
         const userSkills = user.skills || [];
-
         document.querySelectorAll('input[name="skills"]').forEach(cb => {
-         cb.checked = userSkills.includes(cb.value);
-    });
+            cb.checked = userSkills.includes(cb.value);
+        });
         const userGenres = user.genres || [];
         document.querySelectorAll('input[name="genres"]').forEach(cb => {
             cb.checked = userGenres.includes(cb.value);
         });
-       
-
     });
 </script>
 </body>

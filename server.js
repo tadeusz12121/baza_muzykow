@@ -160,6 +160,25 @@ async function processDB() {
     }
 }
 
+function parseInstruments(raw) {
+    const arr = raw ? (Array.isArray(raw) ? raw : [raw]) : [];
+    return [...new Set(arr.map(s => String(s).trim()).filter(Boolean))].slice(0, 20);
+}
+
+function cleanProfileUrl(value, allowedHosts) {
+    if (!value) return "";
+    try {
+        const u = new URL(String(value).trim());
+        if (u.protocol !== "https:" && u.protocol !== "http:") return "";
+        const host = u.hostname.replace(/^www\./, "");
+        return allowedHosts.some(h => host === h || host.endsWith("." + h)) ? u.href : "";
+    } catch {
+        return "";
+    }
+}
+
+const toArray = v => (v ? (Array.isArray(v) ? v : [v]) : []);
+
 app.post("/register", async (req, res) => {
     if (!req.session.userId) {
         return res.status(401).send("Nie jestes zalogowany");
@@ -172,20 +191,17 @@ app.post("/register", async (req, res) => {
    
 
      const data = {
-        ...req.body,
-
-        skills: req.body.skills
-            ? Array.isArray(req.body.skills)
-                ? req.body.skills
-                : [req.body.skills]
-            :[],
-        genres: req.body.genres
-            ? Array.isArray(req.body.genres)
-                ? req.body.genres
-                : [req.body.genres]
-
-            :[]
-
+        lookingFor: req.body.lookingFor,
+        bio: req.body.bio,
+        city: req.body.city,
+        level: req.body.level,
+        instruments: parseInstruments(req.body.instruments),
+        skills: toArray(req.body.skills),
+        genres: toArray(req.body.genres),
+        instagram:  cleanProfileUrl(req.body.instagram,  ["instagram.com"]),
+        facebook:   cleanProfileUrl(req.body.facebook,   ["facebook.com", "fb.com"]),
+        spotify:    cleanProfileUrl(req.body.spotify,    ["spotify.com", "spotify.link"]),
+        soundcloud: cleanProfileUrl(req.body.soundcloud, ["soundcloud.com"])
      };
 
      if (req.body.lat && req.body.lng) {
@@ -289,13 +305,14 @@ app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
         name: req.body.name,
         surname: req.body.surname,
         city: req.body.city,
-        instrument: req.body.instrument,
-        secinstrument: req.body.secinstrument,
+        instruments: parseInstruments(req.body.instruments),
         level: req.body.level,
         lookingFor: req.body.lookingFor,
         bio: req.body.bio,
-        instagram: req.body.instagram,
-        facebook: req.body.facebook,
+        instagram:  cleanProfileUrl(req.body.instagram,  ["instagram.com"]),
+        facebook:   cleanProfileUrl(req.body.facebook,   ["facebook.com", "fb.com"]),
+        spotify:    cleanProfileUrl(req.body.spotify,    ["spotify.com", "spotify.link"]),
+        soundcloud: cleanProfileUrl(req.body.soundcloud, ["soundcloud.com"]),
         skills: skills,
         genres: genres,
    
@@ -327,7 +344,7 @@ app.post("/edit-profile", upload.single("profilePicture"), async (req, res) => {
   
     await users.updateOne(
         { _id: new mongo.ObjectId(req.session.userId)},
-        { $set: updateData}
+        { $set: updateData, $unset: { instrument: "", secinstrument: "" } }
     );
 
 
@@ -366,16 +383,19 @@ app.get("/me", async (req, res) => {
         name: user.name,
         surname: user.surname,
         city: user.city,
+        instruments: user.instruments,
         instrument: user.instrument,
+        secinstrument: user.secinstrument,
         level: user.level,
         lookingFor: user.lookingFor,
-        secinstrument: user.secinstrument,
         skills: user.skills,
         genres: user.genres,
         profilePicture: user.profilePicture,
         bio: user.bio,
         instagram: user.instagram,
-        facebook: user.facebook
+        facebook: user.facebook,
+        spotify: user.spotify,
+        soundcloud: user.soundcloud
 
     })
 
@@ -431,6 +451,7 @@ app.get("/musicians", async (req, res) => {
     
     if (req.query.instrument) {
     filter.$or = [
+        { instruments: req.query.instrument },
         { instrument: req.query.instrument },
         { secinstrument: req.query.instrument }
     ];
@@ -448,10 +469,10 @@ app.get("/musicians", async (req, res) => {
     console.log("QUERY:", req.query);
     console.log("FILTER:", filter);
 
-    const wynik = await musicians.find(filter).toArray();
+    const wynik = await musicians.find(filter, {
+        projection: { password: 0, email: 0 }
+    }).toArray();
 
-
-    console.log("WYNIK:", wynik);
     res.json(wynik);
 });
 
@@ -483,6 +504,7 @@ app.get("/musicians/nearby", async (req,res) => {
                 query: { _id: { $ne: new mongo.ObjectId(req.session.userId) } }
             }
         },
+        { $project: { password: 0, email: 0 } },
         { $limit: 50 }
     ]).toArray();
 

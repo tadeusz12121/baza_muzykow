@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muzconecct</title>
+    <title>Rejestracja</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="fav.png">
 
@@ -31,88 +31,13 @@
         <input type="hidden" id="lng" name="lng"> 
         <div id="citySuggestions"></div>
 
-        <label class="l" for="instrument">Wybierz instrument:</label>
-       <select id="instrument" name="instrument" required>
-      
-        <option value="">Wybierz instrument</option>
-            <option value="Altówka">Altówka</option>
-            <option value="Akordeon">Akordeon</option>
-            <option value="Banjo">Banjo</option>
-            <option value="Fortepian">Fortepian</option> 
-            <option value="Flet poprzeczny">Flet poprzeczny</option> 
-            <option value="Flet prosty">Flet prosty</option>  
-            <option value="Gitara akustyczna">Gitara akustyczna</option>  
-            <option value="Gitara elektryczna">Gitara elektryczna</option>  
-            <option value="Gitara klasyczna">Gitara klasyczna</option>  
-            <option value="Gitara basowa">Gitara basowa</option>  
-            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
-            <option value="Harmonijka ustna">Harmonijka ustna</option>  
-            <option value="Harfa">Harfa</option>  
-            <option value="Klarnet">Klarnet</option>  
-            <option value="Kontrabas">Kontrabas</option>  
-            <option value="Mandolina">Mandolina</option>  
-            <option value="Obój">Obój</option>  
-            <option value="Organy">Organy</option>  
-            <option value="Perkusja">Perkusja</option>  
-            <option value="Saksofon altowy">Saksofon altowy</option>  
-            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
-            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
-            <option value="Syntezator">Syntezator</option>  
-            <option value="Tamburyn">Tamburyn</option>  
-            <option value="Trąbka">Trąbka</option>  
-            <option value="Ukulele">Ukulele</option>  
-            <option value="Wibrafon">Wibrafon</option>  
-            <option value="Wokal Żeński">Wokal Żeński</option>  
-            <option value="Wokal Męski">Wokal Męski</option>  
-            <option value="Wiolonczela">Wiolonczela</option>  
-            <option value="Skrzypce">Skrzypce</option>  
-            <option value="Puzon">Puzon</option>  
-            <option value="Róg">Róg</option>  
-            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
-            <option value="Cajon">Cajon</option>  
-       
-    </select> 
-      <label class="l" for="secinstrument">Wybierz 2 instrument(opcjonalnie):</label>
-       <select id="secinstrument" name="secinstrument">
-      
-        <option value="">Wybierz instrument</option>
-            <option value="Altówka">Altówka</option>
-            <option value="Akordeon">Akordeon</option>
-            <option value="Banjo">Banjo</option>
-            <option value="Fortepian">Fortepian</option> 
-            <option value="Flet poprzeczny">Flet poprzeczny</option> 
-            <option value="Flet prosty">Flet prosty</option>  
-            <option value="Gitara akustyczna">Gitara akustyczna</option>  
-            <option value="Gitara elektryczna">Gitara elektryczna</option>  
-            <option value="Gitara klasyczna">Gitara klasyczna</option>  
-            <option value="Gitara basowa">Gitara basowa</option>  
-            <option value="Gitara basowa(akustyczna)">Gitara basowa(akustyczna)</option>  
-            <option value="Harmonijka ustna">Harmonijka ustna</option>  
-            <option value="Harfa">Harfa</option>  
-            <option value="Klarnet">Klarnet</option>  
-            <option value="Kontrabas">Kontrabas</option>  
-            <option value="Mandolina">Mandolina</option>  
-            <option value="Obój">Obój</option>  
-            <option value="Organy">Organy</option>  
-            <option value="Perkusja">Perkusja</option>  
-            <option value="Saksofon altowy">Saksofon altowy</option>  
-            <option value="Saksofon barytonowy">Saksofon barytonowy</option>  
-            <option value="Saksofon sopranowy">Saksofon sopranowy</option>  
-            <option value="Syntezator">Syntezator</option>  
-            <option value="Tamburyn">Tamburyn</option>  
-            <option value="Trąbka">Trąbka</option>  
-            <option value="Ukulele">Ukulele</option>  
-            <option value="Wibrafon">Wibrafon</option>  
-            <option value="Wokal Żeński">Wokal Żeński</option>  
-            <option value="Wokal Męski">Wokal Męski</option>  
-            <option value="Wiolonczela">Wiolonczela</option>  
-            <option value="Skrzypce">Skrzypce</option>  
-            <option value="Puzon">Puzon</option>  
-            <option value="Róg">Róg</option>  
-            <option value="Rhodes/pianino elektryczne">Rhodes/pianino elektryczne</option>  
-            <option value="Cajon">Cajon</option>  
-       
-    </select> 
+     
+        <label class="l">Instrumenty:</label>
+<div id="instrumentList"></div>
+<button type="button" onclick="addInstrumentSelect()">+ Dodaj instrument</button>
+
+<script src="/instruments.js"></script>
+<script>addInstrumentSelect();</script>
         <label class="l" for="level">Wybierz poziom zaawansowania:</label>
         <select id="level" name="level"> 
             <option value="początkujący">Początkujący</option>
@@ -215,6 +140,13 @@
     <label for="facebook">Facebook</label>
     <input type="url" id="facebook" name="facebook" placeholder="https://facebook.com/...">
 
+
+       <label for="spotify">Spotify</label>
+   <input type="url" id="spotify" name="spotify" placeholder="https://open.spotify.com/artist/...">
+
+   <label for="soundcloud">SoundCloud</label>
+   <input type="url" id="soundcloud" name="soundcloud" placeholder="https://soundcloud.com/...">
+
         <button type="submit">Zarejestruj</button>
 
     </form>
@@ -272,6 +204,8 @@
     }
 }
 const form = document.querySelector("form");
+
+
 
 form.addEventListener("submit", async (event) => {
     event.preventDefault();

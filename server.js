@@ -1,7 +1,7 @@
 require("dotenv").config();
 const heicConvert = require("heic-convert");
 const express = require("express");
-console.log(__dirname);
+
 const app = express();
 const bcrypt = require("bcrypt");
 const session = require("express-session");

@@ -837,3 +837,21 @@ input.checkbox-label {
     padding: 10px;
     margin: 10px;
 }
+
+.jamlyai {
+    text-align: center;
+    margin: 10px;
+    font-size: 13px;
+  
+    
+}
+.ai {  background-color: rgb(191, 63, 63);
+    display: block;
+    padding: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+  
+}

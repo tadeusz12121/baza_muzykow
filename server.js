@@ -49,6 +49,13 @@ async function ensureIndexes() {
         await db.collection("users").createIndex({ location: "2dsphere"});
         console.log("indeks geograficzny gotowy");
 
+        const users = db.collection("users");
+        await users.updateMany({ isMusician: { $exists: false } }, { $set: { isMusician: true } });
+        await users.updateMany({ isSound: { $exists: false } }, { $set: { isSound: false } });
+        await users.updateMany({ isAdmin: { $exists: false } }, { $set: { isAdmin: false } });
+        await users.updateMany({ isDev: { $exists: false } }, { $set: { isDev: false } });
+        console.log("pola ról uzupełnione");
+
     } catch (err) {
         console.error("blad tworzenia indeksu:", err);
 

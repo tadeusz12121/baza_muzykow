@@ -176,11 +176,14 @@
             dev: "💻 Programista"
         };
 
-        function getRole(u) {
-            if (u.isAdmin) return "admin";
-            if (u.isDev)   return "dev";
-            if (u.isSound) return "sound";
-        return "musician";
+        function getRoles(u) {
+
+            const list = [];
+            if (u.isAdmin) list.push("admin");
+            if (u.isDev)   list.push("dev");
+            if (u.isSound) list.push("sound");
+            list.push("musician");
+            return list;
 }
         const container = document.getElementById("musicians");
         container.innerHTML = "";
@@ -189,8 +192,11 @@
 
             const card = document.createElement("div");
             card.className = "musician-card";
-            const role = getRole(musician);
-            card.dataset.role = role;   
+            const roles = getRoles(musician);
+            card.dataset.role = roles[0];
+            const badgesHtml = roles
+            .map(r => `<span class="role-badge" data-role="${r}">${ROLES[r]}</span>`)
+            .join(" ");
 
             const distanceHtml = (showDistance && musician.distanceMeters != null)
                 ? `<p class="distance">📍 ${(musician.distanceMeters / 1000).toFixed(1)} km od Ciebie</p>`
@@ -207,12 +213,13 @@
         src="${escapeHtml(musician.profilePicture) || '/default-avatar.png'}"
         alt="Zdjęcie profilowe"
     >
+
         <div class="name">
-            <h2>${escapeHtml(musician.name)} ${escapeHtml(musician.surname)}</h2>
-            <span class="role-badge">${ROLES[role]}</span>
-            <p class="city">Miasto: ${escapeHtml(musician.city)}</p>
-            ${distanceHtml}
-        </div>
+        <h2>${escapeHtml(musician.name)} ${escapeHtml(musician.surname)}</h2>
+        ${badgesHtml}
+        <p class="city">Miasto: ${escapeHtml(musician.city)}</p>
+        ${distanceHtml}
+    </div>
     </div>
 
         <div class="musician-main">

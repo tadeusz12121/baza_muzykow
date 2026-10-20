@@ -855,3 +855,20 @@ input.checkbox-label {
     color: white;
   
 }
+
+.musician-card { --accent: #e6b85c; }
+.musician-card[data-role="sound"] { --accent: #4fd1c5; }
+.musician-card[data-role="admin"] { --accent: #e5484d; }
+.musician-card[data-role="dev"]   { --accent: #a78bfa; }
+
+.musician-avatar { border: 3px solid var(--accent); }
+.napisz { border-color: var(--accent); }
+
+.role-badge {
+    display: inline-block;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 13px;
+}

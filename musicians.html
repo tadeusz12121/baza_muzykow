@@ -109,7 +109,7 @@
 
 </div>
 
-  <script>
+<script>
         const cityInput = document.getElementById("city");
         const citySuggestions = document.getElementById("citySuggestions");
 
@@ -169,6 +169,19 @@
         });
 
     function renderMusicians(musicians, showDistance = false) {
+        const ROLES = {
+            musician: "🎸 Muzyk",
+            sound: "🎚️ Nagłośnieniowiec",
+            admin: "🛡️ Administrator",
+            dev: "💻 Programista"
+        };
+
+        function getRole(u) {
+            if (u.isAdmin) return "admin";
+            if (u.isDev)   return "dev";
+            if (u.isSound) return "sound";
+        return "musician";
+}
         const container = document.getElementById("musicians");
         container.innerHTML = "";
 
@@ -176,6 +189,8 @@
 
             const card = document.createElement("div");
             card.className = "musician-card";
+            const role = getRole(musician);
+            card.dataset.role = role;   
 
             const distanceHtml = (showDistance && musician.distanceMeters != null)
                 ? `<p class="distance">📍 ${(musician.distanceMeters / 1000).toFixed(1)} km od Ciebie</p>`
@@ -194,6 +209,7 @@
     >
         <div class="name">
             <h2>${escapeHtml(musician.name)} ${escapeHtml(musician.surname)}</h2>
+            <span class="role-badge">${ROLES[role]}</span>
             <p class="city">Miasto: ${escapeHtml(musician.city)}</p>
             ${distanceHtml}
         </div>

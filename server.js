@@ -671,7 +671,12 @@ app.get("/group-messages", async (req, res) => {
 
             name: user ? user.name : "Nieznany",
             surname: user ? user.surname : "",
-            city: user ? user.city : ""
+            city: user ? user.city : "",
+            isAdmin: !!user?.isAdmin,
+            isDev: !!user?.isDev,
+            isSound: !!user?.isSound
+
+
         };
     });
 
@@ -809,6 +814,9 @@ io.on("connection", (socket) => {
             name: user.name,
             surname: user.surname,
             city: user.city,
+            isAdmin: !!user.isAdmin,
+            isDev: !!user.isDev,
+            isSound: !!user.isSound,
             message: message || "",
             image: image || null,
             createdAt: newMessage.createdAt

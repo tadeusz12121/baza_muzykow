@@ -179,9 +179,10 @@
         function getRoles(u) {
 
             const list = [];
+            if (u.isSound) list.push("sound");
             if (u.isAdmin) list.push("admin");
             if (u.isDev)   list.push("dev");
-            if (u.isSound) list.push("sound");
+           
           
             return list;
 }

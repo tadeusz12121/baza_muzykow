@@ -237,7 +237,12 @@ app.post("/register-account", registerLimiter, upload.single("profilePicture"), 
         password: hash,
         profilePicture: req.file
             ? `/uploads/profile/${req.file.filename}`
-            : null
+            : null,
+
+        isAdmin: false,
+        isDev: false,
+        isSound: false,
+        isMusician: true
     };
 
     const result = await users.insertOne(user);
@@ -674,7 +679,8 @@ app.get("/group-messages", async (req, res) => {
             city: user ? user.city : "",
             isAdmin: !!user?.isAdmin,
             isDev: !!user?.isDev,
-            isSound: !!user?.isSound
+            isSound: !!user?.isSound,
+            isMusician: user ? (user.isMusician ?? true) : false
 
 
         };
@@ -817,6 +823,7 @@ io.on("connection", (socket) => {
             isAdmin: !!user.isAdmin,
             isDev: !!user.isDev,
             isSound: !!user.isSound,
+            isMusician: !user.isMusician,
             message: message || "",
             image: image || null,
             createdAt: newMessage.createdAt

@@ -4,7 +4,7 @@ const INSTRUMENTS = [
   "Gitara basowa(akustyczna)", "Harmonijka ustna", "Harfa", "Klarnet", "Kontrabas",
   "Mandolina", "Obój", "Organy", "Perkusja", "Saksofon altowy", "Saksofon barytonowy",
   "Saksofon sopranowy", "Syntezator", "Tamburyn", "Trąbka", "Ukulele", "Wibrafon",
-  "Wokal Żeński", "Wokal Męski", "Wiolonczela", "Skrzypce", "Puzon", "Róg",
+  "Wokal Żeński", "Wokal Męski", "Wiolonczela", "Skrzypce", "Puzon", "Tuba", "Róg",
   "Rhodes/pianino elektryczne", "Cajon"
 ];
 

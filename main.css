@@ -127,6 +127,7 @@ body {
 }
 
 .titleimg {
+    border: 2px solid rgb(213, 198, 58);
   display: block;
   width: min(900px, 90%);
   height: auto;
@@ -184,9 +185,10 @@ body {
 }
 
 h1 {
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: 15px;
   font-family: "Inter", sans-serif;
   color: #f5d054;
+
   margin: 40px 10px 10px;
   text-align: center;
 }
@@ -276,7 +278,7 @@ footer a {
     color: white;
 }
 p {
-  border: 1px solid #f3f3f1;
+  border: 1px solid #eaeaea;
   padding: 5px;
   margin: 10px;
   text-align: center;
@@ -310,14 +312,24 @@ p {
     0%, 100% {
         box-shadow:
             0 0 8px rgba(245, 208, 84, 0.15),
-            0 0 15px rgba(245, 208, 84, 0.08);
-        border-color: rgba(245, 208, 84, 0.35);
+            0 0 15px rgba(107, 103, 87, 0.08);
+        border-color: rgba(41, 41, 41, 0.35);
     }
 
     50% {
         box-shadow:
-            0 0 18px rgba(245, 208, 84, 0.4),
-            0 0 40px rgba(245, 208, 84, 0.2);
-        border-color: rgba(245, 208, 84, 0.9);
+            0 0 18px rgba(183, 180, 170, 0.4),
+            0 0 40px rgba(181, 179, 171, 0.2);
+        border-color: rgba(240, 240, 240, 0.9);
     }
+}
+
+.poznaj {
+    font-family: inherit;   
+    
+
+}
+.subtitl {
+    border: none;
+    font-size: 17px;
 }

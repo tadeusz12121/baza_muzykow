@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northbeam Logistics cut its status meeting to 25 minutes · Fjordly</title>
+  <meta name="description" content="How Northbeam Logistics moved 42 people onto Fjordly and replaced a 90-minute status meeting with a 25-minute one.">
+  <!-- Nordic design system: colours, fonts and radius. Add class="dark" to <html> for the dark theme. -->
+  <link rel="stylesheet" href="../tokens.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover);
+      --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1);
+      --color-chart-2: var(--chart-2);
+      --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4);
+      --color-chart-5: var(--chart-5);
+      --font-sans: var(--font-sans);
+      --font-mono: var(--font-mono);
+      --radius-sm: calc(var(--radius) - 6px);
+      --radius-md: calc(var(--radius) - 4px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --spacing-touch: var(--touch);
+      /* One soft level, on cards, popovers and screenshots. */
+      --shadow-soft: 0 1px 2px oklch(0.2 0.02 250 / 0.05), 0 8px 24px -12px oklch(0.2 0.02 250 / 0.18);
+    }
+    @layer base {
+      body { @apply bg-background font-sans text-foreground antialiased; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-20 border-b border-border bg-background">
+    <div class="mx-auto flex h-16 max-w-[var(--max-width)] items-center gap-8 px-6">
+      <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+      <nav class="hidden flex-1 lg:block" aria-label="Main">
+        <ul class="flex gap-1 text-[15px]">
+          <li><a href="02-features.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Pricing</a></li>
+          <li><a href="04-customers.html" class="flex h-touch items-center rounded-md px-3 font-semibold text-foreground" aria-current="page">Customers</a></li>
+          <li><a href="05-changelog.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Changelog</a></li>
+          <li><a href="06-blog-post.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="ml-auto hidden items-center gap-2 lg:flex">
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md px-3 text-[15px] text-muted-foreground hover:text-foreground">Sign in</a>
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md bg-primary px-4 text-[15px] font-semibold text-primary-foreground">Start free</a>
+      </div>
+      <details class="group ml-auto lg:hidden">
+        <summary class="flex size-touch cursor-pointer list-none items-center justify-center rounded-md border border-border [&::-webkit-details-marker]:hidden" aria-label="Menu">
+          <span class="group-open:hidden"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span><span class="hidden group-open:block"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+        </summary>
+        <div class="absolute inset-x-0 top-16 border-b border-border bg-background px-6 pb-6 shadow-[0_12px_24px_-16px_oklch(0.2_0.02_250/0.25)]">
+          <ul class="flex flex-col divide-y divide-border text-[17px]">
+            <li><a href="02-features.html" class="flex h-12 items-center justify-between ">Features<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="03-pricing.html" class="flex h-12 items-center justify-between ">Pricing<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="04-customers.html" class="flex h-12 items-center justify-between font-semibold">Customers<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="05-changelog.html" class="flex h-12 items-center justify-between ">Changelog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="06-blog-post.html" class="flex h-12 items-center justify-between ">Blog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+          </ul>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md border border-border font-semibold">Sign in</a>
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md bg-primary font-semibold text-primary-foreground">Start free</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main>
+    <section class="pt-16 pb-12 md:pt-24">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="max-w-3xl">
+        <p class="text-[13px] font-semibold tracking-[0.06em] text-primary uppercase">Customer story · Northbeam Logistics</p>
+        <h1 class="text-[40px] leading-[1.08] font-bold tracking-[-0.025em] md:text-[60px] mt-4">How Northbeam cut its Monday meeting from 90 minutes to 25.</h1>
+        <p class="mt-6 text-[18px] leading-relaxed text-muted-foreground">A freight company with four hubs in Norway and Sweden moved its operations team from spreadsheets and email onto Fjordly in six weeks.</p>
+      </div>
+      <dl class="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border lg:grid-cols-4">
+        <div class="bg-card p-6"><dt class="text-[14px] text-muted-foreground">Monday status meeting</dt><dd class="mt-1 text-[20px] font-bold tracking-[-0.01em] whitespace-nowrap tabular-nums md:text-[32px]">90 → 25 min</dd></div>
+        <div class="bg-card p-6"><dt class="text-[14px] text-muted-foreground">to write the weekly report</dt><dd class="mt-1 text-[20px] font-bold tracking-[-0.01em] whitespace-nowrap tabular-nums md:text-[32px]">3 h → 20 min</dd></div>
+        <div class="bg-card p-6"><dt class="text-[14px] text-muted-foreground">people on 18 boards</dt><dd class="mt-1 text-[20px] font-bold tracking-[-0.01em] whitespace-nowrap tabular-nums md:text-[32px]">42</dd></div>
+        <div class="bg-card p-6"><dt class="text-[14px] text-muted-foreground">from trial to every hub</dt><dd class="mt-1 text-[20px] font-bold tracking-[-0.01em] whitespace-nowrap tabular-nums md:text-[32px]">6 weeks</dd></div>
+      </dl>
+    </div>
+    </section>
+    <section class="pb-16 md:pb-24">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="grid gap-12 lg:grid-cols-[2fr_1fr]">
+        <article class="max-w-[68ch] text-[17px] leading-relaxed">
+          <h2 class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em]">The problem: a status meeting that ate Monday</h2>
+          <p class="mt-4 text-muted-foreground">Northbeam’s operations team tracked work in a shared spreadsheet per hub. Every Friday, four hub leads spent about three hours turning those sheets into a status email, and on Monday 14 people met for 90 minutes to go through it line by line.</p>
+          <h2 class="mt-10 text-[28px] leading-[1.2] font-bold tracking-[-0.01em]">What changed</h2>
+          <p class="mt-4 text-muted-foreground">Each hub got a board with the same four columns. Recurring work, like dock audits and driver onboarding, became recurring tasks. On Fridays the hub leads now review the report Fjordly drafts, fix a sentence or two and post it to #ops.</p>
+          <div class="my-10"><figure class="">
+        <span class="text-primary"><svg class="size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg></span>
+        <blockquote class="mt-4 text-[19px] leading-[1.35] font-semibold tracking-[-0.01em]">“We stopped writing status updates. Fjordly drafts the Friday report from the board, we fix a sentence or two, and the Monday meeting went from 90 minutes to 25.”</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3"><span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-chart-2/15 text-[11px] font-semibold text-chart-2">ID</span><span><span class="block font-semibold">Inês Duarte</span><span class="block text-[14px] text-muted-foreground">Head of Operations, Northbeam Logistics</span></span></figcaption>
+      </figure></div>
+          <h2 class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em]">The result</h2>
+          <p class="mt-4 text-muted-foreground">The Monday meeting now covers only the tasks marked at risk: 25 minutes, with 6 people instead of 14. Writing the weekly report takes each lead about 20 minutes. Northbeam rolled Fjordly out to finance and hiring next, and now has 18 boards.</p>
+        </article>
+        <aside class="h-fit rounded-xl border border-border bg-card p-6 shadow-soft">
+          <p class="text-[20px] font-bold">Northbeam Logistics</p>
+          <dl class="mt-4 flex flex-col gap-3 text-[15px]">
+            <div><dt class="text-muted-foreground">Industry</dt><dd>Freight and warehousing</dd></div>
+            <div><dt class="text-muted-foreground">Team</dt><dd>42 people in operations, finance and hiring</dd></div>
+            <div><dt class="text-muted-foreground">Where</dt><dd>Oslo, Bergen, Gothenburg, Malmö</dd></div>
+            <div><dt class="text-muted-foreground">Plan</dt><dd>Team, yearly</dd></div>
+          </dl>
+          <p class="mt-6"><a href="08-contact.html" class="inline-flex h-12 items-center justify-center gap-2 rounded-md px-5 text-[16px] font-semibold bg-primary text-primary-foreground w-full">Book a demo</a></p>
+        </aside>
+      </div>
+    </div>
+    </section>
+    <section class="border-t border-border bg-card py-16 md:py-24" aria-labelledby="more">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <h2 id="more" class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em] md:text-[40px] md:leading-[1.1] md:tracking-[-0.02em] ">More teams on Fjordly</h2>
+      <ul class="mt-10 grid gap-6 md:grid-cols-3">
+        <li><a href="#" class="flex h-full flex-col rounded-xl border border-border bg-background p-6 hover:border-primary">
+          <span class="flex size-11 items-center justify-center rounded-md bg-chart-4/12 text-[15px] font-bold text-chart-4">HS</span>
+          <span class="mt-4 text-[20px] font-bold">Halden Studio</span>
+          <span class="text-[14px] text-muted-foreground">Design agency · 28 people</span>
+          <span class="mt-3 flex-1 text-[16px] leading-relaxed text-muted-foreground">Replaced three tools with one board per client and sends clients the Friday report as a link.</span>
+          <span class="mt-4 flex items-center gap-1 font-semibold text-primary">Read the story <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a></li>
+        <li><a href="#" class="flex h-full flex-col rounded-xl border border-border bg-background p-6 hover:border-primary">
+          <span class="flex size-11 items-center justify-center rounded-md bg-chart-2/12 text-[15px] font-bold text-chart-2">LH</span>
+          <span class="mt-4 text-[20px] font-bold">Larkspur Health</span>
+          <span class="text-[14px] text-muted-foreground">Clinic network · 120 people</span>
+          <span class="mt-3 flex-1 text-[16px] leading-relaxed text-muted-foreground">Runs monthly compliance checklists as recurring tasks across 9 clinics.</span>
+          <span class="mt-4 flex items-center gap-1 font-semibold text-primary">Read the story <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a></li>
+        <li><a href="#" class="flex h-full flex-col rounded-xl border border-border bg-background p-6 hover:border-primary">
+          <span class="flex size-11 items-center justify-center rounded-md bg-chart-3/12 text-[15px] font-bold text-chart-3">MR</span>
+          <span class="mt-4 text-[20px] font-bold">Meridian Robotics</span>
+          <span class="text-[14px] text-muted-foreground">Hardware · 65 people</span>
+          <span class="mt-3 flex-1 text-[16px] leading-relaxed text-muted-foreground">Tracks build, test and supplier work on shared boards with WIP limits.</span>
+          <span class="mt-4 flex items-center gap-1 font-semibold text-primary">Read the story <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+        </a></li>
+      </ul>
+    </div>
+    </section>
+  </main>
+  <footer class="border-t border-border">
+    <div class="mx-auto grid max-w-[var(--max-width)] gap-10 px-6 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+      <div class="max-w-xs">
+        <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+        <p class="mt-3 text-[15px] text-muted-foreground">Tasks, boards and a weekly report that writes itself. Made in Bergen and Lisbon.</p>
+      </div>
+      <nav aria-label="Product">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Product</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="02-features.html" class="flex h-9 items-center hover:text-primary">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-9 items-center hover:text-primary">Pricing</a></li>
+          <li><a href="05-changelog.html" class="flex h-9 items-center hover:text-primary">Changelog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Security</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Company</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="04-customers.html" class="flex h-9 items-center hover:text-primary">Customers</a></li>
+          <li><a href="06-blog-post.html" class="flex h-9 items-center hover:text-primary">Blog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Careers</a></li>
+          <li><a href="08-contact.html" class="flex h-9 items-center hover:text-primary">Contact sales</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Help">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Help</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Docs</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Status</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Privacy</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mx-auto flex max-w-[var(--max-width)] flex-wrap justify-between gap-2 border-t border-border px-6 py-6 text-[13px] text-muted-foreground">
+      <p>© 2026 Fjordly AS. A sample product for this template.</p>
+      <p>Bergen · Lisbon</p>
+    </div>
+  </footer>
+</body>
+</html>

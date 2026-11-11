@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talk to sales · Fjordly</title>
+  <meta name="description" content="Book a 30-minute Fjordly demo for your team, or ask about Enterprise: SSO, audit log, data residency and invoicing.">
+  <!-- Nordic design system: colours, fonts and radius. Add class="dark" to <html> for the dark theme. -->
+  <link rel="stylesheet" href="../tokens.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover);
+      --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1);
+      --color-chart-2: var(--chart-2);
+      --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4);
+      --color-chart-5: var(--chart-5);
+      --font-sans: var(--font-sans);
+      --font-mono: var(--font-mono);
+      --radius-sm: calc(var(--radius) - 6px);
+      --radius-md: calc(var(--radius) - 4px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --spacing-touch: var(--touch);
+      /* One soft level, on cards, popovers and screenshots. */
+      --shadow-soft: 0 1px 2px oklch(0.2 0.02 250 / 0.05), 0 8px 24px -12px oklch(0.2 0.02 250 / 0.18);
+    }
+    @layer base {
+      body { @apply bg-background font-sans text-foreground antialiased; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-20 border-b border-border bg-background">
+    <div class="mx-auto flex h-16 max-w-[var(--max-width)] items-center gap-8 px-6">
+      <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+      <nav class="hidden flex-1 lg:block" aria-label="Main">
+        <ul class="flex gap-1 text-[15px]">
+          <li><a href="02-features.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Pricing</a></li>
+          <li><a href="04-customers.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Customers</a></li>
+          <li><a href="05-changelog.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Changelog</a></li>
+          <li><a href="06-blog-post.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="ml-auto hidden items-center gap-2 lg:flex">
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md px-3 text-[15px] text-muted-foreground hover:text-foreground">Sign in</a>
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md bg-primary px-4 text-[15px] font-semibold text-primary-foreground">Start free</a>
+      </div>
+      <details class="group ml-auto lg:hidden">
+        <summary class="flex size-touch cursor-pointer list-none items-center justify-center rounded-md border border-border [&::-webkit-details-marker]:hidden" aria-label="Menu">
+          <span class="group-open:hidden"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span><span class="hidden group-open:block"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+        </summary>
+        <div class="absolute inset-x-0 top-16 border-b border-border bg-background px-6 pb-6 shadow-[0_12px_24px_-16px_oklch(0.2_0.02_250/0.25)]">
+          <ul class="flex flex-col divide-y divide-border text-[17px]">
+            <li><a href="02-features.html" class="flex h-12 items-center justify-between ">Features<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="03-pricing.html" class="flex h-12 items-center justify-between ">Pricing<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="04-customers.html" class="flex h-12 items-center justify-between ">Customers<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="05-changelog.html" class="flex h-12 items-center justify-between ">Changelog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="06-blog-post.html" class="flex h-12 items-center justify-between ">Blog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+          </ul>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md border border-border font-semibold">Sign in</a>
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md bg-primary font-semibold text-primary-foreground">Start free</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main>
+    <section class="pt-16 pb-16 md:pt-24">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
+        <div>
+          <p class="text-[13px] font-semibold tracking-[0.06em] text-primary uppercase">Sales</p>
+          <h1 class="text-[40px] leading-[1.08] font-bold tracking-[-0.025em] md:text-[60px] mt-4 md:text-[48px]">Book a demo with our team</h1>
+          <p class="mt-6 text-[18px] leading-relaxed text-muted-foreground">A 30-minute call with someone who has set up Fjordly for teams like yours. We’ll show it on your own work, not a sample board.</p>
+          <ul class="mt-8 flex flex-col gap-4 text-[16px]">
+            <li class="flex gap-3"><span class="mt-0.5 text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></svg></span>A walkthrough on a board built from your answers below</li>
+            <li class="flex gap-3"><span class="mt-0.5 text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></svg></span>Pricing for your team size, including Enterprise</li>
+            <li class="flex gap-3"><span class="mt-0.5 text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m16 9-5.5 5.5L8 12"/></svg></span>A plan to move from your current tool</li>
+          </ul>
+          <p class="mt-10 text-[15px] text-muted-foreground">Usually answered within one business day, from Bergen (CET) or Lisbon (WET).</p>
+        </div>
+        <form class="flex flex-col gap-4 rounded-xl border border-border bg-card p-6 shadow-soft md:p-8">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Name
+            <input type="text" placeholder="Inês Duarte" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="name">
+          </label>
+            <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Work email
+            <input type="email" placeholder="ines@northbeam.no" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="email">
+          </label>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Company
+            <input type="text" placeholder="Northbeam Logistics" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="organization">
+          </label>
+            <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Team size
+              <select class="h-12 rounded-md border border-input bg-card px-3 text-[16px] font-normal"><option>1–10</option><option selected>11–50</option><option>51–200</option><option>201–1,000</option><option>More than 1,000</option></select>
+            </label>
+          </div>
+          <label class="flex flex-col gap-1.5 text-[14px] font-semibold">What do you need?
+            <textarea rows="4" class="rounded-md border border-input bg-card px-3.5 py-3 text-[16px] font-normal placeholder:text-muted-foreground" placeholder="We run 4 hubs on spreadsheets and want one weekly report for leadership."></textarea>
+          </label>
+          <fieldset class="flex flex-col gap-2 text-[14px]">
+            <legend class="mb-2 font-semibold">Interested in</legend>
+            <div class="flex flex-wrap gap-2"><label class="flex h-touch items-center gap-2 rounded-full border px-4 border-border"><input type="checkbox" class="sr-only">Team plan</label><label class="flex h-touch items-center gap-2 rounded-full border px-4 border-primary bg-primary/8 font-semibold"><input type="checkbox" class="sr-only" checked><svg class="size-4 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Enterprise</label><label class="flex h-touch items-center gap-2 rounded-full border px-4 border-border"><input type="checkbox" class="sr-only">Migration help</label><label class="flex h-touch items-center gap-2 rounded-full border px-4 border-border"><input type="checkbox" class="sr-only">SSO</label></div>
+          </fieldset>
+          <button class="mt-2 flex h-12 items-center justify-center rounded-md bg-primary text-[16px] font-semibold text-primary-foreground">Request a demo</button>
+          <p class="text-[13px] text-muted-foreground">We’ll only use your details to set up the call.</p>
+        </form>
+      </div>
+    </div>
+    </section>
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="faq">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <h2 id="faq" class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em] md:text-[40px] md:leading-[1.1] md:tracking-[-0.02em] ">Before you book</h2>
+        <div class="divide-y divide-border border-y border-border">
+        <details class="group py-2" open>
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Do I need a demo to start?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">No. Most teams start on Free and never talk to us. The demo is for teams over 50 people or anyone who needs Enterprise.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Can you help us move from another tool?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">Yes. Imports from Trello, Asana, Jira and CSV are built in, and on Enterprise we run the migration with you.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Where is our data stored?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">In the EU (Frankfurt) by default. Enterprise customers can choose the US (Oregon) instead.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Do you sign DPAs and security questionnaires?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">Yes. Our DPA is ready to sign, and we answer security questionnaires for Team and Enterprise customers.</p>
+        </details>
+      </div>
+      </div>
+    </div>
+    </section>
+  </main>
+  <footer class="border-t border-border">
+    <div class="mx-auto grid max-w-[var(--max-width)] gap-10 px-6 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+      <div class="max-w-xs">
+        <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+        <p class="mt-3 text-[15px] text-muted-foreground">Tasks, boards and a weekly report that writes itself. Made in Bergen and Lisbon.</p>
+      </div>
+      <nav aria-label="Product">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Product</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="02-features.html" class="flex h-9 items-center hover:text-primary">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-9 items-center hover:text-primary">Pricing</a></li>
+          <li><a href="05-changelog.html" class="flex h-9 items-center hover:text-primary">Changelog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Security</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Company</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="04-customers.html" class="flex h-9 items-center hover:text-primary">Customers</a></li>
+          <li><a href="06-blog-post.html" class="flex h-9 items-center hover:text-primary">Blog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Careers</a></li>
+          <li><a href="08-contact.html" class="flex h-9 items-center hover:text-primary">Contact sales</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Help">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Help</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Docs</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Status</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Privacy</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mx-auto flex max-w-[var(--max-width)] flex-wrap justify-between gap-2 border-t border-border px-6 py-6 text-[13px] text-muted-foreground">
+      <p>© 2026 Fjordly AS. A sample product for this template.</p>
+      <p>Bergen · Lisbon</p>
+    </div>
+  </footer>
+</body>
+</html>

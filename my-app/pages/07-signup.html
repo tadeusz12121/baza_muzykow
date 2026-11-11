@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create your account · Fjordly</title>
+  <meta name="description" content="Create a free Fjordly account with your work email or Google. Free for up to 10 people.">
+  <!-- Nordic design system: colours, fonts and radius. Add class="dark" to <html> for the dark theme. -->
+  <link rel="stylesheet" href="../tokens.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover);
+      --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1);
+      --color-chart-2: var(--chart-2);
+      --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4);
+      --color-chart-5: var(--chart-5);
+      --font-sans: var(--font-sans);
+      --font-mono: var(--font-mono);
+      --radius-sm: calc(var(--radius) - 6px);
+      --radius-md: calc(var(--radius) - 4px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --spacing-touch: var(--touch);
+      /* One soft level, on cards, popovers and screenshots. */
+      --shadow-soft: 0 1px 2px oklch(0.2 0.02 250 / 0.05), 0 8px 24px -12px oklch(0.2 0.02 250 / 0.18);
+    }
+    @layer base {
+      body { @apply bg-background font-sans text-foreground antialiased; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-20 border-b border-border bg-background">
+    <div class="mx-auto flex h-16 max-w-[var(--max-width)] items-center gap-8 px-6">
+      <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+      <nav class="hidden flex-1 lg:block" aria-label="Main">
+        <ul class="flex gap-1 text-[15px]">
+          <li><a href="02-features.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Pricing</a></li>
+          <li><a href="04-customers.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Customers</a></li>
+          <li><a href="05-changelog.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Changelog</a></li>
+          <li><a href="06-blog-post.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="ml-auto hidden items-center gap-2 lg:flex">
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md px-3 text-[15px] text-muted-foreground hover:text-foreground">Sign in</a>
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md bg-primary px-4 text-[15px] font-semibold text-primary-foreground">Start free</a>
+      </div>
+      <details class="group ml-auto lg:hidden">
+        <summary class="flex size-touch cursor-pointer list-none items-center justify-center rounded-md border border-border [&::-webkit-details-marker]:hidden" aria-label="Menu">
+          <span class="group-open:hidden"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span><span class="hidden group-open:block"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+        </summary>
+        <div class="absolute inset-x-0 top-16 border-b border-border bg-background px-6 pb-6 shadow-[0_12px_24px_-16px_oklch(0.2_0.02_250/0.25)]">
+          <ul class="flex flex-col divide-y divide-border text-[17px]">
+            <li><a href="02-features.html" class="flex h-12 items-center justify-between ">Features<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="03-pricing.html" class="flex h-12 items-center justify-between ">Pricing<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="04-customers.html" class="flex h-12 items-center justify-between ">Customers<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="05-changelog.html" class="flex h-12 items-center justify-between ">Changelog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="06-blog-post.html" class="flex h-12 items-center justify-between ">Blog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+          </ul>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md border border-border font-semibold">Sign in</a>
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md bg-primary font-semibold text-primary-foreground">Start free</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main>
+    <section class="mx-auto grid max-w-[var(--max-width)] gap-12 px-6 py-12 md:py-20 lg:grid-cols-2 lg:gap-20">
+      <div class="mx-auto w-full max-w-md lg:mx-0">
+        <h1 class="text-[40px] leading-[1.08] font-bold tracking-[-0.025em] md:text-[60px] md:text-[40px]">Create your Fjordly account</h1>
+        <p class="mt-3 text-[17px] text-muted-foreground">Free for up to 10 people. You can invite your team on the next screen.</p>
+        <a href="#" class="mt-8 flex h-12 items-center justify-center gap-3 rounded-md border border-border bg-card text-[16px] font-semibold"><svg class="size-5" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4Z" fill="#4285F4"/><path d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22Z" fill="#34A853"/><path d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14Z" fill="#FBBC05"/><path d="M12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4 5.6-4Z" fill="#EA4335"/></svg>Continue with Google</a>
+        <p class="my-6 flex items-center gap-4 text-[13px] text-muted-foreground"><span class="h-px flex-1 bg-border"></span>or with your email<span class="h-px flex-1 bg-border"></span></p>
+        <form class="flex flex-col gap-4">
+          <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Full name
+            <input type="text" placeholder="Maren Solberg" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="name">
+          </label>
+          <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Work email
+            <input type="email" placeholder="maren@northbeam.no" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="email">
+          </label>
+          <label class="flex flex-col gap-1.5 text-[14px] font-semibold">Password
+            <input type="password" placeholder="At least 10 characters" class="h-12 rounded-md border border-input bg-card px-3.5 text-[16px] font-normal outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/30" autocomplete="new-password">
+          </label>
+          <button class="mt-2 flex h-12 items-center justify-center rounded-md bg-primary text-[16px] font-semibold text-primary-foreground">Create account</button>
+        </form>
+        <p class="mt-4 text-[13px] leading-relaxed text-muted-foreground">By creating an account you agree to the <a href="#" class="underline">Terms</a> and <a href="#" class="underline">Privacy policy</a>.</p>
+        <p class="mt-6 text-[15px]">Already have an account? <a href="#" class="font-semibold text-primary">Sign in</a></p>
+      </div>
+      <aside class="flex flex-col justify-between gap-10 rounded-xl bg-secondary p-8 md:p-10">
+        <ul class="flex flex-col gap-6">
+          <li class="flex gap-4"><span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-card text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg></span><span><b class="block text-[17px]">Your first board in two minutes</b><span class="text-[15px] text-muted-foreground">Start from a template or import from Trello, Asana or a CSV.</span></span></li>
+          <li class="flex gap-4"><span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-card text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></span><span><b class="block text-[17px]">A report on your first Friday</b><span class="text-[15px] text-muted-foreground">Fjordly drafts it from whatever moved on the board this week.</span></span></li>
+          <li class="flex gap-4"><span class="flex size-11 shrink-0 items-center justify-center rounded-md bg-card text-primary"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b class="block text-[17px]">Your data stays yours</b><span class="text-[15px] text-muted-foreground">Hosted in the EU, encrypted at rest, exportable at any time.</span></span></li>
+        </ul>
+        <figure class="">
+        <span class="text-primary"><svg class="size-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/><path d="M5 3a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2 1 1 0 0 1 1 1v1a2 2 0 0 1-2 2 1 1 0 0 0-1 1v2a1 1 0 0 0 1 1 6 6 0 0 0 6-6V5a2 2 0 0 0-2-2z"/></svg></span>
+        <blockquote class="mt-4 text-[19px] leading-[1.35] font-semibold tracking-[-0.01em]">“We stopped writing status updates. Fjordly drafts the Friday report from the board, we fix a sentence or two, and the Monday meeting went from 90 minutes to 25.”</blockquote>
+        <figcaption class="mt-6 flex items-center gap-3"><span class="flex size-11 shrink-0 items-center justify-center rounded-full bg-chart-2/15 text-[11px] font-semibold text-chart-2">ID</span><span><span class="block font-semibold">Inês Duarte</span><span class="block text-[14px] text-muted-foreground">Head of Operations, Northbeam Logistics</span></span></figcaption>
+      </figure>
+      </aside>
+    </section>
+  </main>
+  <footer class="border-t border-border">
+    <div class="mx-auto grid max-w-[var(--max-width)] gap-10 px-6 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+      <div class="max-w-xs">
+        <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+        <p class="mt-3 text-[15px] text-muted-foreground">Tasks, boards and a weekly report that writes itself. Made in Bergen and Lisbon.</p>
+      </div>
+      <nav aria-label="Product">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Product</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="02-features.html" class="flex h-9 items-center hover:text-primary">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-9 items-center hover:text-primary">Pricing</a></li>
+          <li><a href="05-changelog.html" class="flex h-9 items-center hover:text-primary">Changelog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Security</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Company</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="04-customers.html" class="flex h-9 items-center hover:text-primary">Customers</a></li>
+          <li><a href="06-blog-post.html" class="flex h-9 items-center hover:text-primary">Blog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Careers</a></li>
+          <li><a href="08-contact.html" class="flex h-9 items-center hover:text-primary">Contact sales</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Help">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Help</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Docs</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Status</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Privacy</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mx-auto flex max-w-[var(--max-width)] flex-wrap justify-between gap-2 border-t border-border px-6 py-6 text-[13px] text-muted-foreground">
+      <p>© 2026 Fjordly AS. A sample product for this template.</p>
+      <p>Bergen · Lisbon</p>
+    </div>
+  </footer>
+</body>
+</html>

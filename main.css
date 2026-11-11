@@ -1,0 +1,323 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Hairline&family=Inter:wght@400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0f0f1a;
+  font-family: "Inter", sans-serif;
+  color: #f5d054;
+  line-height: 1.5;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0f0f1a;
+  color: #f5d054;
+  min-height: 60px;
+  padding: 10px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  letter-spacing: 0.2rem;
+  font-weight: 800;
+  color: #f5d054;
+  font-family: "Bungee Hairline", sans-serif;
+}
+
+.nav-links {
+  gap: 70px;
+  margin: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  color: #f0e6d8;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: rgb(207, 145, 88);
+  font-size: 28px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.hamburger:hover {
+  background-color: transparent;
+  color: rgb(218, 217, 214);
+}
+
+.poznaj {
+  font-size: clamp(2.3rem, 5vw, 4rem);
+  text-align: center;
+  margin-top: 30px;
+  font-family: "Bungee Hairline", sans-serif;
+  text-shadow: 0 4px 10px rgba(250, 250, 249, 0.871);
+  font-weight: 400;
+  color: white;
+}
+
+.subtitl {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  margin: 10px auto 0;
+  text-shadow: 0 4px 10px rgba(94, 93, 88, 0.871);
+  font-family: "Bungee Hairline", sans-serif;
+  font-weight: 400;
+  color: white;
+  max-width: 700px;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin: 30px auto 20px;
+  flex-wrap: wrap;
+}
+
+/* From Uiverse.io by ShrinilDhorda */
+.btn {
+    border: 2px solid white;
+  font-size: 1rem;
+  padding: 1rem 2.2rem;
+  border: none;
+  outline: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+  font-weight: 700;
+  transition: 0.3s ease;
+  box-shadow: 0px 0px 40px rgba(31, 76, 101, 0.7);
+ 
+  margin: 0;
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn:hover {
+  background: rgb(2, 29, 78);
+  background: linear-gradient(
+    270deg,
+    rgba(2, 29, 78, 0.681) 0%,
+    rgba(31, 215, 232, 0.873) 60%
+  );
+  color: rgb(4, 4, 38);
+}
+
+.titleimg {
+  display: block;
+  width: min(900px, 90%);
+  height: auto;
+  border-radius: 18px;
+  margin: 20px auto 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.how-title,
+.homepage-section-title {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+  color: white;
+  font-size: clamp(1.5rem, 2vw, 2.3rem);
+}
+
+.tutorial {
+  width: min(720px, 90%);
+  padding: 18px 20px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.02);
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tutorial:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 208, 84, 0.7);
+}
+
+.tut {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tutorial h4 {
+  margin: 0 0 8px;
+  color: #f5d054;
+  font-size: 1.3rem;
+  font-family: "Inter", sans-serif;
+}
+
+.playing {
+  margin: 0;
+  font-family: "Bungee Hairline", sans-serif;
+  color: #f9f2e6;
+  font-size: 1rem;
+  text-align: center;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-family: "Inter", sans-serif;
+  color: #f5d054;
+  margin: 40px 10px 10px;
+  text-align: center;
+}
+
+.jamlyai {
+  margin: 0 auto 20px;
+  max-width: 650px;
+  font-size: 1rem;
+  color: white;
+}
+
+.ai {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 40px;
+  padding: 0.9rem 1.5rem;
+  text-decoration: none;
+  background: #b93d3d;
+  color: white;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.ai:hover {
+  background: #d34c4c;
+}
+
+.footer {
+  text-align: center;
+  
+  color: #8a8a94;
+  font-size: 10px;
+}
+
+footer a {
+  color: #8a8a94;
+  text-decoration: none;
+}
+
+@media (max-width: 798px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+
+  .hamburger {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: auto;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #15151b;
+    padding: 20px;
+    gap: 15px;
+    z-index: 10;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: min(260px, 80vw);
+  }
+}
+.poznaj {
+    border: none;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    text-align: center;
+    margin-top: 30px;
+    font-family: "Bungee Hairline", sans-serif;
+    text-shadow: 0 4px 10px rgba(250, 250, 249, 0.871);
+    font-weight: 400;
+    color: white;
+}
+p {
+  border: 1px solid #f3f3f1;
+  padding: 5px;
+  margin: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  color: white;
+}
+.footer-text {
+    font-size: 10px;
+    color: #8a8a94;
+    text-align: center;
+}
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    margin: 30px auto 20px;
+    flex-wrap: wrap;
+
+    width: fit-content;
+    padding: 25px 35px;
+    border: 1px solid rgba(245, 208, 84, 0.5);
+    border-radius: 20px;
+
+    animation: goldPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes goldPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 8px rgba(245, 208, 84, 0.15),
+            0 0 15px rgba(245, 208, 84, 0.08);
+        border-color: rgba(245, 208, 84, 0.35);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(245, 208, 84, 0.4),
+            0 0 40px rgba(245, 208, 84, 0.2);
+        border-color: rgba(245, 208, 84, 0.9);
+    }
+}

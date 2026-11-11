@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing · Fjordly</title>
+  <meta name="description" content="Fjordly is free for up to 10 people. Team is $8 per person a month billed yearly. Enterprise adds SSO, audit log and data residency.">
+  <!-- Nordic design system: colours, fonts and radius. Add class="dark" to <html> for the dark theme. -->
+  <link rel="stylesheet" href="../tokens.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+    @theme inline {
+      --color-background: var(--background);
+      --color-foreground: var(--foreground);
+      --color-card: var(--card);
+      --color-card-foreground: var(--card-foreground);
+      --color-popover: var(--popover);
+      --color-popover-foreground: var(--popover-foreground);
+      --color-primary: var(--primary);
+      --color-primary-foreground: var(--primary-foreground);
+      --color-secondary: var(--secondary);
+      --color-secondary-foreground: var(--secondary-foreground);
+      --color-muted: var(--muted);
+      --color-muted-foreground: var(--muted-foreground);
+      --color-accent: var(--accent);
+      --color-accent-foreground: var(--accent-foreground);
+      --color-destructive: var(--destructive);
+      --color-border: var(--border);
+      --color-input: var(--input);
+      --color-ring: var(--ring);
+      --color-chart-1: var(--chart-1);
+      --color-chart-2: var(--chart-2);
+      --color-chart-3: var(--chart-3);
+      --color-chart-4: var(--chart-4);
+      --color-chart-5: var(--chart-5);
+      --font-sans: var(--font-sans);
+      --font-mono: var(--font-mono);
+      --radius-sm: calc(var(--radius) - 6px);
+      --radius-md: calc(var(--radius) - 4px);
+      --radius-lg: var(--radius);
+      --radius-xl: calc(var(--radius) + 4px);
+      --spacing-touch: var(--touch);
+      /* One soft level, on cards, popovers and screenshots. */
+      --shadow-soft: 0 1px 2px oklch(0.2 0.02 250 / 0.05), 0 8px 24px -12px oklch(0.2 0.02 250 / 0.18);
+    }
+    @layer base {
+      body { @apply bg-background font-sans text-foreground antialiased; }
+    }
+  </style>
+</head>
+<body>
+  <header class="sticky top-0 z-20 border-b border-border bg-background">
+    <div class="mx-auto flex h-16 max-w-[var(--max-width)] items-center gap-8 px-6">
+      <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+      <nav class="hidden flex-1 lg:block" aria-label="Main">
+        <ul class="flex gap-1 text-[15px]">
+          <li><a href="02-features.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-touch items-center rounded-md px-3 font-semibold text-foreground" aria-current="page">Pricing</a></li>
+          <li><a href="04-customers.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Customers</a></li>
+          <li><a href="05-changelog.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Changelog</a></li>
+          <li><a href="06-blog-post.html" class="flex h-touch items-center rounded-md px-3 text-muted-foreground hover:text-foreground">Blog</a></li>
+        </ul>
+      </nav>
+      <div class="ml-auto hidden items-center gap-2 lg:flex">
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md px-3 text-[15px] text-muted-foreground hover:text-foreground">Sign in</a>
+        <a href="07-signup.html" class="flex h-touch items-center rounded-md bg-primary px-4 text-[15px] font-semibold text-primary-foreground">Start free</a>
+      </div>
+      <details class="group ml-auto lg:hidden">
+        <summary class="flex size-touch cursor-pointer list-none items-center justify-center rounded-md border border-border [&::-webkit-details-marker]:hidden" aria-label="Menu">
+          <span class="group-open:hidden"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span><span class="hidden group-open:block"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span>
+        </summary>
+        <div class="absolute inset-x-0 top-16 border-b border-border bg-background px-6 pb-6 shadow-[0_12px_24px_-16px_oklch(0.2_0.02_250/0.25)]">
+          <ul class="flex flex-col divide-y divide-border text-[17px]">
+            <li><a href="02-features.html" class="flex h-12 items-center justify-between ">Features<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="03-pricing.html" class="flex h-12 items-center justify-between font-semibold">Pricing<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="04-customers.html" class="flex h-12 items-center justify-between ">Customers<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="05-changelog.html" class="flex h-12 items-center justify-between ">Changelog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+            <li><a href="06-blog-post.html" class="flex h-12 items-center justify-between ">Blog<svg class="size-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></li>
+          </ul>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md border border-border font-semibold">Sign in</a>
+            <a href="07-signup.html" class="flex h-12 items-center justify-center rounded-md bg-primary font-semibold text-primary-foreground">Start free</a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </header>
+  <main>
+    <section class="pt-16 pb-16 md:pt-24">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="text-[13px] font-semibold tracking-[0.06em] text-primary uppercase">Pricing</p>
+        <h1 class="text-[40px] leading-[1.08] font-bold tracking-[-0.025em] md:text-[60px] mt-4">Pay for the people who use it.</h1>
+        <p class="mt-6 text-[18px] text-muted-foreground">Free for up to 10 people. Every paid plan starts with a 14-day trial.</p>
+        <div class="mt-8 inline-flex rounded-full border border-border bg-card p-1 text-[15px] font-semibold" role="radiogroup" aria-label="Billing">
+          <button role="radio" aria-checked="false" class="h-10 rounded-full px-5 text-muted-foreground">Monthly</button>
+          <button role="radio" aria-checked="true" class="flex h-10 items-center gap-2 rounded-full bg-primary px-5 text-primary-foreground">Yearly <span class="rounded-sm bg-primary-foreground/20 px-1.5 text-[12px]">Save 20%</span></button>
+        </div>
+      </div>
+      <div class="mt-12"><div class="grid gap-6 lg:grid-cols-3">
+        <article class="flex flex-col rounded-xl border border-border bg-card p-6 shadow-soft">
+          <div class="flex items-center justify-between"><h3 class="text-[20px] font-bold">Free</h3></div>
+          <p class="mt-1 text-[15px] text-muted-foreground">For a small team trying out a shared board.</p>
+          <p class="mt-6 flex items-baseline gap-2"><span class="text-[40px] leading-none font-bold tracking-[-0.02em] tabular-nums">$0</span><span class="text-[14px] text-muted-foreground">for up to 10 people</span></p>
+          <p class="mt-2 text-[13px] text-muted-foreground">&nbsp;</p>
+          <a href="07-signup.html" class="mt-6 flex h-12 items-center justify-center rounded-md text-[16px] font-semibold border border-border">Start free</a>
+          <ul class="mt-6 flex flex-col gap-3 text-[15px]">
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Up to 10 members</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>3 boards</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Tasks, lists and calendar</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Weekly report, read-only</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>7 days of history</li>
+          </ul>
+        </article>
+        <article class="flex flex-col rounded-xl border border-primary bg-card p-6 shadow-soft">
+          <div class="flex items-center justify-between"><h3 class="text-[20px] font-bold">Team</h3><span class="rounded-sm bg-chart-1/12 px-1.5 py-0.5 text-[11px] font-semibold text-chart-1">Most teams</span></div>
+          <p class="mt-1 text-[15px] text-muted-foreground">For teams that run their week on Fjordly.</p>
+          <p class="mt-6 flex items-baseline gap-2"><span class="text-[40px] leading-none font-bold tracking-[-0.02em] tabular-nums">$8</span><span class="text-[14px] text-muted-foreground">per person / month</span></p>
+          <p class="mt-2 text-[13px] text-muted-foreground">$96 a year per person, or $10 monthly</p>
+          <a href="07-signup.html" class="mt-6 flex h-12 items-center justify-center rounded-md text-[16px] font-semibold bg-primary text-primary-foreground">Start 14-day trial</a>
+          <ul class="mt-6 flex flex-col gap-3 text-[15px]">
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited members and boards</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Weekly report, editable and shareable</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Recurring tasks and templates</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Slack and email digests</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Unlimited history</li>
+          </ul>
+        </article>
+        <article class="flex flex-col rounded-xl border border-border bg-card p-6 shadow-soft">
+          <div class="flex items-center justify-between"><h3 class="text-[20px] font-bold">Enterprise</h3></div>
+          <p class="mt-1 text-[15px] text-muted-foreground">For companies with security and admin needs.</p>
+          <p class="mt-6 flex items-baseline gap-2"><span class="text-[40px] leading-none font-bold tracking-[-0.02em] tabular-nums">Custom</span><span class="text-[14px] text-muted-foreground">billed yearly</span></p>
+          <p class="mt-2 text-[13px] text-muted-foreground">&nbsp;</p>
+          <a href="08-contact.html" class="mt-6 flex h-12 items-center justify-center rounded-md text-[16px] font-semibold border border-border">Talk to sales</a>
+          <ul class="mt-6 flex flex-col gap-3 text-[15px]">
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Everything in Team</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>SAML single sign-on and SCIM</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>Audit log and data residency (EU or US)</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>99.9% uptime SLA</li>
+            <li class="flex gap-2"><span class="mt-0.5 text-primary"><svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>A named success manager</li>
+          </ul>
+        </article>
+      </div></div>
+    </div>
+    </section>
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="compare">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <h2 id="compare" class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em] md:text-[40px] md:leading-[1.1] md:tracking-[-0.02em] ">Compare plans</h2>
+      <div class="mt-8 overflow-x-auto rounded-xl border border-border bg-card">
+        <table class="w-full min-w-[640px] text-left text-[15px]">
+          <thead><tr class="border-b border-border"><th class="w-2/5 px-5 py-4 font-semibold text-muted-foreground" scope="col">Plan</th><th class="px-5 py-4 text-center font-bold" scope="col">Free<span class="block text-[13px] font-normal text-muted-foreground">$0 / person</span></th><th class="px-5 py-4 text-center font-bold" scope="col">Team<span class="block text-[13px] font-normal text-muted-foreground">$8 / person</span></th><th class="px-5 py-4 text-center font-bold" scope="col">Enterprise<span class="block text-[13px] font-normal text-muted-foreground">Custom</span></th></tr></thead>
+          <tbody class="divide-y divide-border">
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Members</th><td class="px-5 py-3.5 text-center">10</td><td class="px-5 py-3.5 text-center">Unlimited</td><td class="px-5 py-3.5 text-center">Unlimited</td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Boards</th><td class="px-5 py-3.5 text-center">3</td><td class="px-5 py-3.5 text-center">Unlimited</td><td class="px-5 py-3.5 text-center">Unlimited</td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">History</th><td class="px-5 py-3.5 text-center">7 days</td><td class="px-5 py-3.5 text-center">Unlimited</td><td class="px-5 py-3.5 text-center">Unlimited</td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Weekly report</th><td class="px-5 py-3.5 text-center">Read-only</td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Recurring tasks</th><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Slack and email digests</th><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Google and Outlook sync</th><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">SAML SSO and SCIM</th><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Audit log</th><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-primary" aria-label="Included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Data residency</th><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center"><span class="text-muted-foreground" aria-label="Not included"><svg class="size-5 mx-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span></td><td class="px-5 py-3.5 text-center">EU or US</td></tr>
+            <tr><th scope="row" class="px-5 py-3.5 font-normal">Support</th><td class="px-5 py-3.5 text-center">Help center</td><td class="px-5 py-3.5 text-center">Email, 1 business day</td><td class="px-5 py-3.5 text-center">Named manager, 4 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </section>
+    <section class="border-t border-border py-16 md:py-24" aria-labelledby="faq">
+    <div class="mx-auto max-w-[var(--max-width)] px-6 ">
+      <div class="grid gap-10 lg:grid-cols-[1fr_2fr]">
+        <div><h2 id="faq" class="text-[28px] leading-[1.2] font-bold tracking-[-0.01em] md:text-[40px] md:leading-[1.1] md:tracking-[-0.02em] ">Pricing questions</h2><p class="mt-4 text-[16px] text-muted-foreground">Something else? <a href="08-contact.html" class="font-semibold text-primary">Ask our team</a>.</p></div>
+        <div class="divide-y divide-border border-y border-border">
+        <details class="group py-2" open>
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Who counts as a member?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">Anyone who can create or edit tasks. Guests who only view or comment on shared boards are free, up to 3 per member.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">What happens when the trial ends?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">You choose a plan or stay on Free. If you have more than 10 members, the extra people move to view-only until you upgrade. Nothing is deleted.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Can I switch between monthly and yearly?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">Yes, at any time. Moving to yearly takes effect right away and we credit what is left of the month.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">Do you offer discounts?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">Nonprofits and schools get 50% off Team. Write to us from your organization’s email address.</p>
+        </details>
+        <details class="group py-2">
+          <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold [&::-webkit-details-marker]:hidden">How do I pay?<span class="text-muted-foreground transition-transform group-open:rotate-180"><svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></summary>
+          <p class="pb-4 text-[16px] leading-relaxed text-muted-foreground">By card on Team. Enterprise can also pay by invoice with 30-day terms.</p>
+        </details>
+      </div>
+      </div>
+    </div>
+    </section>
+  </main>
+  <footer class="border-t border-border">
+    <div class="mx-auto grid max-w-[var(--max-width)] gap-10 px-6 py-14 md:grid-cols-[1.5fr_repeat(3,1fr)]">
+      <div class="max-w-xs">
+        <a href="01-home.html" class="flex items-center gap-2 text-[19px] font-bold tracking-[-0.02em]" aria-label="Fjordly home">
+        <svg class="size-7 text-primary" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="currentColor"/><path d="M7 19c3-5 5-8 7-8s4 3 7 8" stroke="var(--primary-foreground)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 21h14" stroke="var(--primary-foreground)" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Fjordly
+      </a>
+        <p class="mt-3 text-[15px] text-muted-foreground">Tasks, boards and a weekly report that writes itself. Made in Bergen and Lisbon.</p>
+      </div>
+      <nav aria-label="Product">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Product</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="02-features.html" class="flex h-9 items-center hover:text-primary">Features</a></li>
+          <li><a href="03-pricing.html" class="flex h-9 items-center hover:text-primary">Pricing</a></li>
+          <li><a href="05-changelog.html" class="flex h-9 items-center hover:text-primary">Changelog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Security</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Company</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="04-customers.html" class="flex h-9 items-center hover:text-primary">Customers</a></li>
+          <li><a href="06-blog-post.html" class="flex h-9 items-center hover:text-primary">Blog</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Careers</a></li>
+          <li><a href="08-contact.html" class="flex h-9 items-center hover:text-primary">Contact sales</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Help">
+        <h2 class="text-[13px] font-semibold tracking-[0.04em] text-muted-foreground uppercase">Help</h2>
+        <ul class="mt-3 flex flex-col text-[15px]">
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Docs</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Status</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Privacy</a></li>
+          <li><a href="#" class="flex h-9 items-center hover:text-primary">Terms</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="mx-auto flex max-w-[var(--max-width)] flex-wrap justify-between gap-2 border-t border-border px-6 py-6 text-[13px] text-muted-foreground">
+      <p>© 2026 Fjordly AS. A sample product for this template.</p>
+      <p>Bergen · Lisbon</p>
+    </div>
+  </footer>
+</body>
+</html>

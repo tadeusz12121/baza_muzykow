@@ -787,24 +787,48 @@ io.on("connection", (socket) => {
 
         if (sender && recipient && recipient.email) {
     try {
-        const { data, error } = await resend.emails.send({
-            from: "Jamly <powiadomienia@notifications.jamly.pl>",
-            to: recipient.email,
-            subject: `${sender.name} wysłał Ci wiadomość na Jamly`,
-            html: `
-                <h2>Masz nową wiadomość!</h2>
-                <p>
-                    ${sender.name} ${sender.surname || ""}
-                    wysłał Ci wiadomość.
-                </p>
-                <a href="https://www.jamly.pl/chat.html">
-                    Otwórz Jamly
-                </a>
-            `
+        const emailLimits = db.collection("emailLimits");
+
+        const lastEmail = await emailLimits.findOne({
+            userId: new mongo.ObjectId(receiverId)
         });
 
-        if (error) {
-            console.error("Błąd Resend:", error);
+        const fifteenMinutes = 15 * 60 * 1000;
+
+        const canSendEmail = !lastEmail ||
+            (Date.now() - new Date(lastEmail.lastSentAt).getTime()) >= fifteenMinutes;
+
+        if (canSendEmail) {
+
+            const { data, error } = await resend.emails.send({
+                from: "Jamly <powiadomienia@notifications.jamly.pl>",
+                to: recipient.email,
+                subject: `${sender.name} wysłał Ci wiadomość na Jamly`,
+                html: `
+                    <h2>Masz nową wiadomość!</h2>
+                    <p>
+                        ${sender.name} ${sender.surname || ""}
+                        wysłał Ci wiadomość.
+                    </p>
+                    <a href="https://www.jamly.pl/chat.html?userId=${sender._id}">
+                        Otwórz rozmowę
+                    </a>
+                `
+            });
+
+            if (error) {
+                console.error("Błąd Resend:", error);
+            } else {
+                await emailLimits.updateOne(
+                    { userId: new mongo.ObjectId(receiverId) },
+                    {
+                        $set: { lastSentAt: new Date() }
+                    },
+                    { upsert: true }
+                );
+
+                console.log("Mail przyjęty przez Resend:", data);
+            }
         }
 
     } catch (err) {

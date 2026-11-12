@@ -9,6 +9,7 @@
     "heic-convert": "^2.1.0",
     "mongodb": "^7.6.0",
     "multer": "^2.3.0",
+    "resend": "^6.38.0",
     "sharp": "^0.35.4",
     "socket.io": "^4.8.3"
   }

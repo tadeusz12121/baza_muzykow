@@ -11,6 +11,8 @@ const fs = require("fs")
 const MongoStore = require("connect-mongo").default;
 const rateLimit = require("express-rate-limit");
 const sharp = require("sharp");
+const { resend } = require("resend");
+const resend = new resend(process.env.RESEND_API_KEY);
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -762,6 +764,17 @@ io.on("connection", (socket) => {
         await client.connect();
 
         const db = client.db("baza_muzykow");
+        const users = db.collection("users");
+        
+        const sender = await users.findOne({
+            _id: new mongo.ObjectId(userId)
+        });
+
+        const recipient = await users.findOne({
+            _id: new mongo.ObjectId(receiverId)
+        });
+
+
         const messages = db.collection("messages");
 
         await messages.insertOne({
@@ -773,6 +786,33 @@ io.on("connection", (socket) => {
             createdAt: new Date()
 
         });
+
+        if (sender && recipient && recipient.email) {
+    try {
+        const { data, error } = await resend.emails.send({
+            from: "Jamly <powiadomienia@notifications.jamly.pl>",
+            to: recipient.email,
+            subject: `${sender.name} wysłał Ci wiadomość na Jamly`,
+            html: `
+                <h2>Masz nową wiadomość!</h2>
+                <p>
+                    ${sender.name} ${sender.surname || ""}
+                    wysłał Ci wiadomość.
+                </p>
+                <a href="https://www.jamly.pl/chat.html">
+                    Otwórz Jamly
+                </a>
+            `
+        });
+
+        if (error) {
+            console.error("Błąd Resend:", error);
+        }
+
+    } catch (err) {
+        console.error("Błąd wysyłania maila:", err);
+    }
+}
 
         const notifications = db.collection("notifications");
 

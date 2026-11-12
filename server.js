@@ -799,11 +799,15 @@ io.on("connection", (socket) => {
             (Date.now() - new Date(lastEmail.lastSentAt).getTime()) >= fifteenMinutes;
 
         if (canSendEmail) {
+            const senderPictureUrl = sender.profilePicture
+            ? `https://www.jamly.pl${sender.profilePicture}`
+            : "https://www.jamly.pl/default-avatar.png";
 
             const { data, error } = await resend.emails.send({
                 from: "Jamly <powiadomienia@notifications.jamly.pl>",
                 to: recipient.email,
                 subject: `${sender.name} wysłał Ci wiadomość na Jamly`,
+            
                 html: `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -950,10 +954,27 @@ io.on("connection", (socket) => {
     </nav>
  </header>
     <h2>Masz nową wiadomość!</h2>
+    <div style="text-align:center; margin: 25px 0;">
+    <img
+        src="${senderPictureUrl}"
+        alt="Zdjęcie profilowe"
+        width="90"
+        height="90"
+        style="
+            width:90px;
+            height:90px;
+            border-radius:50%;
+            object-fit:cover;
+            display:block;
+            margin:0 auto 15px;
+        "
+    >
+
     <p>
-        ${sender.name} ${sender.surname || ""}
+        <strong>${sender.name} ${sender.surname || ""}</strong>
         wysłał/a Ci wiadomość.
     </p>
+</div>
 <div class="main">
     <a class="a2" href="https://www.jamly.pl/chat.html?userId=${sender._id}">
         Otwórz rozmowę

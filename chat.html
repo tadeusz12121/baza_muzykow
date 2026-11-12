@@ -61,52 +61,51 @@
         const params = new URLSearchParams(window.location.search);
         const receiverId = params.get("userId");
         
-        let receiverName = "On";
-        fetch("/musicians")
-            .then(response => response.json())
-            .then(users => {
-                const user = users.find(user => user._id === receiverId);
-
-                if (user) {
-                    receiverName = user.name + " ";
-                }
-            })
-
-
-
-        console.log("rozmawiam z:", receiverId);
         
+let receiverName = "Użytkownik";
 
+async function loadChat() {
+    try {
+        // Najpierw pobieramy dane rozmówcy
+        const usersResponse = await fetch("/musicians");
+        const users = await usersResponse.json();
 
+        const user = users.find(user => user._id === receiverId);
 
-        fetch(`/messages/${receiverId}`)
-            .then(response => response.json())
-            .then(history => {
+        if (user) {
+            receiverName = user.name;
+        }
 
+        // Dopiero teraz pobieramy historię
+        const historyResponse = await fetch(`/messages/${receiverId}`);
+        const history = await historyResponse.json();
 
+        history.forEach(message => {
+            const p = document.createElement("p");
 
-                history.forEach(message => {
-                    
+            if (message.senderId === receiverId) {
+                p.classList.add("recived");
+                p.textContent = receiverName + ": " + message.message;
+            } else {
+                p.classList.add("sent");
+                p.textContent = "Ty: " + message.message;
+            }
 
-                    const p = document.createElement("p");
+            messages.appendChild(p);
+        });
 
-                    if (message.senderId === receiverId) {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
 
-                        p.classList.add("recived");
-                        p.textContent = receiverName + ": " + message.message;
-                    } else {
-                        p.classList.add("sent");
-                        p.textContent = "Ty: " + message.message;
-                    }
+    } catch (error) {
+        console.error("Błąd ładowania czatu:", error);
+    }
+}
 
-    messages.appendChild(p);
+loadChat();
 
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
-    });
-});
-            });
 
 
 

@@ -11,10 +11,8 @@ const fs = require("fs")
 const MongoStore = require("connect-mongo").default;
 const rateLimit = require("express-rate-limit");
 const sharp = require("sharp");
-const { resend } = require("resend");
+const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
